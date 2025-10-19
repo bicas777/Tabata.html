@@ -12,11 +12,14 @@ app.post("/enviar", async (req, res) => {
     const { mensagem } = req.body;
     if (!mensagem) return res.status(400).json({ status: "erro", message: "Mensagem vazia!" });
 
+    // Configuração SMTP mais segura pro Gmail
     const transporter = nodemailer.createTransport({
-        service: "gmail",
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false, // false = STARTTLS
         auth: {
-            user: process.env.GMAIL_USER, // pega o e-mail do Render
-            pass: process.env.GMAIL_PASS  // pega a senha do app do Render
+            user: process.env.GMAIL_USER,
+            pass: process.env.GMAIL_PASS
         }
     });
 
@@ -28,11 +31,12 @@ app.post("/enviar", async (req, res) => {
     };
 
     try {
-        await transporter.sendMail(mailOptions);
+        const info = await transporter.sendMail(mailOptions);
+        console.log("Email enviado:", info.response);
         res.json({ status: "ok", message: "Solicitação enviada!" });
     } catch (err) {
-        console.error(err);
-        res.status(500).json({ status: "erro", message: "Falha ao enviar e-mail" });
+        console.error("Erro ao enviar email:", err);
+        res.status(500).json({ status: "erro", message: err.message });
     }
 });
 
