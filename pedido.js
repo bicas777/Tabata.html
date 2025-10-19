@@ -130,7 +130,7 @@ function drawMatrix() {
 }
 drawMatrix();
 
-// -------- Formulário (ATUALIZADO COM EMAIL) --------
+// -------- Formulário (ATUALIZADO COM EMAIL + IMAGEM) --------
 const cards = document.querySelectorAll('.service-card');
 let selectedService = null;
 
@@ -149,6 +149,7 @@ enviarBtn.addEventListener('click', async () => {
     const nome = document.getElementById('nome').value;
     const email = document.getElementById('email').value;
     const detalhes = document.getElementById('detalhes').value;
+    const arquivo = document.getElementById('imagem').files[0];
 
     if (!nome || !email || !detalhes || !selectedService) {
         status.textContent = "Preencha todos os campos e selecione um serviço!";
@@ -156,13 +157,17 @@ enviarBtn.addEventListener('click', async () => {
         return;
     }
 
-    const data = { nome, email, tipo: selectedService, detalhes };
+    const formData = new FormData();
+    formData.append('nome', nome);
+    formData.append('email', email);
+    formData.append('tipo', selectedService);
+    formData.append('detalhes', detalhes);
+    if (arquivo) formData.append('imagem', arquivo);
 
     try {
         const response = await fetch('https://pedidobot.onrender.com/pedido', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
+            body: formData
         });
 
         const result = await response.json();
@@ -173,6 +178,7 @@ enviarBtn.addEventListener('click', async () => {
         document.getElementById('nome').value = '';
         document.getElementById('email').value = '';
         document.getElementById('detalhes').value = '';
+        document.getElementById('imagem').value = '';
         cards.forEach(c => c.classList.remove('selected'));
         selectedService = null;
 
