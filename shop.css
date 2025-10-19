@@ -1,0 +1,136 @@
+/* Reset */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Orbitron', sans-serif; 
+}
+
+/* Fundos divididos */
+.bg-left, .bg-right {
+    position: absolute;
+    width: 50%;
+    height: 80%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: -2;
+    opacity: 0.9;
+}
+
+.bg-left {
+    left: 0;
+    background-image: url('assets/fundo-esquerda.jpg');
+    background-position: left bottom;
+}
+
+.bg-right {
+    right: 0;
+    background-image: url('assets/fundo-direita.jpg');
+    background-position: right bottom;
+}
+
+/* Corpo */
+body {
+    min-height: 100vh;
+    color: #e0c0ff;
+    background-color: #000;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Hero top */
+.hero-top {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 120px;
+    color: #ffffff;
+    height: 200px;
+}
+.hero-top h1 { 
+    font-size: 4em; 
+    height: 1;
+    z-index: 2;
+    margin-bottom: 10px; 
+    color: #ff99ff; 
+}
+.hero-top p { 
+    font-size: 1.2em; 
+}
+
+/* Loja */
+.shop-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 80px;
+    padding: 20px 100px;
+    position: relative;
+    z-index: 1;
+}
+
+.product-card {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    padding: 50px;
+    width: 300px;
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 0 15px #2510c4;
+    transition: transform 0.3s;
+}
+.product-card:hover { transform: translateY(-5px); }
+.product-card img { width: 100%; border-radius: 10px; margin-bottom: 15px; }
+.product-card h2 { font-size: 1.5em; margin-bottom: 10px; }
+.product-card p { font-size: 1em; margin-bottom: 15px; }
+
+/* Botões */
+.btn {
+    padding: 12px 25px;
+    font-size: 1em;
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 5px #2510c4;
+    background: #20078d;
+}
+.btn:hover { 
+    transform: scale(1.05); 
+    box-shadow: 0 0 15px #ff00ff; 
+}
+
+/* Footer */
+.footer {
+    background: #00000000;
+    color: #ffffff;
+    text-align: center;
+    padding: 50px 0;
+    margin-top: 50px;
+    position: relative;
+    z-index: 1;
+}
+.footer-buttons { 
+    display: flex; 
+    justify-content: center; 
+    gap: 15px; 
+    margin-bottom: 10px; 
+}
+
+/* Matrix */
+#matrix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+    background: transparent;
+    filter: opacity(0.5);
+}

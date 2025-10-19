@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loja Mobile - Tabata</title>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Google Font Orbitron -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+
+<!-- CSS Shop Mobile -->
+<link rel="stylesheet" href="shop-mobile.css">
+</head>
+<body>
+
+<!-- Fundos fixos -->
+<canvas id="matrix"></canvas>
+
+<!-- Título da Loja -->
+<div class="hero-top">
+    <h1>Loja Tabata</h1>
+    <p>Escolha seu produto!</p>
+</div>
+
+<!-- Produtos -->
+<div class="shop-container">
+    <div class="product-card">
+        <img src="assets/fundo-esquerda.jpg" alt="Produto 1">
+        <h2>Thumbnail Profissional</h2>
+        <p>Preço Variável</p>
+        <button class="btn" onclick="window.open('https://pagamento.com/produto1','_blank')">
+            <i class="fa-solid fa-cart-shopping"></i> Solicitar
+        </button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/fundo-direita.jpg" alt="Produto 2">
+        <h2>Código Python Profissional</h2>
+        <p>Preço Variável</p>
+        <button class="btn" onclick="window.open('https://pagamento.com/produto2','_blank')">
+            <i class="fa-solid fa-cart-shopping"></i> Solicitar
+        </button>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-buttons">
+        <button class="btn" onclick="window.location.href='mailto:contato@seusite.com'">
+            <i class="fa-solid fa-headset"></i> Suporte
+        </button>
+    </div>
+    <p><i class="fa-brands fa-whatsapp"></i>: +55 31 98380-8351</p>
+</footer>
+
+<script src="shop-mobile.js"></script>
+</body>
+</html>

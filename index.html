@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tabata.html</title>
+<script>
+if (window.innerWidth <= 768) {
+    window.location.href = "index-mobile.html";
+}
+</script>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Google Font Orbitron -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+<canvas id="matrix"></canvas>
+<div class="mouse-blur"></div>
+
+<!-- Hero fixo -->
+<div class="hero-top">
+    <h1 id="titulo">Tabata.html</h1>
+    <div class="buttons">
+        <button class="btn youtube" data-link="https://www.youtube.com/@bicas7">
+            <i class="fab fa-youtube"></i> YouTube
+        </button>
+        <button class="btn instagram" data-link="https://www.instagram.com/ezbicalho/">
+            <i class="fab fa-instagram"></i> Instagram
+        </button>
+        <button class="btn discord" data-link="https://discord.gg/NveN8W2RBh">
+            <i class="fab fa-discord"></i> Discord
+        </button>
+    </div>
+</div>
+
+<!-- Seções -->
+<div class="section-content first-section">
+    <img src="assets/img1.jpg" alt="Imagem 1">
+    <p>Capas para youtube/anuncios profissionais e sites modernos para destacar seu conteúdo online. Design impactante, cores vibrantes e soluções personalizadas para você ou seu negócio.</p>
+</div>
+
+<div class="section-content">
+  <p>Scripts e automações em Python sob medida para o seu projeto ou negócio. Seja para facilitar tarefas, organizar dados ou criar ferramentas personalizadas, entregamos soluções rápidas e eficientes, feitas sob demanda.</p>
+  <img src="assets/img2.jpg" alt="Imagem 2">
+</div>
+
+<!-- Footer (barra preta com botões) -->
+<footer class="footer">
+    <div class="footer-buttons">
+        <button class="btn email" data-link="https://discord.gg/NveN8W2RBh">
+            <i class="fa-solid fa-star"></i> Faca uma avaliação em nosso servidor do discord!
+        </button>
+        <button class="btn email" data-link="shop.html">
+            <i class="fa-solid fa-sack-dollar"></i> Faça um pedido!
+        </button>
+        <button class="btn suporte" data-link="mailto:contato@seusite.com">
+            <i class="fa-solid fa-headset"></i> Suporte
+        </button>
+    </div>
+    <p><i class="fa-brands fa-whatsapp"></i>: +55 31 98380-8351</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
