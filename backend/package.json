@@ -8,7 +8,7 @@
     "node": "18.x"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node backend/server.cjs"
   },
   "dependencies": {
     "cors": "^2.8.5",
