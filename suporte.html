@@ -3,22 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Suporte</title>
-<!-- Font Awesome -->
+<title>Tabata Suporte</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="stylesheet" href="suporte.css">
 </head>
 <body>
 
 <div class="container">
-    <i class="fas fa-headset fa-4x icon"></i>
-    <h1>Suporte</h1>
+    <i class="fas fa-headset icon"></i>
+    <h1>Tabata Suporte</h1>
     <p>Envie sua solicitação e entraremos em contato o mais rápido possível.</p>
-    <textarea id="mensagem" placeholder="Escreva sua solicitação..."></textarea>
+
+    <input type="text" id="nome" placeholder="Seu nome">
+    <input type="email" id="email" placeholder="Seu e-mail">
+    <textarea id="mensagem" placeholder="Escreva sua mensagem..."></textarea>
     <button id="enviar">Enviar</button>
     <p id="status"></p>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
 <script src="suporte.js"></script>
+<script>
+    emailjs.init("Y27lc6UI_JqbXK-uV"); // Public Key do EmailJS
+</script>
 </body>
 </html>

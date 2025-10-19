@@ -2,27 +2,38 @@ const botao = document.getElementById("enviar");
 const status = document.getElementById("status");
 
 botao.addEventListener("click", async () => {
-    const mensagem = document.getElementById("mensagem").value;
-    if (!mensagem) {
-        status.textContent = "Escreva uma mensagem antes de enviar!";
+    const nome = document.getElementById("nome").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const mensagem = document.getElementById("mensagem").value.trim();
+
+    if (!nome || !email || !mensagem) {
+        status.textContent = "Preencha todos os campos antes de enviar!";
+        status.style.color = "#e74c3c";
         return;
     }
 
+    const serviceID = "service_r4vm82f";    
+    const templateID = "template_iegdz0g";  
+
     try {
-        const res = await fetch("https://tabata-html.onrender.com/enviar", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ mensagem })
+        const result = await emailjs.send(serviceID, templateID, {
+            from_name: nome,
+            from_email: email,
+            message: mensagem,
+            time: new Date().toLocaleString()
         });
 
-        const data = await res.json();
-        if (data.status === "ok") {
-            status.textContent = "Mensagem enviada com sucesso!";
-        } else {
-            status.textContent = "Erro ao enviar: " + data.message;
-        }
+        console.log(result.text);
+        status.textContent = "Mensagem enviada com sucesso!";
+        status.style.color = "#2ecc71";
+
+        // Limpa os campos
+        document.getElementById("nome").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("mensagem").value = "";
     } catch (err) {
-        console.error(err);
-        status.textContent = "Erro de conexão com o servidor!";
+        console.error("Erro ao enviar:", err);
+        status.textContent = "Erro ao enviar a mensagem!";
+        status.style.color = "#e74c3c";
     }
 });

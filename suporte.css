@@ -1,88 +1,99 @@
-/* Reset básico */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
 }
 
 body {
-    background: #2e2e2e; /* Fundo cinza minimalista */
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    color: #333;
+    min-height: 100vh;
 }
 
-/* Caixa central */
 .container {
-    background: #222222;
-    padding: 40px 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    max-width: 400px;
-    width: 90%;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 50px 35px;
+    border-radius: 20px;
     text-align: center;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    transition: transform 0.4s, box-shadow 0.4s;
 }
 
-/* Ícone do headset */
+.container:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+}
+
 .icon {
-    color: #8345a0; /* verde elegante */
+    color: #4a90e2;
     margin-bottom: 20px;
+    transition: transform 0.3s;
 }
 
-/* Título e descrição */
+.container:hover .icon {
+    transform: rotate(-10deg);
+}
+
 h1 {
-    font-size: 1.8em;
+    font-size: 30px;
+    color: #333;
     margin-bottom: 10px;
-    color: #ffffff;
 }
 
 p {
-    font-size: 1em;
-    margin-bottom: 20px;
-    color: #ffffff;
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 25px;
 }
 
-/* Textarea */
-textarea {
+input, textarea {
     width: 100%;
-    height: 120px;
-    padding: 12px;
-    border-radius: 8px;
+    padding: 15px 18px;
+    margin: 10px 0;
+    border-radius: 12px;
     border: 1px solid #ccc;
-    resize: none;
-    font-size: 1em;
-    margin-bottom: 20px;
+    font-size: 14px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus, textarea:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 8px rgba(74,144,226,0.4);
     outline: none;
-    transition: border-color 0.3s;
 }
 
-textarea:focus {
-    border-color: #8345a0;
+textarea {
+    resize: vertical;
+    min-height: 120px;
 }
 
-/* Botão */
 button {
     width: 100%;
-    padding: 12px;
+    padding: 15px 0;
+    border-radius: 12px;
     border: none;
-    border-radius: 8px;
-    background: #8345a0;
+    background: linear-gradient(45deg, #4a90e2, #357abd);
     color: #fff;
-    font-size: 1em;
+    font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
 }
 
 button:hover {
-    background: #8345a0;
+    background: linear-gradient(45deg, #357abd, #4a90e2);
+    transform: scale(1.03);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
-/* Status */
 #status {
     margin-top: 15px;
-    font-weight: bold;
-    font-size: 0.95em;
+    font-weight: 600;
+    min-height: 22px;
+    transition: color 0.3s;
 }
