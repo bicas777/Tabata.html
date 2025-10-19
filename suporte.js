@@ -18,7 +18,7 @@ botao.addEventListener("click", async () => {
     try {
         const result = await emailjs.send(serviceID, templateID, {
             from_name: nome,
-            from_email: email,
+            reply_to: email,
             message: mensagem,
             time: new Date().toLocaleString()
         });
