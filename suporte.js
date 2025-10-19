@@ -9,7 +9,7 @@ botao.addEventListener("click", async () => {
     }
 
     try {
-        const res = await fetch("http://localhost:3000/enviar", {
+        const res = await fetch("https://tabata-html.onrender.com/enviar", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ mensagem })

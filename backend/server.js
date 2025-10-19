@@ -1,12 +1,12 @@
-import express from "express";
-import nodemailer from "nodemailer";
-import cors from "cors";
+const express = require("express");
+const nodemailer = require("nodemailer");
+const cors = require("cors");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-const PORT = 3000; // porta local
+const PORT = process.env.PORT || 3000; // Render usa process.env.PORT
 
 app.post("/enviar", async (req, res) => {
     const { mensagem } = req.body;
@@ -21,8 +21,8 @@ app.post("/enviar", async (req, res) => {
     });
 
     const mailOptions = {
-        from: "SEU_EMAIL@gmail.com",
-        to: "SEU_EMAIL@gmail.com",
+        from: process.env.GMAIL_USER,
+        to: "enzobtabatinga@gmail.com",
         subject: "Nova solicitação de suporte",
         text: mensagem
     };
