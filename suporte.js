@@ -5,6 +5,7 @@ botao.addEventListener("click", async () => {
     const nome = document.getElementById("nome").value.trim();
     const email = document.getElementById("email").value.trim();
     const mensagem = document.getElementById("mensagem").value.trim();
+    const arquivo = document.getElementById("imagem")?.files[0]; // opcional
 
     if (!nome || !email || !mensagem) {
         status.textContent = "Preencha todos os campos antes de enviar!";
@@ -12,25 +13,33 @@ botao.addEventListener("click", async () => {
         return;
     }
 
-    const serviceID = "service_r4vm82f";    
-    const templateID = "template_iegdz0g";  
+    // Cria o FormData para enviar ao bot
+    const formData = new FormData();
+    formData.append("nome", nome);
+    formData.append("email", email);
+    formData.append("tipo", "Suporte"); // você pode mudar para outro tipo se quiser
+    formData.append("detalhes", mensagem);
+    if (arquivo) formData.append("imagem", arquivo);
+
+    status.textContent = "Enviando...";
+    status.style.color = "#3498db";
 
     try {
-        const result = await emailjs.send(serviceID, templateID, {
-            from_name: nome,
-            user_email: email,
-            message: mensagem,
-            time: new Date().toLocaleString()
+        const response = await fetch("http://localhost:3000/pedido", { // URL do seu bot
+            method: "POST",
+            body: formData
         });
 
-        console.log(result.text);
-        status.textContent = "Mensagem enviada com sucesso!";
+        const data = await response.json();
+        status.textContent = data.status || "Pedido enviado com sucesso!";
         status.style.color = "#2ecc71";
 
         // Limpa os campos
         document.getElementById("nome").value = "";
         document.getElementById("email").value = "";
         document.getElementById("mensagem").value = "";
+        if (document.getElementById("imagem")) document.getElementById("imagem").value = "";
+
     } catch (err) {
         console.error("Erro ao enviar:", err);
         status.textContent = "Erro ao enviar a mensagem!";
