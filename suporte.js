@@ -17,7 +17,7 @@ botao.addEventListener("click", async () => {
     const formData = new FormData();
     formData.append("nome", nome);
     formData.append("email", email);
-    formData.append("tipo", "Suporte"); // você pode mudar para outro tipo se quiser
+    formData.append("tipo", "suporte"); // <- minúsculo
     formData.append("detalhes", mensagem);
     if (arquivo) formData.append("imagem", arquivo);
 
@@ -25,7 +25,7 @@ botao.addEventListener("click", async () => {
     status.style.color = "#3498db";
 
     try {
-        const response = await fetch("http://localhost:3000/pedido", { // URL do seu bot
+        const response = await fetch("https://pedidobot.onrender.com/pedido", {
             method: "POST",
             body: formData
         });
