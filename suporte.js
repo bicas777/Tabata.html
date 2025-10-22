@@ -1,6 +1,15 @@
 const botao = document.getElementById("enviar");
 const status = document.getElementById("status");
 
+    const gato = document.getElementById("img3");
+    const somGato = new Audio("assets/click.mp3");
+
+    gato.addEventListener("click", () => {
+        somGato.currentTime = 0;
+        somGato.play();
+
+    });
+
 botao.addEventListener("click", async () => {
     const nome = document.getElementById("nome").value.trim();
     const email = document.getElementById("email").value.trim();
@@ -45,4 +54,5 @@ botao.addEventListener("click", async () => {
         status.textContent = "Erro ao enviar a mensagem!";
         status.style.color = "#e74c3c";
     }
+
 });

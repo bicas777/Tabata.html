@@ -11,6 +11,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    background: url('assets/fundo-suporte.png') no-repeat center center/cover;
 }
 
 .container {
@@ -96,4 +97,26 @@ button:hover {
     font-weight: 600;
     min-height: 22px;
     transition: color 0.3s;
+}
+
+.container {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 50px 35px 35px;
+    border-radius: 20px;
+    text-align: center;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    margin-top: 60px; /* espaço para a imagem flutuar acima */
+}
+
+.top-image {
+    position: absolute;
+    top: -35px;               /* começa no topo da página */
+    left: 23%;
+    transform: translate(-50%, -50%); /* centraliza horizontal e flutua metade pra cima */
+    width: 150px;
+    height: auto;
+    z-index: 10;          /* garante que fique acima da container */
 }
