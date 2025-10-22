@@ -17,7 +17,7 @@ botao.addEventListener("click", async () => {
     const arquivo = document.getElementById("imagem")?.files[0]; // opcional
 
     if (!nome || !email || !mensagem) {
-        status.textContent = "Preencha todos os campos antes de enviar!";
+        status.textContent = "Ei! Preencha as informações primeiro!";
         status.style.color = "#e74c3c";
         return;
     }
