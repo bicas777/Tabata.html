@@ -16,6 +16,7 @@
     background-position: center;
     z-index: -2;
     opacity: 0.9;
+    top: -20px;
 }
 
 .bg-left {
@@ -80,8 +81,8 @@ body {
     transition: transform 0.3s;
 }
 .product-card:hover { transform: translateY(-5px); }
-.product-card img { width: 100%; border-radius: 10px; margin-bottom: 15px; }
-.product-card h2 { font-size: 1.5em; margin-bottom: 10px; }
+.product-card img { width: 50%; border-radius: 10px; margin-bottom: 15px; }
+.product-card h2 { font-size: 1.4em; margin-bottom: 10px; }
 .product-card p { font-size: 1em; margin-bottom: 15px; }
 
 /* Botões */
