@@ -6,6 +6,11 @@
     font-family: 'Orbitron', sans-serif; 
 }
 
+h2 i.html { color: #ff6600; }
+h2 i.python { color: #3572A5; }
+h2 i.js { color: #f7df1e; }
+h2 i.css { color: #2965f1; }
+
 /* Fundos divididos */
 .bg-left, .bg-right {
     position: absolute;
