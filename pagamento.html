@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagamento</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="pagamento.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <h2 id="product-name">Selecione um produto</h2>
+    <img src="assets/fundo-esquerda.jpg" alt="Produto" class="product-image" id="product-image">
+    <audio id="click" src="assets/click2.mp3"></audio>
+
+    <p class="price" id="product-price">R$ 0</p>
+
+    <div class="opcoes">
+      <button type="button" class="opcoes-btn" data-name="Thumbnail" data-price="40" data-img="assets/fundo-esquerda.jpg">Thumbnail</button>
+      <button type="button" class="opcoes-btn" data-name="Anuncio" data-price="70" data-img="assets/anuncio.png">Anúncio</button>
+      <button type="button" class="opcoes-btn" data-name="Codigos" data-price="90" data-img="assets/codigos completos.png">
+        Códigos Int.<i class="fa-brands fa-html5"></i> <i class="fa-brands fa-css3-alt"></i> <i class="fa-brands fa-square-js"></i> <i class="fa-brands fa-python"></i>
+      </button>
+      <button type="button" class="opcoes-btn" data-name="Site Completo" data-price="250" data-img="assets/site completo.png">Site Completo</button>
+    </div>
+
+    <!-- Dropdown Site Completo -->
+    <div class="dropdown" id="site-opcoes">
+      <button type="button" class="dropdown-btn">Selecione o tipo de site ⮟</button>
+      <div class="dropdown-content">
+        <button type="button" class="dropdown-item" data-price="500">Loja</button>
+        <button type="button" class="dropdown-item" data-price="300">Rede Social</button>
+        <button type="button" class="dropdown-item" data-price="200">Portfólio</button>
+        <button type="button" class="dropdown-item">Outros...</button>
+      </div>
+    </div>
+
+    <!-- Campo de descrição -->
+    <div id="outros-input">
+      <label for="descricao">Descrição do site</label>
+      <input type="text" id="descricao" name="descricao" placeholder="Descreva o site">
+    </div>
+
+    <!-- Formulário -->
+    <form id="payment-form">
+      <label for="name">Nome</label>
+      <input type="text" id="name" name="name" placeholder="Seu nome" required>
+
+      <label for="email">E-mail</label>
+      <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+
+      <button type="submit" id="pay-button"><i class="fa-solid fa-cart-shopping"></i> Pagar agora</button>
+
+      <div id="textodebaixo" class="textodebaixo">
+        <p>Após o pagamento, nossa equipe irá revisar seu pedido e enviaremos diretamente em seu email.</p>
+      </div>
+    </form>
+
+    <!-- QR Code Pix -->
+  </div>
+
+  <!-- Pop-ups -->
+  <div id="popup" class="popup">
+    <p>Ao selecionar 'Outros' e preencher os campos, enviaremos um e-mail com o valor proposto!</p>
+    <button id="close-popup">Fechar</button>
+  </div>
+
+  <div id="popupbotao" class="popup popup-verde">
+    <div class="popup-content">
+      <p>Pedido concluído com sucesso!</p>
+      <button id="fecharPopup">Fechar</button>
+    </div>
+  </div>
+
+  <script src="pagamento.js"></script>
+</body>
+</html>

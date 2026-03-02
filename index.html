@@ -1,72 +1,268 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br" data-theme="default">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tabata.html</title>
-<script>
-if (window.innerWidth <= 768) {
-    window.location.href = "index-mobile.html";
-}
-</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabata</title>
+    <link rel="stylesheet" href="portifolio.css">
+    <link rel="shortcut icon" href="assets/LOGO.png"  sizes="64x64" type="image/png">
+    <!-- Font Awesome -->
+<script src="https://kit.fontawesome.com/b5e9fc2132.js" crossorigin="anonymous"></script>
 
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-<!-- Google Font Orbitron -->
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="style.css">
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,800;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Wix+Madefor+Text:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700,1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=BBH+Bartle&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Fredoka:wght@300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,800;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Wix+Madefor+Text:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BBH+Bartle&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Fredoka:wght@300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,800;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Wix+Madefor+Text:ital,wght@0,400..800;1,400..800&family=Zalando+Sans+Expanded:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
 </head>
 <body>
+  
+  <div id="skill" class="cursor-texta">
+    <span data-i18n="skill">SKILLS</span>
+    <svg width="10px" height="10px" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="nonzero" clip-rule="nonzero" d="M3 1.5C2.86193 1.5 2.75 1.61193 2.75 1.75V11.3003C2.75 11.3896 2.79769 11.4722 2.87509 11.5168L7.73381 14.3194C7.80942 14.363 7.90231 14.364 7.97886 14.3221L13.1201 11.5048C13.2002 11.4609 13.25 11.3769 13.25 11.2856V1.75C13.25 1.61193 13.1381 1.5 13 1.5H3ZM1.25 1.75C1.25 0.783502 2.0335 0 3 0H13C13.9665 0 14.75 0.783503 14.75 1.75V11.2856C14.75 11.9248 14.4015 12.5131 13.841 12.8203L8.69968 15.6375C8.16383 15.9311 7.51363 15.924 6.98434 15.6187L2.12562 12.8162C1.58382 12.5037 1.25 11.9258 1.25 11.3003V1.75ZM5 4.25C5 3.83579 5.33579 3.5 5.75 3.5H10.3654C10.7796 3.5 11.1154 3.83579 11.1154 4.25C11.1154 4.66421 10.7796 5 10.3654 5H6.5V6.71154H10.3654C10.7796 6.71154 11.1154 7.04732 11.1154 7.46154V10.3462C11.1154 10.6302 10.9549 10.8899 10.7008 11.017L8.3931 12.1708C8.18196 12.2764 7.93343 12.2764 7.72228 12.1708L5.41459 11.017C5.1605 10.8899 5 10.6302 5 10.3462V9.76923C5 9.35502 5.33579 9.01923 5.75 9.01923C6.16421 9.01923 6.5 9.35502 6.5 9.76923V9.88263L8.05769 10.6615L9.61539 9.88263V8.21154H5.75C5.33579 8.21154 5 7.87575 5 7.46154V4.25Z" fill="#ff8800"></path> </g></svg><svg width="10px" height="10px" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="nonzero" clip-rule="nonzero" d="M3 1.60001C2.86193 1.60001 2.75 1.71193 2.75 1.85001V11.4003C2.75 11.4896 2.79769 11.5722 2.87509 11.6168L7.73381 14.4194C7.80942 14.463 7.90231 14.464 7.97886 14.4221L13.1201 11.6048C13.2002 11.5609 13.25 11.4769 13.25 11.3856V1.85001C13.25 1.71193 13.1381 1.60001 13 1.60001H3ZM1.25 1.85001C1.25 0.883508 2.0335 0.100006 3 0.100006H13C13.9665 0.100006 14.75 0.883509 14.75 1.85001V11.3856C14.75 12.0248 14.4015 12.6131 13.841 12.9203L8.69968 15.7375C8.16383 16.0311 7.51363 16.024 6.98434 15.7187L2.12562 12.9162C1.58382 12.6037 1.25 12.0258 1.25 11.4003V1.85001ZM5 4.35001C5 3.93579 5.33579 3.60001 5.75 3.60001H10.3654C10.7796 3.60001 11.1154 3.93579 11.1154 4.35001V10.4462C11.1154 10.7302 10.9549 10.9899 10.7008 11.117L8.3931 12.2708C8.18196 12.3764 7.93343 12.3764 7.72228 12.2708L5.41459 11.117C5.1605 10.9899 5 10.7302 5 10.4462V9.86924C5 9.45502 5.33579 9.11924 5.75 9.11924C6.16421 9.11924 6.5 9.45502 6.5 9.86924V9.98263L8.05769 10.7615L9.61539 9.98263V8.31154H7C6.58579 8.31154 6.25 7.97576 6.25 7.56154C6.25 7.14733 6.58579 6.81154 7 6.81154H9.61539V5.10001H5.75C5.33579 5.10001 5 4.76422 5 4.35001Z" fill="#007bff"></path> </g></svg>&nbsp;<svg width="10px" height="10px" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="nonzero" clip-rule="nonzero" d="M0 1.75C0 0.783501 0.783502 0 1.75 0H14.25C15.2165 0 16 0.783502 16 1.75V3.75C16 4.16421 15.6642 4.5 15.25 4.5C14.8358 4.5 14.5 4.16421 14.5 3.75V1.75C14.5 1.61193 14.3881 1.5 14.25 1.5H1.75C1.61193 1.5 1.5 1.61193 1.5 1.75V14.25C1.5 14.3881 1.61193 14.5 1.75 14.5H15.25C15.6642 14.5 16 14.8358 16 15.25C16 15.6642 15.6642 16 15.25 16H1.75C0.783501 16 0 15.2165 0 14.25V1.75ZM8.25 5.75C8.66421 5.75 9 6.08579 9 6.5V10.5C9 11.5048 8.72399 12.2584 8.15514 12.7324C7.61223 13.1848 6.95384 13.25 6.5 13.25C6.08579 13.25 5.75 12.9142 5.75 12.5C5.75 12.0858 6.08579 11.75 6.5 11.75C6.84617 11.75 7.06277 11.6902 7.19486 11.5801C7.301 11.4916 7.5 11.2452 7.5 10.5V6.5C7.5 6.08579 7.83578 5.75 8.25 5.75ZM11.2757 6.58011C11.6944 6.08164 12.3507 5.75 13.25 5.75C14.0849 5.75 14.7148 6.03567 15.1394 6.48481C15.4239 6.78583 15.4105 7.26052 15.1095 7.54505C14.8085 7.82958 14.3338 7.81621 14.0493 7.51519C13.9394 7.39898 13.7204 7.25 13.25 7.25C12.7493 7.25 12.5306 7.41836 12.4243 7.54489C12.2934 7.70065 12.25 7.896 12.25 8C12.25 8.104 12.2934 8.29935 12.4243 8.45511C12.5306 8.58164 12.7493 8.75 13.25 8.75C13.3257 8.75 13.3988 8.76121 13.4676 8.78207C14.1307 8.87646 14.6319 9.17251 14.9743 9.58011C15.3684 10.0493 15.5 10.604 15.5 11C15.5 11.396 15.3684 11.9507 14.9743 12.4199C14.5556 12.9184 13.8993 13.25 13 13.25C12.1651 13.25 11.5352 12.9643 11.1106 12.5152C10.8261 12.2142 10.8395 11.7395 11.1405 11.4549C11.4415 11.1704 11.9162 11.1838 12.2007 11.4848C12.3106 11.601 12.5296 11.75 13 11.75C13.5007 11.75 13.7194 11.5816 13.8257 11.4551C13.9566 11.2993 14 11.104 14 11C14 10.896 13.9566 10.7007 13.8257 10.5449C13.7194 10.4184 13.5007 10.25 13 10.25C12.9243 10.25 12.8512 10.2388 12.7824 10.2179C12.1193 10.1235 11.6181 9.82749 11.2757 9.41989C10.8816 8.95065 10.75 8.396 10.75 8C10.75 7.604 10.8816 7.04935 11.2757 6.58011Z" fill="#fbff00"></path> </g></svg>&nbsp;<svg width="10px" height="10px" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.032"></g><g id="SVGRepo_iconCarrier"> <path d="M5.79 1.574h3.866c.14 0 .252.11.252.246v5.186a.25.25 0 01-.252.246H6.344c-.975 0-1.766.77-1.766 1.72v1.162a.25.25 0 01-.253.243H1.867a.25.25 0 01-.253-.246V6.177a.25.25 0 01.252-.246H7.98c.418 0 .757-.33.757-.737a.747.747 0 00-.757-.738H5.537V1.82a.25.25 0 01.253-.246zm5.632 2.592V1.82c0-.95-.79-1.72-1.766-1.72H5.79c-.976 0-1.767.77-1.767 1.72v2.636H1.867C.89 4.456.1 5.226.1 6.176v3.955c0 .95.79 1.72 1.766 1.72h2.46c.085 0 .17-.006.252-.017v2.346c0 .95.79 1.72 1.766 1.72h3.866c.976 0 1.767-.77 1.767-1.72v-2.636h2.156c.976 0 1.767-.77 1.767-1.72V5.868c0-.95-.79-1.72-1.767-1.72h-2.458c-.086 0-.17.005-.253.017zm-5.33 5.974V8.994a.25.25 0 01.252-.246h3.312c.976 0 1.766-.77 1.766-1.72V5.866a.25.25 0 01.253-.243h2.458c.14 0 .253.11.253.246v3.954a.25.25 0 01-.252.246H8.02a.747.747 0 00-.757.737c0 .408.339.738.757.738h2.442v2.636a.25.25 0 01-.253.246H6.344a.25.25 0 01-.252-.246v-4.04z" fill="#004cff"></path> </g></svg>&nbsp;<svg fill="#47848F" width="10px" height="10px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#47848F"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.128"></g><g id="SVGRepo_iconCarrier"> <title>electron</title> <path d="M10.409 24.405c-0.007-0-0.015-0.001-0.023-0.001-0.222 0-0.402 0.18-0.402 0.402 0 0.049 0.009 0.095 0.024 0.139l-0.001-0.003c1.342 3.747 3.537 6.053 6.005 6.053 2.12-0.214 3.89-1.526 4.749-3.352l0.015-0.036c0.035-0.058 0.056-0.129 0.056-0.204 0-0.222-0.18-0.402-0.402-0.402-0.144 0-0.271 0.076-0.342 0.19l-0.001 0.002c-0.739 1.62-2.251 2.773-4.050 2.995l-0.025 0.003c-2.050 0-4.008-2.058-5.248-5.521-0.055-0.15-0.192-0.256-0.355-0.266l-0.001-0zM27.91 22.696c0 0 0.001 0 0.001 0 0.618 0 1.12 0.501 1.12 1.12s-0.501 1.12-1.12 1.12c-0.281 0-0.539-0.104-0.735-0.275l0.001 0.001-0.008-0.015c-0.032-0.046-0.072-0.084-0.118-0.113l-0.002-0.001c-0.161-0.193-0.259-0.443-0.259-0.716 0-0.618 0.501-1.12 1.119-1.12v0zM4.090 22.696c0 0 0 0 0 0 0.618 0 1.12 0.501 1.12 1.12s-0.501 1.12-1.12 1.12c-0.618 0-1.12-0.501-1.12-1.12 0-0.206 0.056-0.399 0.153-0.565l-0.003 0.005c0.197-0.337 0.557-0.56 0.97-0.56 0 0 0 0 0 0v0zM6.668 17.676c-0.006-0-0.013-0-0.019-0-0.222 0-0.402 0.18-0.402 0.402 0 0.104 0.040 0.199 0.105 0.271l-0-0c1.718 1.84 3.691 3.412 5.87 4.666l0.122 0.065c5.517 3.185 11.379 4.105 14.447 2.298 0.311 0.226 0.701 0.361 1.122 0.361 1.063 0 1.925-0.862 1.925-1.925s-0.862-1.925-1.925-1.925c-1.063 0-1.925 0.862-1.925 1.925 0 0.35 0.093 0.677 0.256 0.96l-0.005-0.009c-2.805 1.517-8.286 0.625-13.493-2.381-2.226-1.276-4.136-2.796-5.786-4.561l-0.013-0.014c-0.069-0.076-0.168-0.126-0.277-0.131l-0.001-0zM16 15.369c-0.763 0.008-1.379 0.628-1.379 1.392 0 0.769 0.623 1.392 1.392 1.392s1.392-0.623 1.392-1.392c0-0.104-0.011-0.205-0.033-0.303l0.002 0.009c-0.142-0.633-0.7-1.098-1.365-1.098-0.003 0-0.006 0-0.009 0h0zM19.598 7.575c-0.029 0-0.057 0.004-0.084 0.010l0.003-0c-2.709 0.626-5.099 1.604-7.277 2.902l0.115-0.064c-5.711 3.297-9.488 8.116-9.197 11.711-0.594 0.335-0.988 0.961-0.988 1.68 0 1.062 0.861 1.922 1.922 1.922s1.922-0.861 1.922-1.922c0-1.062-0.861-1.922-1.922-1.922-0 0-0.001 0-0.001 0h0c-0.047 0-0.094 0.004-0.141 0.007-0.125-3.199 3.428-7.674 8.807-10.78 1.995-1.195 4.308-2.142 6.764-2.716l0.164-0.032c0.182-0.041 0.316-0.201 0.316-0.393 0-0.222-0.18-0.402-0.402-0.402-0.001 0-0.001 0-0.002 0h0zM22.97 7.21c-0.221 0.001-0.399 0.181-0.399 0.402 0 0.217 0.173 0.395 0.388 0.402l0.001 0c0.167-0.019 0.36-0.030 0.556-0.030 1.682 0 3.177 0.804 4.121 2.049l0.009 0.013c1.024 1.773 0.225 4.492-2.147 7.294-0.061 0.070-0.098 0.163-0.098 0.264 0 0.222 0.18 0.402 0.402 0.402 0.124 0 0.236-0.057 0.309-0.145l0.001-0.001c2.566-3.032 3.462-6.081 2.23-8.216-1.086-1.498-2.831-2.461-4.8-2.461-0.201 0-0.401 0.010-0.597 0.030l0.025-0.002zM9.158 7.188c-0.193-0.022-0.418-0.035-0.645-0.035-1.983 0-3.74 0.966-4.827 2.453l-0.012 0.017c-0.329 0.717-0.52 1.555-0.52 2.438 0 1.331 0.435 2.56 1.17 3.553l-0.011-0.016c0.072 0.117 0.199 0.194 0.344 0.194 0.222 0 0.402-0.18 0.402-0.402 0-0.070-0.018-0.136-0.050-0.193l0.001 0.002c-0.655-0.865-1.049-1.958-1.049-3.144 0-0.733 0.151-1.43 0.422-2.063l-0.013 0.034c1.026-1.777 3.79-2.443 7.413-1.783 0.024 0.005 0.050 0.008 0.078 0.008 0.222 0 0.402-0.18 0.402-0.402 0-0.199-0.144-0.364-0.334-0.396l-0.002-0c-0.831-0.164-1.788-0.259-2.767-0.262h-0.002zM16.014 1.808c0 0 0 0 0 0 0.618 0 1.12 0.501 1.12 1.12s-0.501 1.12-1.12 1.12c-0.618 0-1.12-0.501-1.12-1.12 0-0.206 0.056-0.399 0.153-0.565l-0.003 0.005c0.197-0.337 0.557-0.56 0.97-0.56v0zM16.014 1.004c-0 0-0.001 0-0.001 0-1.062 0-1.924 0.861-1.924 1.924s0.861 1.924 1.924 1.924c0.739 0 1.381-0.417 1.703-1.029l0.005-0.011c2.775 1.584 4.807 6.839 4.807 12.949 0 0.054 0.001 0.119 0.001 0.183 0 2.505-0.377 4.923-1.078 7.198l0.046-0.173c-0.010 0.034-0.016 0.073-0.016 0.113 0 0.222 0.18 0.402 0.402 0.402 0.177 0 0.327-0.114 0.381-0.273l0.001-0.003c0.678-2.174 1.068-4.674 1.068-7.264 0-0.065-0-0.129-0.001-0.194l0 0.010c0-6.489-2.214-12.104-5.399-13.749 0.001-0.028 0.004-0.055 0.004-0.084-0-1.062-0.861-1.923-1.924-1.923-0 0-0 0-0 0v0z"></path> </g></svg>
+  </div>
 
-<canvas id="particles"></canvas>
-<canvas id="matrix"></canvas>
-<div class="mouse-blur"></div>
+  <div id="contata" class="contact">
+    <span data-i18n="contata" class="contatahover">CONTATO</span>
+  </div>
 
-<!-- Hero fixo -->
-<div class="hero-top">
-    <h1 id="titulo">Tabata.html</h1>
-    <div class="buttons">
-        <button class="btn youtube" data-link="https://www.youtube.com/@bicas7">
-            <i class="fab fa-youtube"></i> YouTube
-        </button>
-        <button class="btn instagram" data-link="https://www.instagram.com/ezbicalho/">
-            <i class="fab fa-instagram"></i> Instagram
-        </button>
-        <button class="btn discord" data-link="https://discord.gg/NveN8W2RBh">
-            <i class="fab fa-discord"></i> Discord
-        </button>
+  <div class="custom-cursor">
+    <span data-i18n="acesso" class="cursor-text">ACESSAR</span>
+    <span data-i18n="skill" class="cursor-texto"></span>
+  </div>
+
+    <div class="background-blobs">
+  <div class="blob circle-1"></div>
+  <div class="blob circle-2"></div>
+</div>
+
+<div class="btn-wrapper">
+  <button class="button">
+  <div class="wrap">
+    <p data-i18n="iniciar">
+      Entrar
+    </p>
+  </div>
+</button>
+</div>
+
+<div class="welcome">
+  <div>
+  <span data-i18n="welcome" class="welcome-text">Olá!</span>
+  </div>
+</div>
+
+<div class="site-content">
+  <div class="superior">
+    <div class="relogio">
+      <span class="textorelogio">LOCAL /</span><span id="clock">00:00:00</span>
     </div>
-</div>
+    <button class="cta">
+    <span data-i18n="contato" class="hover-underline-animation"> Contate-me </span>
+    <svg
+    id="arrow-horizontal"
+    xmlns="http://www.w3.org/2000/svg"
+    width="30"
+    height="10"
+    viewBox="0 0 46 16"
+    >
+      <path
+      id="Path_10"
+      data-name="Path 10"
+      d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+      transform="translate(30)"
+      ></path>
+    </svg>
+  </button>
+  </div>
+  <div class="texto-wrap">
+    <span class="texto">
+      <span class="texto-inner" data-i18n="textoinner">ENZO BICALHO</span>
+    </span>
+  </div>
 
-<!-- Seções -->
-<div class="section-content first-section">
-    <img src="assets/img1.jpg" alt="Imagem 1">
-    <p>Capas para youtube/anuncios profissionais e sites modernos para destacar seu conteúdo online. Design impactante, cores vibrantes e soluções personalizadas para você ou seu negócio.</p>
+<button class="Chat" id="Chat">
+  <div class="Chat-borda"></div>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    class="Chat-Icone"
+  >
+    <path
+      class="Chat-ic"
+      stroke-linejoin="round"
+      stroke-linecap="round"
+      stroke="black"
+      fill="black"
+      d="M14.187 8.096L15 5.25L15.813 8.096C16.0231 8.83114 16.4171 9.50062 16.9577 10.0413C17.4984 10.5819 18.1679 10.9759 18.903 11.186L21.75 12L18.904 12.813C18.1689 13.0231 17.4994 13.4171 16.9587 13.9577C16.4181 14.4984 16.0241 15.1679 15.814 15.903L15 18.75L14.187 15.904C13.9769 15.1689 13.5829 14.4994 13.0423 13.9587C12.5016 13.4181 11.8321 13.0241 11.097 12.814L8.25 12L11.096 11.187C11.8311 10.9769 12.5006 10.5829 13.0413 10.0423C13.5819 9.50162 13.9759 8.83214 14.186 8.097L14.187 8.096Z"
+    ></path>
+    <path
+      class="Chat-ic"
+      stroke-linejoin="round"
+      stroke-linecap="round"
+      stroke="black"
+      fill="black"
+      d="M6 14.25L5.741 15.285C5.59267 15.8785 5.28579 16.4206 4.85319 16.8532C4.42059 17.2858 3.87853 17.5927 3.285 17.741L2.25 18L3.285 18.259C3.87853 18.4073 4.42059 18.7142 4.85319 19.1468C5.28579 19.5794 5.59267 20.1215 5.741 20.715L6 21.75L6.259 20.715C6.40725 20.1216 6.71398 19.5796 7.14639 19.147C7.5788 18.7144 8.12065 18.4075 8.714 18.259L9.75 18L8.714 17.741C8.12065 17.5925 7.5788 17.2856 7.14639 16.853C6.71398 16.4204 6.40725 15.8784 6.259 15.285L6 14.25Z"
+    ></path>
+    <path
+      class="Chat-ic"
+      stroke-linejoin="round"
+      stroke-linecap="round"
+      stroke="black"
+      fill="black"
+      d="M6.5 4L6.303 4.5915C6.24777 4.75718 6.15472 4.90774 6.03123 5.03123C5.90774 5.15472 5.75718 5.24777 5.5915 5.303L5 5.5L5.5915 5.697C5.75718 5.75223 5.90774 5.84528 6.03123 5.96877C6.15472 6.09226 6.24777 6.24282 6.303 6.4085L6.5 7L6.697 6.4085C6.75223 6.24282 6.84528 6.09226 6.96877 5.96877C7.09226 5.84528 7.24282 5.75223 7.4085 5.697L8 5.5L7.4085 5.303C7.24282 5.24777 7.09226 5.15472 6.96877 5.03123C6.84528 4.90774 6.75223 4.75718 6.697 4.5915L6.5 4Z"
+    ></path>
+  </svg>
+  <span class="Chat-Texto" data-i18n="ChatTexto">Conversar com bot</span>
+</button>
+<div id="chat-card">
+  <div id="chat-header" data-i18n="Chatcomenzo"></div>
+  <div id="chat" class="chat"></div>
+  <div id="chat-input">
+    <input type="text" id="input" placeholder="Digite aqui..." />
+    <button id="send-btn">Enviar</button>
+  </div>
 </div>
-
-<div class="section-content">
-  <p>Scripts e automações em Python sob medida para o seu projeto ou negócio. Seja para facilitar tarefas, organizar dados ou criar ferramentas personalizadas, entregamos soluções rápidas e eficientes, feitas sob demanda.</p>
-  <img src="assets/img2.jpg" alt="Imagem 2">
-</div>
-
-<!-- Footer (barra preta com botões) -->
-<footer class="footer">
-    <div class="footer-buttons">
-        <button class="btn email" data-link="https://discord.gg/NveN8W2RBh">
-            <i class="fa-solid fa-star"></i> Faca uma avaliação em nosso servidor do discord!
-        </button>
-        <button class="btn email" data-link="shop.html">
-            <i class="fa-solid fa-sack-dollar"></i> Faça um pedido!
-        </button>
-        <button class="btn suporte" data-link="suporte.html">
-            <i class="fa-solid fa-headset"></i> Suporte
-        </button>
+  <label class="popup">
+    <input type="checkbox" />
+    <div tabindex="0" class="burger" aria-expanded="false">
+<svg class="linguagem1" fill="#ffffff" width="34px" height="34px" viewBox="0 0 24.00 24.00" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M14.022,7h1a1.0013,1.0013,0,0,1,1,1V9a1,1,0,0,0,2,0V8a3.00328,3.00328,0,0,0-3-3h-1a1,1,0,0,0,0,2Zm-4,9h-1a1.0013,1.0013,0,0,1-1-1V14a1,1,0,0,0-2,0v1a3.00328,3.00328,0,0,0,3,3h1a1,1,0,0,0,0-2Zm11-1a1,1,0,0,0,0-2h-3v-.5a1,1,0,0,0-2,0V13h-3a1,1,0,0,0,0,2h5.18427a6.72756,6.72756,0,0,1-1.22553,2.52667,6.66828,6.66828,0,0,1-.62915-.98272.99972.99972,0,1,0-1.77929.9121,8.67791,8.67791,0,0,0,.9591,1.468A6.6182,6.6182,0,0,1,13.10645,20.023a1.00008,1.00008,0,0,0,.42675,1.9541,8.63506,8.63506,0,0,0,3.445-1.62164,8.72368,8.72368,0,0,0,3.46857,1.62115,1,1,0,1,0,.43066-1.95312,6.72477,6.72477,0,0,1-2.4461-1.09009A8.73637,8.73637,0,0,0,20.24371,15ZM9.05176,11.24268a1.00011,1.00011,0,0,0,1.94043-.48536L9.23486,3.72754a2.28107,2.28107,0,0,0-4.42578,0L3.05176,10.75732a1.00011,1.00011,0,0,0,1.94043.48536L5.5528,9H8.49115ZM6.0528,7l.69671-2.78711a.2913.2913,0,0,1,.54492,0L7.99115,7Z"></path></g></svg>
+<svg class="linguagem2" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" version="1.1" id="svg1" width="38" height="38" viewBox="0 0 341.33334 341.33334" sodipodi:docname="1.png">
+  <defs id="defs1"/>
+  <sodipodi:namedview id="namedview1" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" inkscape:showpageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#505050">
+    <inkscape:page x="0" y="0" width="341.33334" height="341.33334" id="page2" margin="0" bleed="0"/>
+  </sodipodi:namedview>
+  <g inkscape:groupmode="layer" inkscape:label="Image" id="g1">
+    <path style="fill:#ffffff" d="m 226.66667,296.66668 v -14 h 14 14 v -14.00001 -14 h 14 14.00001 v -14 -14 h -28.00001 -28 v -13.33333 -13.33333 h 14 14 v -14.66667 -14.66667 h 14 14.00001 v 14.66667 14.66667 h 14 14 v 27.33333 27.33333 h -14 -14 v 14 14.00001 h 14 14 v 14 14 h -14 -14 v -14 -14 h -14.00001 -14 v 14 14 h -14 -14 z M 116,268.66667 v -14 H 102 88.00001 v -14 -14 h -14 -14 v -28 -28 h 14 14 v 28 28 H 102 116 v 14 14 h 27.33334 27.33333 v 14 14.00001 H 143.33334 116 Z M 32,87.33334 V 32 H 74.00001 116 v 55.33334 55.33333 H 102 88.00001 V 129.33334 116 h -14 -14 v 13.33334 13.33333 H 46 32 Z M 88.00001,74 V 60 h -14 -14 v 14 14 h 14 14 z m 166.66666,41.33334 V 88 h -14 -14 V 74 60 h -28 -28 V 46 32 h 28 28 v 14 14 h 14 14 v 14 14 h 14 14.00001 v 27.33334 27.33333 h -14.00001 -14 z" id="path1"/>
+  </g>
+</svg>
     </div>
-    <p><i class="fa-brands fa-whatsapp"></i>: +55 31 98380-8351</p>
-</footer>
+      <nav class="popup-window">
+        <legend data-i18n="idiomaLGND">O idioma fica salvo para a proxima vez que entrar no site!</legend>
+        <ul>
+          <li>
+            <button id="EN" type="button" data-i18n="EN">
+              <span>English</span>
+            </button>
+          </li>
+          <li>
+            <button id="PT" type="button" data-i18n="PT">
+              <span>Português (padrão)</span>
+            </button>
+          </li>
+                    <li>
+            <button id="ES" type="button" data-i18n="ES">
+              <span>Espanhol</span>
+            </button>
+          </li>
+        </ul>
+    </nav>
+  </label>
+    <label class="popup2">
+    <input type="checkbox" />
+    <div tabindex="0" class="burger2" aria-expanded="false">
+      <svg class="tema1" xmlns="http://www.w3.org/2000/svg" height="34" width="34" viewBox="0 0 640 640"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path fill="#ffffff" d="M290.4 70C288.9 66.4 285.4 64 281.5 64L262.5 64C258.6 64 255 66.4 253.6 70L232.9 121.7C229.7 129.7 218.3 129.7 215.1 121.7L194.4 70C192.9 66.4 189.4 64 185.5 64L176 64C149.5 64 128 85.5 128 112L128 320L512 320L512 112C512 85.5 490.5 64 464 64L358.5 64C354.6 64 351 66.4 349.6 70L328.9 121.7C325.7 129.7 314.3 129.7 311.1 121.7L290.4 70zM128 368L128 384C128 419.3 156.7 448 192 448L256 448L256 512C256 547.3 284.7 576 320 576C355.3 576 384 547.3 384 512L384 448L448 448C483.3 448 512 419.3 512 384L512 368L128 368zM320 528C311.2 528 304 520.8 304 512C304 503.2 311.2 496 320 496C328.8 496 336 503.2 336 512C336 520.8 328.8 528 320 528z"/></svg>
+      <svg class="tema2" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" version="1.1" id="svg1" width="38" height="38" viewBox="0 0 341.33334 341.33334" sodipodi:docname="2.png">
+  <defs id="defs1"/>
+  <sodipodi:namedview id="namedview1" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" inkscape:showpageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#505050" inkscape:zoom="2.2470702" inkscape:cx="170.66667" inkscape:cy="170.66667" inkscape:window-width="1920" inkscape:window-height="969" inkscape:window-x="-8" inkscape:window-y="32" inkscape:window-maximized="1" inkscape:current-layer="g1">
+    <inkscape:page x="0" y="0" width="341.33334" height="341.33334" id="page2" margin="0" bleed="0"/>
+  </sodipodi:namedview>
+  <g inkscape:groupmode="layer" inkscape:label="Image" id="g1">
+    <g id="g65782">
+      <path style="fill:#d7d2b4" d="m 122.66667,97.333336 v -24 h 12 12 v 24 24.000004 h -12 -12 z m 48,-12 V 49.333335 h 12.66667 12.66667 v 36.000001 36.000004 h -12.66667 -12.66667 z m 49.33334,0 V 49.333335 h 12 12 v 36.000001 36.000004 h -12 -12 z" id="path65788"/>
+      <path style="fill:#afac9a" d="M 98.66667,85.333336 V 49.333335 h 12 12 v 36.000001 36.000004 h -12 -12 z" id="path65787"/>
+      <path style="fill:#b0ab8d" d="M 146.66667,109.33334 V 97.333336 h 12 12 v 12.000004 12 h -12 -12 z m 49.33334,-12.000004 v -24 h 12 12 v 24 24.000004 h -12 -12 z" id="path65786"/>
+      <path style="fill:#fe7373" d="m 146.66667,268.66667 v -48.66666 h -12 -12 v -12.66667 -12.66667 h -12 -12 v -24 -24 h 12 12 v 24 24 h 12 12 v 12.66667 12.66667 h 12 12 v 48.66666 48.66667 h -12 -12 z" id="path65785"/>
+      <path style="fill:#fe0029" d="m 170.66667,304.66668 v -12.66667 h 12.66667 12.66667 v 12.66667 12.66666 h -12.66667 -12.66667 z m 0,-60.66667 v -24 h -12 -12 v -12.66667 -12.66667 h -12 -12 v -24 -24 h 60.66667 60.66667 v 24 24 h -12 -12 v 12.66667 12.66667 h -12 -12 v 24 24 h -12.66667 -12.66667 z" id="path65784"/>
+      <path style="fill:#fe0000" d="m 170.66667,280.00001 v -12 h 12.66667 12.66667 v 12 12 h -12.66667 -12.66667 z" id="path65783"/>
+      <path style="fill:#08080a" d="m 146.66667,329.33334 v -12 h -12 -12 v -48.66667 -48.66666 h -12 -12 V 207.33334 194.66667 H 86.000003 73.333336 V 97.333336 0 h 24.666667 24.666667 v 12 12.000001 h 12 12 V 12 0 h 12 12 v 12 12.000001 h 12.66667 12.66667 V 12 0 h 36 36 v 97.333336 97.333334 h -12 -12 v 12.66667 12.66667 h -12 -12 v 48.66666 48.66667 h -12 -12 v 12 12 h -24.66667 -24.66667 z m 49.33334,-60.66667 v -48.66666 h 12 12 v -12.66667 -12.66667 h 12 12 v -24 -24 H 171.33334 98.66667 v 24 24 h 12 12 v 12.66667 12.66667 h 12 12 v 48.66666 48.66667 h 24.66667 24.66667 z m 48,-183.333334 V 49.333335 h -12 -12 v 12 12.000001 h -12 -12 v -12.000001 -12 h -12.66667 -12.66667 v 24.000001 24 h -12 -12 v -12 -12 h -12 -12 v -12.000001 -12 h -12 -12 v 36.000001 36.000004 h 72.66667 72.66667 z" id="path65782"/>
+    </g>
+  </g>
+</svg>
+    </div>
+      <nav class="popup-window2">
+        <legend data-i18n="temaLGND">AA!</legend>
+        <ul>
+          <li>
+            <button id="TEMA1" type="button" data-i18n="TEMA1">
+              <span>Minecraft</span>
+            </button>
+          </li>
+          <li>
+            <button id="TEMA2" type="button" data-i18n="TEMA2">
+              <span>Padrão</span>
+            </button>
+          </li>
+                    <li>
+            <button id="TEMA3" type="button" data-i18n="TEMA3">
+              <span>AAAA</span>
+            </button>
+          </li>
+        </ul>
+    </nav>
+  </label>
+  <section class="me">
+  <div class="flex">
+    <img class="euimg" src="assets/Eu.png" alt="eu" />
+    <div class="eutxt">
+      <p class="nome">Enzo Bicalho</p>
+    <p data-i18n="Sobre" class="sobreacima">
+    Sou <span class="profissao">programador</span> e <span class="profissao">designer gráfico</span>, tenho 15 anos e gosto de juntar <span class="criatividade">criatividade</span> com <span class="ferramenta">programas</span>, criando <span class="websites">websites únicos e responsivos</span>.
+    </p>
+    <p class="sobreabaixo">
+    ⠂<span class="profissao">Designer</span> ⠂<span class="solucao">Front-end</span> ⠂<span class="ferramenta">UI / UX</span> ⠂<span class="criatividade">Creative Dev </span> ⠂
+    </p>
+    <p class="localizacao"><svg class="localizacao1" width="55px" height="55px" viewBox="-6.72 -14.72 37.44 37.44" fill="none" xmlns="http://www.w3.org/2000/svg" transform="matrix(1, 0, 0, 1, 0, 0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M5.7 15C4.03377 15.6353 3 16.5205 3 17.4997C3 19.4329 7.02944 21 12 21C16.9706 21 21 19.4329 21 17.4997C21 16.5205 19.9662 15.6353 18.3 15M12 9H12.01M18 9C18 13.0637 13.5 15 12 18C10.5 15 6 13.0637 6 9C6 5.68629 8.68629 3 12 3C15.3137 3 18 5.68629 18 9ZM13 9C13 9.55228 12.5523 10 12 10C11.4477 10 11 9.55228 11 9C11 8.44772 11.4477 8 12 8C12.5523 8 13 8.44772 13 9Z" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg> <svg class="localizacao2" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" version="1.1" id="svg1" width="28" height="28" viewBox="0 0 341.33334 341.33334" sodipodi:docname="3.png">
+  <defs id="defs1"/>
+  <sodipodi:namedview id="namedview1" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" inkscape:showpageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#505050">
+    <inkscape:page x="0" y="0" width="341.33334" height="341.33334" id="page2" margin="0" bleed="0"/>
+  </sodipodi:namedview>
+  <g inkscape:groupmode="layer" inkscape:label="Image" id="g1">
+    <g id="g37">
+      <path style="fill:#fe7373" d="m 70.000002,313.33334 h -14 v -14 -14 h -14.000001 -14 v -29.33333 -29.33334 h 14 14.000001 v -14 -14 h 14 14.000001 v 14 14 h -14.000001 -14 v 29.33334 29.33333 h 14 14.000001 v 14 14 z m 86.666668,-58.66667 h -14 v -28 -28 h -14 -14 v -28 -28 H 99.333336 84.000003 V 99.333336 56.000002 h 15.333333 15.333334 v -14.000001 -14 h 56 56 v 14 14.000001 h -56 -56 v 43.333334 43.333334 h 14 14 v 28 28 h 14 14 v 28 28 z" id="path39"/>
+      <path style="fill:#fe0000" d="M 184.66667,313.33334 H 84.000003 v -14 -14 h -14.000001 -14 v -15.33333 -15.33334 h 14 14.000001 v 15.33334 15.33333 h 85.333337 85.33333 v -15.33333 -15.33334 h 15.33334 15.33333 v -14 -14 h -15.33333 -15.33334 v -14 -14 h 15.33334 15.33333 v 14 14 h 14 14 v 29.33334 29.33333 h -14 -14 v 14 14 z m 0,-58.66667 h -14 v -28 -28 h -14 -14 v -14 -14 h 28 28 v -14 -14 h 14 14 V 113.33334 84.000003 h -14 -14 v -14.000001 -14 h 28 28 v 43.333334 43.333334 h -14 -14 v 28 28 h -14 -14 v 28 28 z m -56,-170.666667 h -14 v -14.000001 -14 h 14 14 v 14 14.000001 z" id="path38"/>
+      <path style="fill:#08080a" d="M 170.66667,341.33334 H 56.000002 v -14 -14 h -14.000001 -14 v -14 -14 H 14 0 v -29.33333 -29.33334 h 14 14.000001 v -14 -14 h 14 14.000001 v -14 -14 h 14 14.000001 v -14 -14 h -14.000001 -14 V 99.333336 56.000002 h 14 14.000001 v -14.000001 -14 H 99.333336 114.66667 V 14 0 h 56 56 v 14 14.000001 h 14 14 v 14 14.000001 h 15.33334 15.33333 v 43.333334 43.333334 h -15.33333 -15.33334 v 14 14 h 15.33334 15.33333 v 14 14 h 14 14 v 14 14 h 14 14 v 29.33334 29.33333 h -14 -14 v 14 14 h -14 -14 v 14 14 z m 0,-28 h 114.66667 v -14 -14 h 14 14 v -29.33333 -29.33334 h -14 -14 v -14 -14 h -15.33333 -15.33334 v 14 14 h -14 -14 v 14 14 h 14 14 v 15.33334 15.33333 H 169.33334 84.000003 v -15.33333 -15.33334 h 15.333333 15.333334 v -14 -14 H 99.333336 84.000003 v -14 -14 h -14.000001 -14 v 14 14 h -14.000001 -14 v 29.33334 29.33333 h 14 14.000001 v 14 14 z M 70.000002,254.66667 h -14 v -14 -14 h 14 14.000001 v 14 14 z m 200.000008,0 h -15.33334 v -14 -14 h 15.33334 15.33333 v 14 14 z m -99.33334,0 h 28 v -28 -28 h 14 14 v -28 -28 h 14 14 V 99.333336 56.000002 h -14 -14 v -14.000001 -14 h -56 -56 v 14 14.000001 H 99.333336 84.000003 v 43.333334 43.333334 h 15.333333 15.333334 v 28 28 h 14 14 v 28 28 z m 0,-84 h -28 v -14 -14 h -14 -14 V 113.33334 84.000003 h 14 14 v -14.000001 -14 h 28 28 v 14 14.000001 h 14 14 v 29.333337 29.33333 h -14 -14 v 14 14 z m 0,-28 h 28 V 113.33334 84.000003 h -28 -28 v 29.333337 29.33333 z" id="path37"/>
+    </g>
+  </g>
+</svg>
+⠂Belo Horizonte ⠂<span data-i18n="Brasil">Brasil</span> ⠂</p>
+      <div class="uiverse" id="skill-button">
+          <span>
+            skill
+          </span>
+        </div>
+      <div class="contatar">
+      <button class="contato"> <span data-i18n="contato">Contate-me</span>
+      </button>
+      </div>
+  </div>
+  </div>
+  <div class="taskbarantes"><span class="taskbarp" data-i18n="Skill">a</span></div>
+  </div>
+</section>
+</div>
+<div class="scroll-spacer"></div>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+    <script src="https://assets.codepen.io/16327/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@latest/bundled/lenis.js"></script>
+    <script src="chat.js"></script>
+    <script>
+const input = document.getElementById("input");
+const sendBtn = document.getElementById("send-btn");
 
-<script src="script.js"></script>
-</body>
+// Envia a mensagem ao clicar no botão
+sendBtn.addEventListener("click", sendMessage);
+
+// Envia a mensagem ao apertar Enter
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") sendMessage();
+});
+    </script>
+    <script src="portifolio.js"></script>
+    </body>
 </html>

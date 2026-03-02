@@ -1,0 +1,8 @@
+{
+  "type": "module",
+  "dependencies": {
+    "gsap": "^3.14.2",
+    "pix-payload": "^1.0.4",
+    "three": "^0.183.1"
+  }
+}

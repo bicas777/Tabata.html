@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tabata.html</title>
+<link rel="shortcut icon" href="assets/LOGO.png" type="image/png">
+<script>
+</script>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,800;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Wix+Madefor+Text:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700,1&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body id="Topo"> 
+
+        <svg style="display:none;">
+        <filter id="distortion">
+            <feTurbulence type="turbulence" baseFrequency="0.01 0.1" numOctaves="1" result="turbulence"/>
+            <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="8" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+    </svg>
+
+<canvas id="particles"></canvas>
+
+<div class="textcelular">
+  <p>🚧 Phone version isn't available yet 🚧<br>but you can change your browser to the  <br>desktop view (not recommended) </p>
+</div>
+
+  <div class="logo">
+    <img src= "assets/LOGO.png" alt="LOGO">
+  </div>
+
+  
+  <div class="footer-top"> 
+    <div class="glass-container-full">
+    </div>
+  </div>
+
+  <h1 id="title" class="title">
+    <p>Transforme Seu Sonho em <br><span class="title2">um Negócio Online</span></p>
+  </h1>
+
+  <button class="botaoinicial" data-link="shop.html">
+  Inicie sua jornada
+  <div class="star-1">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xml:space="preserve"
+      version="1.1"
+      style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+      viewBox="0 0 784.11 815.53"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+    >
+      <defs></defs>
+      <g id="Layer_x0020_1">
+        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+        <path
+          class="fil0"
+          d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+        ></path>
+      </g>
+    </svg>
+  </div>
+  <div class="star-2">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xml:space="preserve"
+      version="1.1"
+      style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+      viewBox="0 0 784.11 815.53"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+    >
+      <defs></defs>
+      <g id="Layer_x0020_1">
+        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+        <path
+          class="fil0"
+          d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+        ></path>
+      </g>
+    </svg>
+  </div>
+  <div class="star-3">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xml:space="preserve"
+      version="1.1"
+      style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+      viewBox="0 0 784.11 815.53"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+    >
+      <defs></defs>
+      <g id="Layer_x0020_1">
+        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+        <path
+          class="fil0"
+          d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+        ></path>
+      </g>
+    </svg>
+  </div>
+  <div class="star-4">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xml:space="preserve"
+      version="1.1"
+      style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+      viewBox="0 0 784.11 815.53"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+    >
+      <defs></defs>
+      <g id="Layer_x0020_1">
+        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+        <path
+          class="fil0"
+          d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+        ></path>
+      </g>
+    </svg>
+  </div>
+  <div class="star-5">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xml:space="preserve"
+      version="1.1"
+      style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+      viewBox="0 0 784.11 815.53"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+    >
+      <defs></defs>
+      <g id="Layer_x0020_1">
+        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+        <path
+          class="fil0"
+          d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+        ></path>
+      </g>
+    </svg>
+  </div>
+  <div class="star-6">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xml:space="preserve"
+      version="1.1"
+      style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+      viewBox="0 0 784.11 815.53"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+    >
+      <defs></defs>
+      <g id="Layer_x0020_1">
+        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+        <path
+          class="fil0"
+          d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+        ></path>
+      </g>
+    </svg>
+  </div>
+  </button>
+
+  <div class="container-3d">
+  <div class="feixe-luz"></div>
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.16/build/spline-viewer.js"></script>
+  <spline-viewer url="https://prod.spline.design/Hf1smgvkhxxwjujv/scene.splinecode"></spline-viewer>
+  </div>
+
+  <div class="button-up">
+    <button class="btn person" data-link="portifolio.html">
+        <i class="fa-solid fa-user"></i> Sobre mim
+    </button>
+    <button class="btn youtube" data-link="https://www.youtube.com/@bicas7">
+        <i class="fab fa-youtube"></i> <span class="yttext">Youtube</span>
+    </button>
+    <button class="btn instagram" data-link="https://www.instagram.com/ezbicalho/">
+        <i class="fab fa-instagram"></i> <span class="btn-instagram">Instagram</span>
+    </button>
+    <button class="btn discord" data-link="https://discord.gg/NveN8W2RBh">
+        <i class="fab fa-discord"></i> Discord
+    </button>
+  </div>
+
+  <div class="fundo">
+  <svg class="fundo1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M62,56Q62,62,56,80Q50,98,33,91Q16,84,11,67Q6,50,11.5,33.5Q17,17,33.5,25Q50,33,59,32.5Q68,32,65,41Q62,50,62,56Z" stroke="none" stroke-width="0" fill="#8E98F5"></path><path d="M73,54.5Q59,59,54.5,73.5Q50,88,45,74Q40,60,21.5,55Q3,50,16,39.5Q29,29,39.5,17.5Q50,6,65.5,12.5Q81,19,84,34.5Q87,50,73,54.5Z" stroke="none" stroke-width="0" fill="#DFE2FE"></path><path d="M72,59Q68,68,59,81.5Q50,95,37.5,85Q25,75,32,62.5Q39,50,34.5,40Q30,30,40,19.5Q50,9,65.5,14Q81,19,78.5,34.5Q76,50,72,59Z" stroke="none" stroke-width="0" fill="#8E98F5"></path><path d="M66.5,57Q64,64,57,81Q50,98,42,82Q34,66,28,58Q22,50,20.5,34.5Q19,19,34.5,11.5Q50,4,66,11Q82,18,75.5,34Q69,50,66.5,57Z" stroke="none" stroke-width="0" fill="#7874F2"></path><path d="M64,57Q64,64,57,74Q50,84,43.5,73.5Q37,63,27.5,56.5Q18,50,24,40Q30,30,40,25Q50,20,66,19Q82,18,73,34Q64,50,64,57Z" stroke="none" stroke-width="0" fill="#DFE2FE"></path><path d="M76.5,64Q78,78,64,82.5Q50,87,45,73.5Q40,60,21,55Q2,50,20.5,44.5Q39,39,44.5,23.5Q50,8,67.5,11.5Q85,15,80,32.5Q75,50,76.5,64Z" stroke="none" stroke-width="0" fill="#8E98F5"></path><path d="M78.5,56.5Q63,63,56.5,62.5Q50,62,43.5,62.5Q37,63,37,56.5Q37,50,27,33.5Q17,17,33.5,24.5Q50,32,55.5,35.5Q61,39,77.5,44.5Q94,50,78.5,56.5Z" stroke="none" stroke-width="0" fill="#8E98F5"></path><path d="M74,67Q84,84,67,83Q50,82,45.5,70.5Q41,59,40,54.5Q39,50,34.5,40Q30,30,40,29Q50,28,59,30Q68,32,66,41Q64,50,74,67Z" stroke="none" stroke-width="0" fill="#8E98F5"></path><path d="M75,67.5Q85,85,67.5,87Q50,89,35,84.5Q20,80,26.5,65Q33,50,25,33.5Q17,17,33.5,15Q50,13,59,22.5Q68,32,66.5,41Q65,50,75,67.5Z" stroke="none" stroke-width="0" fill="#DFE2FE"></path><path d="M70,58Q66,66,58,79Q50,92,37.5,83.5Q25,75,18.5,62.5Q12,50,26.5,45.5Q41,41,45.5,27.5Q50,14,54.5,27.5Q59,41,66.5,45.5Q74,50,70,58Z" stroke="none" stroke-width="0" fill="#B1CBFA"></path></svg>
+  <svg class="fundo2" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M76,54.5Q59,59,54.5,68Q50,77,33.5,80Q17,83,10,66.5Q3,50,19.5,43Q36,36,43,20Q50,4,66.5,10.5Q83,17,88,33.5Q93,50,76,54.5Z" stroke="none" stroke-width="0" fill="#B1CBFA"></path><path d="M72,58Q66,66,58,67Q50,68,43,66Q36,64,18.5,57Q1,50,8.5,33Q16,16,33,13.5Q50,11,62.5,18Q75,25,76.5,37.5Q78,50,72,58Z" stroke="none" stroke-width="0" fill="#8E98F5"></path><path d="M75,67Q84,84,67,80Q50,76,46,67Q42,58,37,54Q32,50,32,41Q32,32,41,17Q50,2,64,12Q78,22,72,36Q66,50,75,67Z" stroke="none" stroke-width="0" fill="#7874F2"></path><path d="M64.5,54Q58,58,54,61Q50,64,43.5,63.5Q37,63,27,56.5Q17,50,25,41.5Q33,33,41.5,25Q50,17,67,16.5Q84,16,77.5,33Q71,50,64.5,54Z" stroke="none" stroke-width="0" fill="#B1CBFA"></path><path d="M72,61.5Q73,73,61.5,69.5Q50,66,40.5,67.5Q31,69,16.5,59.5Q2,50,18,42Q34,34,42,20Q50,6,59.5,18.5Q69,31,70,40.5Q71,50,72,61.5Z" stroke="none" stroke-width="0" fill="#B1CBFA"></path><path d="M89,66.5Q83,83,66.5,86.5Q50,90,34,86Q18,82,20,66Q22,50,23,37Q24,24,37,29Q50,34,57.5,34.5Q65,35,80,42.5Q95,50,89,66.5Z" stroke="none" stroke-width="0" fill="#B1CBFA"></path><path d="M66.5,56Q62,62,56,72Q50,82,34.5,81.5Q19,81,26,65.5Q33,50,36.5,45Q40,40,45,22.5Q50,5,57.5,20Q65,35,68,42.5Q71,50,66.5,56Z" stroke="none" stroke-width="0" fill="#7874F2"></path><path d="M70.5,56.5Q63,63,56.5,70Q50,77,35.5,78Q21,79,18.5,64.5Q16,50,29,46Q42,42,46,29.5Q50,17,62,21.5Q74,26,76,38Q78,50,70.5,56.5Z" stroke="none" stroke-width="0" fill="#DFE2FE"></path><path d="M88,66.5Q83,83,66.5,86.5Q50,90,42,78Q34,66,22,58Q10,50,21.5,41.5Q33,33,41.5,36.5Q50,40,59,36Q68,32,80.5,41Q93,50,88,66.5Z" stroke="none" stroke-width="0" fill="#8E98F5"></path><path d="M68.5,63.5Q77,77,63.5,69Q50,61,38,67.5Q26,74,16,62Q6,50,22,44Q38,38,44,31.5Q50,25,56.5,31Q63,37,61.5,43.5Q60,50,68.5,63.5Z" stroke="none" stroke-width="0" fill="#7874F2"></path></svg>
+  <svg class="fundo3" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M85,62Q74,74,62,76.5Q50,79,38.5,76Q27,73,16.5,61.5Q6,50,18.5,40.5Q31,31,40.5,34Q50,37,59,34.5Q68,32,82,41Q96,50,85,62Z" stroke="none" stroke-width="0" fill="#DFE2FE"></path><path d="M59.5,54Q58,58,54,78.5Q50,99,33.5,91Q17,83,9.5,66.5Q2,50,17.5,41.5Q33,33,41.5,35Q50,37,59.5,34Q69,31,65,40.5Q61,50,59.5,54Z" stroke="none" stroke-width="0" fill="#B1CBFA"></path><path d="M71,54.5Q59,59,54.5,68Q50,77,32.5,81Q15,85,15.5,67.5Q16,50,29,46Q42,42,46,40.5Q50,39,61.5,33Q73,27,78,38.5Q83,50,71,54.5Z" stroke="none" stroke-width="0" fill="#B1CBFA"></path><path d="M77,60Q70,70,60,70Q50,70,44,66Q38,62,26.5,56Q15,50,29,46.5Q43,43,46.5,25.5Q50,8,64,15Q78,22,81,36Q84,50,77,60Z" stroke="none" stroke-width="0" fill="#B1CBFA"></path><path d="M81.5,61.5Q73,73,61.5,74.5Q50,76,33,80Q16,84,18.5,67Q21,50,30.5,45Q40,40,45,36.5Q50,33,59,32.5Q68,32,79,41Q90,50,81.5,61.5Z" stroke="none" stroke-width="0" fill="#8E98F5"></path><path d="M77.5,63Q76,76,63,70.5Q50,65,35.5,72Q21,79,24.5,64.5Q28,50,25.5,36.5Q23,23,36.5,29Q50,35,67.5,25Q85,15,82,32.5Q79,50,77.5,63Z" stroke="none" stroke-width="0" fill="#DFE2FE"></path><path d="M80,62.5Q75,75,62.5,76.5Q50,78,43,71Q36,64,29,57Q22,50,22,36Q22,22,36,20.5Q50,19,56.5,28Q63,37,74,43.5Q85,50,80,62.5Z" stroke="none" stroke-width="0" fill="#8E98F5"></path><path d="M82.5,58Q66,66,58,70.5Q50,75,36,76.5Q22,78,30.5,64Q39,50,34,39.5Q29,29,39.5,14.5Q50,0,58.5,16.5Q67,33,83,41.5Q99,50,82.5,58Z" stroke="none" stroke-width="0" fill="#7874F2"></path><path d="M76,59.5Q69,69,59.5,76.5Q50,84,35,82Q20,80,15,65Q10,50,21,41Q32,32,41,31.5Q50,31,59,31.5Q68,32,75.5,41Q83,50,76,59.5Z" stroke="none" stroke-width="0" fill="#7874F2"></path><path d="M79.5,58Q66,66,58,71Q50,76,34.5,78.5Q19,81,25,65.5Q31,50,31,40.5Q31,31,40.5,20Q50,9,63,16.5Q76,24,84.5,37Q93,50,79.5,58Z" stroke="none" stroke-width="0" fill="#B1CBFA"></path></svg>
+  <svg class="fundo4" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M68.5,55.5Q61,61,55.5,70Q50,79,42.5,72Q35,65,33,57.5Q31,50,36.5,46Q42,42,46,26.5Q50,11,54.5,26Q59,41,67.5,45.5Q76,50,68.5,55.5Z" stroke="none" stroke-width="0" fill="#7874F2"></path><path d="M75,66.5Q83,83,66.5,72.5Q50,62,44.5,61.5Q39,61,24,55.5Q9,50,23,43.5Q37,37,43.5,33.5Q50,30,67,23Q84,16,75.5,33Q67,50,75,66.5Z" stroke="none" stroke-width="0" fill="#7874F2"></path><path d="M72,61Q72,72,61,84Q50,96,40.5,82.5Q31,69,23,59.5Q15,50,15.5,33Q16,16,33,18.5Q50,21,67.5,18Q85,15,78.5,32.5Q72,50,72,61Z" stroke="none" stroke-width="0" fill="#DFE2FE"></path><path d="M78.5,64Q78,78,64,82.5Q50,87,45.5,73Q41,59,23,54.5Q5,50,23.5,46Q42,42,46,37.5Q50,33,61.5,30Q73,27,76,38.5Q79,50,78.5,64Z" stroke="none" stroke-width="0" fill="#DFE2FE"></path><path d="M69,63.5Q77,77,63.5,84.5Q50,92,45,76Q40,60,24,55Q8,50,11.5,32.5Q15,15,32.5,10Q50,5,62,15.5Q74,26,67.5,38Q61,50,69,63.5Z" stroke="none" stroke-width="0" fill="#7874F2"></path><path d="M69,56.5Q63,63,56.5,68.5Q50,74,33,79Q16,84,10.5,67Q5,50,22.5,45Q40,40,45,38.5Q50,37,65,28.5Q80,20,77.5,35Q75,50,69,56.5Z" stroke="none" stroke-width="0" fill="#DFE2FE"></path><path d="M68,53.5Q57,57,53.5,76.5Q50,96,33.5,89.5Q17,83,21.5,66.5Q26,50,24.5,36.5Q23,23,36.5,18Q50,13,64,17.5Q78,22,78.5,36Q79,50,68,53.5Z" stroke="none" stroke-width="0" fill="#7874F2"></path><path d="M81.5,62.5Q75,75,62.5,83.5Q50,92,33,88Q16,84,25.5,67Q35,50,31.5,39Q28,28,39,20.5Q50,13,61,20.5Q72,28,80,39Q88,50,81.5,62.5Z" stroke="none" stroke-width="0" fill="#DFE2FE"></path><path d="M63.5,55Q60,60,55,67Q50,74,37.5,74.5Q25,75,24,62.5Q23,50,28.5,42Q34,34,42,30.5Q50,27,57.5,31Q65,35,66,42.5Q67,50,63.5,55Z" stroke="none" stroke-width="0" fill="#DFE2FE"></path><path d="M88.5,64.5Q79,79,64.5,72Q50,65,39,68.5Q28,72,26,61Q24,50,29,42Q34,34,42,18.5Q50,3,59.5,17Q69,31,83.5,40.5Q98,50,88.5,64.5Z" stroke="none" stroke-width="0" fill="#B1CBFA"></path></svg>
+  </div>
+
+  <div class="section-content first-section">
+    <img src="assets/fundo-esquerda.jpg" alt="Descrição da Imagem">
+    <div class="card-container"> 
+        <div class="card3">
+            <div class="card-glass-layer"></div>
+            <div class="tools">
+                <div class="circle"><span class="box red"></span></div>
+                <div class="circle"><span class="box yellow"></span></div>
+                <div class="circle"><span class="box green"></span></div>
+            </div>
+            <p>Criamos capas e designs modernos para YouTube, anúncios e sites, com impacto visual e cores vibrantes.</p>
+        </div>
+    </div>
+    </div>
+
+  <div class="section-content reverse-section"> 
+    <img src="assets/anuncio.png" alt="Descrição da Imagem">
+    <div class="card-container"> 
+        <div class="card2">
+            <div class="card-glass-layer"></div>
+            <div class="tools">
+                <div class="circle"><span class="box red"></span></div>
+                <div class="circle"><span class="box yellow"></span></div>
+                <div class="circle"><span class="box green"></span></div>
+            </div>
+            <p>Desenvolvemos anúncios personalizados para redes sociais e plataformas digitais, garantindo visibilidade e resultados para sua empresa.</p>
+        </div>
+    </div>
+    </div>
+
+  <div class="section-content third-section">
+    <img src="assets/codigos completos.png" alt="Descrição da Imagem">
+    <div class="card-container"> 
+        <div class="card">
+            <div class="card-glass-layer"></div>
+            <div class="tools">
+                <div class="circle"><span class="box red"></span></div>
+                <div class="circle"><span class="box yellow"></span></div>
+                <div class="circle"><span class="box green"></span></div>
+            </div>
+            <p>Automatizamos tarefas e organizamos dados sob medida para o seu negócio, entregando soluções rápidas e eficientes.</p>
+        </div>
+    </div>
+    </div>
+
+  <div class="section-content reverse-section fourth-section">
+    <img src="assets/site completo.png" alt="Descrição da Imagem">
+    <div class="card-container"> 
+        <div class="card4">
+            <div class="card-glass-layer"></div>
+            <div class="tools">
+                <div class="circle"><span class="box red"></span></div>
+                <div class="circle"><span class="box yellow"></span></div>
+                <div class="circle"><span class="box green"></span></div>
+            </div>
+            <p>Sites modernos e personalizados que destacam sua marca online, rápidos, responsivos e com design único.</p>
+        </div>
+    </div>
+    </div>
+
+  <footer class="footer">
+    <div class="footer-buttons">
+        <button class="btn email" data-link="https://discord.gg/NveN8W2RBh">
+            <i class="fa-solid fa-star"></i> Faca uma avaliação em nosso servidor do discord!
+        </button>
+        <button class="btn email" data-link="shop.html">
+            <i class="fa-solid fa-sack-dollar"></i> Faça um pedido!
+        </button>
+        <button class="btn suporte" data-link="suporte.html">
+            <i class="fa-solid fa-headset"></i> Suporte
+        </button>
+    </div>
+    <div class="whatsapp">
+    <p><i class="fa-brands fa-whatsapp"></i>: +55 31 98380-8351</p>
+    </div>
+  </footer>
+
+  <a href="#Topo" class="topo-link"> <button class="topo">
+    <div class="text">
+    <span>IR</span>
+    <span>AO</span>
+    <span>TOPO</span>
+    </div>
+    <div class="clone">
+    <span>IR</span>
+    <span>AO</span>
+    <span>TOPO</span>
+    </div>
+    <svg
+    stroke-width="2"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    fill="none"
+    class="h-6 w-6"
+    xmlns="http://www.w3.org/2000/svg"
+    width="20px"
+    >
+      <path
+      d="M14 5l7 7m0 0l-7 7m7-7H3"
+      stroke-linejoin="round"
+      stroke-linecap="round"
+      ></path>
+    </svg>
+  </button>
+  </a>
+
+<script src="script.js"></script>
+</body>
+</html>
