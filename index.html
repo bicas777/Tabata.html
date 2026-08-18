@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Portfólio de design, desenvolvimento web e edição de vídeo." />
+    <title>Enzo Bicalho — Creative Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      @font-face {
+        font-family:'JetBrains';font-style:normal;font-weight:400;src:url('assets/fonts/JetBrainsMono/JetBrainsMonoNLNerdFontMono-Regular.ttf') format('truetype');
+      }
+      @font-face {
+        font-family:'JetBrains';font-style:italic;font-weight:400;src:url('assets/fonts/JetBrainsMono/JetBrainsMonoNLNerdFontMono-Italic.ttf') format('truetype');
+      }
+      @font-face {
+        font-family:'JetBrains';font-style:normal;font-weight:500;src:url('assets/fonts/JetBrainsMono/JetBrainsMonoNLNerdFontMono-Medium.ttf') format('truetype');
+      }
+      @font-face {
+        font-family:'JetBrains';font-style:italic;font-weight:500;src:url('assets/fonts/JetBrainsMono/JetBrainsMonoNLNerdFontMono-MediumItalic.ttf') format('truetype');
+      }
+      @font-face {
+        font-family:'JetBrains';font-style:normal;font-weight:700;src:url('assets/fonts/JetBrainsMono/JetBrainsMonoNLNerdFontMono-Bold.ttf') format('truetype');
+      }
+      @font-face {
+        font-family:'JetBrains';font-style:italic;font-weight:700;src:url('assets/fonts/JetBrainsMono/JetBrainsMonoNLNerdFontMono-BoldItalic.ttf') format('truetype');
+      }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.23/dist/lenis.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+    <svg class="filters" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><defs><filter id="hero-title-warp" color-interpolation-filters="sRGB" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="2.5 2.5" numOctaves="3" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G" result="warp"/></filter></defs></svg>
+    <div class="cursor-glow" aria-hidden="true"></div>
+    <div class="custom-cursor" aria-hidden="true">
+      <span class="custom-cursor__trail custom-cursor__trail--one"></span>
+      <span class="custom-cursor__trail custom-cursor__trail--two"></span>
+      <span class="custom-cursor__orbit custom-cursor__orbit--one"></span>
+      <span class="custom-cursor__orbit custom-cursor__orbit--two"></span>
+      <span class="custom-cursor__dot"></span>
+      <span class="custom-cursor__label"></span>
+    </div>
+
+    <div class="intro" aria-label="Introdução">
+      <div class="intro__sky"></div>
+      <p class="intro__eyebrow">PORTFOLIO / 2026</p>
+      <p class="intro__word" data-i18n="intro__word">OLA!</p>
+      <img class="intro__cloud intro__cloud--one cloud-image" data-cloud-src="assets/clouds/intro-one.png" alt="" aria-hidden="true" />
+      <img class="intro__cloud intro__cloud--two cloud-image" data-cloud-src="assets/clouds/intro-two.png" alt="" aria-hidden="true" />
+    </div>
+
+    <header class="site-header">
+      <svg class="site-header__filter" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="site-header-glass-filter" color-interpolation-filters="sRGB" x="0%" y="0%" width="100%" height="100%">
+            <feImage id="site-header-glass-map" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" result="map" />
+            <feDisplacementMap in="SourceGraphic" in2="map" scale="-24" xChannelSelector="R" yChannelSelector="G" result="red-displacement" />
+            <feColorMatrix in="red-displacement" type="matrix" values="1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" result="red" />
+            <feDisplacementMap in="SourceGraphic" in2="map" scale="-24" xChannelSelector="R" yChannelSelector="G" result="green-displacement" />
+            <feColorMatrix in="green-displacement" type="matrix" values="0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0" result="green" />
+            <feDisplacementMap in="SourceGraphic" in2="map" scale="-24" xChannelSelector="R" yChannelSelector="G" result="blue-displacement" />
+            <feColorMatrix in="blue-displacement" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0" result="blue" />
+            <feBlend in="red" in2="green" mode="screen" result="red-green" />
+            <feBlend in="red-green" in2="blue" mode="screen" result="output" />
+            <feGaussianBlur in="output" stdDeviation="0" />
+          </filter>
+        </defs>
+      </svg>
+      <a class="brand" href="#top" aria-label="Voltar ao início">E<span>.</span>B</a>
+      <p class="header-status"><span class="header-status__dot" aria-hidden="true"></span> <span class="header-status__label" data-i18n="header.status">DISPONÍVEL PARA PROJETOS</span></p>
+      <div class="header-actions">
+        <div class="header-tools" aria-label="Preferências do site">
+          <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Ativar modo noturno" aria-pressed="false" data-cursor-label="TEMA"><span class="theme-toggle__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 11.5373 21.3065 11.4608 21.0672 11.8568C19.9289 13.7406 17.8615 15 15.5 15C11.9101 15 9 12.0899 9 8.5C9 6.13845 10.2594 4.07105 12.1432 2.93276C12.5392 2.69347 12.4627 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="currentColor"/></svg></span></button>
+          <button class="language-toggle" id="language-toggle" type="button" aria-label="Mudar idioma para inglês" data-cursor-label="IDIOMA"><span class="language-toggle__active">PT</span><span aria-hidden="true">/</span><span>EN</span></button>
+        </div>
+        <a class="header-contact" href="#contato" data-cursor-label="CONTATO"><span data-i18n="header.contact">CONTATO</span> <i>↗</i></a>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero section">
+        <div class="cloud-layer cloud-layer--hero-back" data-speed="0.12"><img class="cloud cloud-image cloud--wide" data-cloud-src="assets/clouds/hero-back.png" alt="" aria-hidden="true" /></div>
+        <div class="hero__topline reveal-line">
+          <p data-i18n="hero.role">DESIGNER · DEVELOPER · VIDEO EDITOR</p>
+          <button class="location-trigger" type="button" data-location-trigger aria-controls="world" aria-label="Explorar localização em Belo Horizonte" data-cursor-label="EXPLORAR BH"><span>BELO HORIZONTE, BR</span> <span class="live-dot"></span><i>↘</i></button>
+        </div>
+        <div class="hero__title-wrap">
+          <p class="hero__small" data-i18n="hero.small">criando para quem<br />quer ir mais alto</p>
+          <h1 class="hero__title" aria-label="Enzo Bicalho">
+            <span>ENZO</span>
+            <span>BICALHO</span>
+          </h1>
+          <p class="hero__number">01 — 06</p>
+        </div>
+        <div class="hero__bottom">
+          <p class="hero__manifesto" data-i18n="hero.manifesto">Ideias que encontram<br />forma, ritmo e altitude.</p>
+          <a class="round-link" href="#projetos" data-cursor-label="VER TRABALHOS"><span data-i18n="hero.cta">VER<br />TRABALHOS</span><i>↓</i></a>
+        </div>
+        <div class="cloud-layer cloud-layer--hero-front" data-speed="0.26"><img class="cloud cloud-image cloud--hero" data-cloud-src="assets/clouds/hero-front.png" alt="" aria-hidden="true" /></div>
+      </section>
+
+      <section class="marquee" aria-label="Especialidades">
+        <div class="marquee__track">
+          <p>DESIGN <span>✦</span> WEBSITES <span>✦</span> MOTION <span>✦</span> DESIGN <span>✦</span> WEBSITES <span>✦</span> MOTION <span>✦</span></p>
+          <p aria-hidden="true">DESIGN <span>✦</span> WEBSITES <span>✦</span> MOTION <span>✦</span> DESIGN <span>✦</span> WEBSITES <span>✦</span> MOTION <span>✦</span></p>
+        </div>
+      </section>
+
+      <section class="about section" id="sobre">
+        <div class="section-label"><span>( 01 )</span><span data-i18n="about.label">SOBRE MIM</span></div>
+        <div class="about__grid">
+          <h2 class="split-text" data-i18n="about.title">Transformo ideias em experiências que ficam na cabeça.</h2>
+          <div class="about__content">
+            <p data-i18n="about.copy">Sou um criativo multidisciplinar que mistura design, desenvolvimento e edição para dar uma assinatura única a cada projeto.</p>
+            <a class="text-link" href="#contato" data-cursor-label="CRIAR"><span data-i18n="about.cta">VAMOS CRIAR ALGO</span> <i>↗</i></a>
+          </div>
+        </div>
+        <div class="about__orbits" aria-hidden="true"><span>✦</span><span>✦</span><span>✦</span></div>
+      </section>
+
+      <section class="projects section" id="projetos">
+        <div class="section-label"><span>( 02 )</span><span data-i18n="projects.label">PROJETOS SELECIONADOS</span><span>2024 — 2026</span></div>
+        <div class="projects__intro">
+          <h2 data-i18n="projects.title">Em órbita.</h2>
+          <p data-i18n="projects.copy">Uma seleção de identidades, sites e imagens em movimento.</p>
+        </div>
+        <div class="project-list">
+          <article class="project project--a">
+            <a href="#contato" class="project__link" aria-label="Ver Projeto 01" data-cursor-label="VER PROJETO">
+              <div class="project__visual"><span class="orb orb--purple"></span><span class="spark">✦</span><span class="project__grain"></span></div>
+              <div class="project__meta"><p>01 / IDENTIDADE VISUAL</p><h3>Projeto Um</h3><i>↗</i></div>
+            </a>
+          </article>
+          <article class="project project--b">
+            <a href="assets/macos/index.html" class="project__link" aria-label="Ver Projeto 02" data-cursor-label="VER PROJETO">
+              <div class="project__visual"><span class="motion-lines"></span><span class="motion-disc"></span></div>
+              <div class="project__meta"><p>02 / WEBSITE CRIATIVO</p><h3>Projeto Dois</h3><i>↗</i></div>
+            </a>
+          </article>
+          <article class="project project--c">
+            <a href="#contato" class="project__link" aria-label="Ver Projeto 03" data-cursor-label="VER PROJETO">
+              <div class="project__visual"><span class="motion-lines"></span><span class="motion-disc"></span></div>
+              <div class="project__meta"><p>03 / MOTION &amp; VÍDEO</p><h3>Projeto Três</h3><i>↗</i></div>
+            </a>
+          </article>
+          <article class="project project--d">
+            <a href="#contato" class="project__link" aria-label="Ver Projeto 04" data-cursor-label="VER PROJETO">
+              <div class="project__visual"><span class="glow-grid"></span><span class="orb orb--blue"></span></div>
+              <div class="project__meta"><p>04 / LANDING PAGE</p><h3>Projeto Quatro</h3><i>↗</i></div>
+            </a>
+          </article>
+          <article class="project project--e">
+            <a href="#contato" class="project__link" aria-label="Ver Projeto 05" data-cursor-label="VER PROJETO">
+              <div class="project__visual"><span class="lilac-shape"></span><span class="type-visual">FORM</span></div>
+              <div class="project__meta"><p>05 / DIREÇÃO DE ARTE</p><h3>Projeto Cinco</h3><i>↗</i></div>
+            </a>
+          </article>
+          <article class="project project--f">
+            <a href="#contato" class="project__link" aria-label="Ver Projeto 06" data-cursor-label="VER PROJETO">
+              <div class="project__visual"><span class="rings"></span><span class="center-star">✦</span></div>
+              <div class="project__meta"><p>06 / EXPERIMENTO DIGITAL</p><h3>Projeto Seis</h3><i>↗</i></div>
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <section class="services section">
+        <div class="section-label"><span>( 03 )</span><span data-i18n="services.label">O QUE EU FAÇO</span></div>
+        <div class="service-list">
+          <div class="service"><span>01</span><h3 data-i18n="services.design.title">Design</h3><p data-i18n="services.design.copy">Identidade, direção de arte, interfaces e sistemas visuais.</p><i>↘</i></div>
+          <div class="service"><span>02</span><h3 data-i18n="services.web.title">Web Development</h3><p data-i18n="services.web.copy">Sites expressivos, responsivos e vivos em cada detalhe.</p><i>↘</i></div>
+          <div class="service"><span>03</span><h3 data-i18n="services.video.title">Vídeo &amp; Motion</h3><p data-i18n="services.video.copy">Edição, ritmo e narrativas que seguram o olhar.</p><i>↘</i></div>
+        </div>
+      </section>
+
+      <section class="world section" id="world" aria-labelledby="world-title">
+        <div class="world__scanline" aria-hidden="true"></div>
+        <div class="world__grid" aria-hidden="true"></div>
+        <div class="section-label"><span>( 04 )</span><span data-i18n="world.label">ORIGEM / LOCALIZAÇÃO</span><span data-i18n="world.live">LIVE SIGNAL</span></div>
+        <div class="world__layout">
+          <div class="world__copy">
+            <p class="world__eyebrow"><span class="signal-dot"></span> <span data-i18n="world.eyebrow">COORDENADAS ENCONTRADAS</span></p>
+            <h2 id="world-title" data-i18n="world.title">De onde<br /><em>eu venho.</em></h2>
+            <p class="world__description" data-i18n="world.copy">Uma pequena pausa entre o céu e a terra. Gire o globo e encontre a minha base.</p>
+            <div class="world__coordinates"><span>LAT</span><strong>19° 55' 00" S</strong><span>LON</span><strong>43° 56' 00" W</strong></div>
+          </div>
+          <div class="earth-stage" aria-label="Globo 3D interativo de Belo Horizonte">
+            <canvas id="earth-canvas"></canvas>
+            <div class="earth-stage__reticle" aria-hidden="true"></div>
+            <div class="earth-stage__marker" aria-hidden="true"><span></span><i>BELO HORIZONTE</i></div>
+            <div class="earth-stage__status"><span></span> TRACKING / 001</div>
+            <div class="earth-stage__hint" data-i18n="world.hint">ARRASTE PARA GIRAR <b>↔</b></div>
+            <div class="earth-stage__pointer" aria-hidden="true"><b>↗</b><span>ABOUT ENZO</span></div>
+          </div>
+          <aside class="world__info">
+            <div class="world__info-head"><span>PROFILE / ENZO</span><span>● ONLINE</span></div>
+            <div class="world__info-line"><span data-i18n="world.origin.label">ORIGEM</span><strong>BELO HORIZONTE, BR</strong></div>
+            <div class="world__info-line"><span data-i18n="world.status.label">STATUS</span><strong data-i18n="world.status.value">ABERTO A NOVOS PROJETOS</strong></div>
+            <div class="world__info-links"><a href="mailto:enzobicalhocontato@gmail.com" data-i18n="world.email" data-cursor-label="E-MAIL">E-MAIL <i>↗</i></a><a href="https://www.instagram.com/ezbicalho/" data-i18n="world.instagram" data-cursor-label="INSTAGRAM">INSTAGRAM <i>↗</i></a><a href="#contato" data-i18n="world.linkedin" data-cursor-label="LINKEDIN">LINKEDIN <i>↗</i></a></div>
+            <p class="world__info-note" data-i18n="world.note">A seta aponta para o próximo contato.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="contact section" id="contato">
+        <div class="contact__sky" aria-hidden="true"><img class="cloud cloud-image cloud--contact" data-cloud-src="assets/clouds/contact-main.png" alt="" /><img class="cloud cloud-image cloud--contact-small" data-cloud-src="assets/clouds/contact-small.png" alt="" /></div>
+        <div class="section-label"><span>( 05 )</span><span data-i18n="contact.label">CONTATO</span></div>
+        <p class="contact__pretitle" data-i18n="contact.pretitle">TEM UMA IDEIA EM FORMAÇÃO?</p>
+        <h2 data-i18n="contact.title">Vamos<br /><em>subir.</em></h2>
+        <a class="contact__email" href="mailto:enzobicalhocontato@gmail.com" data-cursor-label="ENVIAR E-MAIL">enzobicalhocontato@gmail.com <i>↗</i></a>
+        <div class="contact__footer"><p>© 2026 ENZO BICALHO</p><div><a href="https://www.instagram.com/ezbicalho/">INSTAGRAM</a><a href="#top">LINKEDIN</a><a href="#top">BEHANCE</a></div><a href="#top">VOLTAR AO TOPO ↑</a></div>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
+    <script src="script.js"></script>
+    <script type="importmap">
+      {"imports":{"three":"https://unpkg.com/three@0.173.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.173.0/examples/jsm/"}}
+    </script>
+    <script type="module" src="globe.js"></script>
+  </body>
+</html>

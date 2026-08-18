@@ -1,0 +1,2185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BicasOS</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <main class="desktop">
+
+    <!-- MENU BAR -->
+
+    <header class="menu-bar">
+
+        <div class="menu-left">
+
+            <!-- APPLE MENU -->
+
+            <div class="menu-item-wrapper">
+
+                <button
+                    class="apple-button menu-button"
+                    onclick="toggleMenu('appleMenu')"
+                >
+                    
+                </button>
+
+                <div
+                    class="dropdown-menu apple-menu"
+                    id="appleMenu"
+                >
+
+                <button onclick="openAboutBicasOS()">
+                    Sobre Este BicasOS
+                </button>
+
+                    <div class="menu-separator"></div>
+
+                    <button onclick="openSettings()">
+                        Configurações...
+                    </button>
+
+                    <div class="menu-separator"></div>
+
+                    <button onclick="alert('Bloquear tela em breve')">
+                        Bloquear Tela
+                    </button>
+
+                    <button onclick="alert('Desligar em breve')">
+                        Desligar...
+                    </button>
+
+                </div>
+
+            </div>
+
+        <!-- ==================================================
+             APP ATIVO
+        ================================================== -->
+
+        <div
+            class="active-app-wrapper"
+            id="activeAppWrapper"
+        >
+
+            <button
+                class="menu-button active-app-button"
+                id="activeAppName"
+            >
+                
+            </button>
+
+        </div>
+
+
+            <!-- FINDER -->
+
+            <div class="menu-item-wrapper">
+
+                <button
+                    class="menu-button"
+                    onclick="toggleMenu('finderMenu')"
+                >
+                    Finder
+                </button>
+
+                <div
+                    class="dropdown-menu"
+                    id="finderMenu"
+                >
+
+                    <button onclick="openFinder()">
+                        Nova Janela do Finder
+                    </button>
+
+                    <button onclick="openFinder()">
+                        Abrir Finder
+                    </button>
+
+                    <div class="menu-separator"></div>
+
+                    <button onclick="closeFinder()">
+                        Fechar Janela
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ARQUIVO -->
+
+            <div class="menu-item-wrapper">
+
+                <button
+                    class="menu-button"
+                    onclick="toggleMenu('arquivoMenu')"
+                >
+                    Arquivo
+                </button>
+
+                <div
+                    class="dropdown-menu"
+                    id="arquivoMenu"
+                >
+
+                    <button onclick="createNewFile()">
+                        Novo
+                    </button>
+
+                    <button>
+                        Abrir...
+                    </button>
+
+                    <button>
+                        Fechar Janela
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- EDITAR -->
+
+            <div class="menu-item-wrapper">
+
+                <button
+                    class="menu-button"
+                    onclick="toggleMenu('editarMenu')"
+                >
+                    Editar
+                </button>
+
+                <div
+                    class="dropdown-menu"
+                    id="editarMenu"
+                >
+
+                    <button>
+                        Desfazer
+                    </button>
+
+                    <button>
+                        Refazer
+                    </button>
+
+                    <div class="menu-separator"></div>
+
+                    <button>
+                        Copiar
+                    </button>
+
+                    <button>
+                        Colar
+                    </button>
+
+                    <button>
+                        Selecionar Tudo
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- VISUALIZAR -->
+
+            <div class="menu-item-wrapper">
+
+                <button
+                    class="menu-button"
+                    onclick="toggleMenu('visualizarMenu')"
+                >
+                    Visualizar
+                </button>
+
+                <div
+                    class="dropdown-menu"
+                    id="visualizarMenu"
+                >
+
+                    <button>
+                        Mostrar Desktop
+                    </button>
+
+                    <button>
+                        Ocultar Dock
+                    </button>
+
+                    <div class="menu-separator"></div>
+
+                    <button>
+                        Tela Cheia
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- IR -->
+
+            <div class="menu-item-wrapper">
+
+                <button
+                    class="menu-button"
+                    onclick="toggleMenu('irMenu')"
+                >
+                    Ir
+                </button>
+
+                <div
+                    class="dropdown-menu"
+                    id="irMenu"
+                >
+
+                    <button onclick="openFinder()">
+                        Finder
+                    </button>
+
+                    <button onclick="openFinderPath(['Projetos'])">
+                        Projetos
+                    </button>
+
+                    <button onclick="openFinderPath(['Sobre Mim'])">
+                        Sobre Mim
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- JANELA -->
+
+            <div class="menu-item-wrapper">
+
+                <button
+                    class="menu-button"
+                    onclick="toggleMenu('janelaMenu')"
+                >
+                    Janela
+                </button>
+
+                <div
+                    class="dropdown-menu"
+                    id="janelaMenu"
+                >
+
+                    <button onclick="openFinder()">
+                        Finder
+                    </button>
+
+                    <button onclick="openSettings()">
+                        Configurações
+                    </button>
+
+                    <button onclick="openTerminal()">
+                        Terminal
+                    </button>
+
+                    <button onclick="openSafari()">
+                        Browser
+                    </button>
+
+                    <button onclick="openTrash()">
+                        Lixeira
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- AJUDA -->
+
+            <div class="menu-item-wrapper">
+
+                <button
+                    class="menu-button"
+                    onclick="toggleMenu('ajudaMenu')"
+                >
+                    Ajuda
+                </button>
+
+                <div
+                    class="dropdown-menu"
+                    id="ajudaMenu"
+                >
+
+                <button onclick="openHelp()">
+                    Ajuda do BicasOS
+                </button>
+
+                <div class="menu-separator"></div>
+
+                <button onclick="openAboutBicasOS()">
+                    Sobre o sistema
+                </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="menu-right">
+
+            <span
+                class="status-icon wifi"
+            ></span>
+            <span
+                class="status-icon battery"
+            ></span>
+            <span
+                class="status-icon weather"
+            ></span>
+
+            <span id="clock">
+                00:00
+            </span>
+
+        </div>
+
+    </header>
+
+    <!-- =========================
+     SPOTLIGHT
+========================= -->
+
+<div
+    class="spotlight"
+    id="spotlight"
+>
+
+    <!-- =========================
+         SPOTLIGHT SEARCH
+    ========================= -->
+
+    <div class="spotlight-search">
+
+        <span class="spotlight-search-icon">
+            🔍
+        </span>
+
+        <input
+            type="text"
+            id="spotlightInput"
+            placeholder="Pesquisar"
+            autocomplete="off"
+        >
+
+        <span
+            class="spotlight-shortcut"
+        >
+            ⌘ Espaço
+        </span>
+
+    </div>
+
+
+    <!-- =========================
+         SPOTLIGHT RESULTS
+    ========================= -->
+
+    <div
+        class="spotlight-results"
+        id="spotlightResults"
+    >
+
+        <!-- FINDER -->
+<div
+    class="spotlight-result"
+    data-app="Finder"
+    onclick="openFinder(); closeSpotlight();"
+>
+    <div class="spotlight-result-icon">
+        <img
+            src="assets/Icons/finder.png"
+            alt="Finder"
+        >
+    </div>
+
+    <div class="spotlight-result-info">
+        <span class="spotlight-result-title">
+            Finder
+        </span>
+
+        <span class="spotlight-result-type">
+            Aplicativo
+        </span>
+    </div>
+</div>
+
+
+<!-- PAINT -->
+<div
+    class="spotlight-result"
+    data-app="Paint"
+    onclick="openPaint(); closeSpotlight();"
+>
+    <div class="spotlight-result-icon">
+        <img
+            src="assets/Icons/Paint_Pro__Liquid_Glass__C2w4kS8GlX_icns-d521f8c1f0_256x256x32.png"
+            alt="Paint"
+        >
+    </div>
+
+    <div class="spotlight-result-info">
+        <span class="spotlight-result-title">
+            Paint
+        </span>
+
+        <span class="spotlight-result-type">
+            Aplicativo
+        </span>
+    </div>
+</div>
+
+
+<!-- CALCULADORA -->
+<div
+    class="spotlight-result"
+    data-app="Calculadora"
+    onclick="openCalculator(); closeSpotlight();"
+>
+    <div class="spotlight-result-icon">
+        <img
+            src="assets/Icons/Calculator__MacOS_Tahoe__nsriQA1igI_icns-c665e460a5_256x256x32.png"
+            alt="Calculadora"
+        >
+    </div>
+
+    <div class="spotlight-result-info">
+        <span class="spotlight-result-title">
+            Calculadora
+        </span>
+
+        <span class="spotlight-result-type">
+            Aplicativo
+        </span>
+    </div>
+</div>
+
+
+<!-- TERMINAL -->
+<div
+    class="spotlight-result"
+    data-app="Terminal"
+    onclick="openTerminal(); closeSpotlight();"
+>
+    <div class="spotlight-result-icon">
+        <img
+            src="assets/Icons/Terminal_z2TisMgNJ4_icns-8584e3881e_128x128x32.png"
+            alt="Terminal"
+        >
+    </div>
+
+    <div class="spotlight-result-info">
+        <span class="spotlight-result-title">
+            Terminal
+        </span>
+
+        <span class="spotlight-result-type">
+            Aplicativo
+        </span>
+    </div>
+</div>
+
+
+<!-- CONFIGURAÇÕES -->
+<div
+    class="spotlight-result"
+    data-app="Configurações"
+    onclick="openSettings(); closeSpotlight();"
+>
+    <div class="spotlight-result-icon">
+        <img
+            src="assets/Icons/Settings_mTHdx8YStT_icns-4b6c51221b_256x256x32.png"
+            alt="Configurações"
+        >
+    </div>
+
+    <div class="spotlight-result-info">
+        <span class="spotlight-result-title">
+            Configurações
+        </span>
+
+        <span class="spotlight-result-type">
+            Aplicativo
+        </span>
+    </div>
+</div>
+
+
+<!-- SAFARI -->
+<div
+    class="spotlight-result"
+    data-app="Safari"
+    onclick="openSafari(); closeSpotlight();"
+>
+    <div class="spotlight-result-icon">
+        <img
+            src="assets/Icons/Safari__MacOS_Tahoe__utug9Rt8g6_icns-39b31b95b4_256x256x32.png"
+            alt="Safari"
+        >
+    </div>
+
+    <div class="spotlight-result-info">
+        <span class="spotlight-result-title">
+            Safari
+        </span>
+
+        <span class="spotlight-result-type">
+            Aplicativo
+        </span>
+    </div>
+</div>
+
+
+<!-- LIXEIRA -->
+<div
+    class="spotlight-result"
+    data-app="Lixeira"
+    onclick="openTrash(); closeSpotlight();"
+>
+    <div class="spotlight-result-icon">
+        <img
+            src="assets/Icons/Bin_Full_yrypldfXBR_icns-3aa31b35a7_256x256x32.png"
+            alt="Lixeira"
+        >
+    </div>
+
+    <div class="spotlight-result-info">
+        <span class="spotlight-result-title">
+            Lixeira
+        </span>
+
+        <span class="spotlight-result-type">
+            Aplicativo
+        </span>
+    </div>
+</div>
+
+    </div>
+
+</div>
+
+
+        <!-- DESKTOP -->
+        <section class="desktop-area">
+
+            <!-- DESKTOP ICONS -->
+
+            <div
+                class="desktop-icon"
+                ondblclick="openFinderPath(['Projetos'])"
+            >
+                <div class="icon-folder">
+                    <img
+                        src="assets/Icons/pasta.png"
+                        class="PastaIcone"
+                        alt="Pasta"
+                    >
+                </div>
+
+                <span>Projetos</span>
+            </div>
+
+
+            <div
+                class="desktop-icon"
+                ondblclick="openFinderPath(['Sobre Mim'])"
+            >
+                <div class="icon-folder">
+                    <img
+                        src="assets/Icons/pasta.png"
+                        class="PastaIcone"
+                        alt="Pasta"
+                    >
+                </div>
+
+                <span>Sobre Mim</span>
+            </div>
+
+            <div
+                class="desktop-icon"
+                id="readmeDesktopIcon"
+                ondblclick="openReadme()"
+            >
+                <div class="icon-folder">
+                    <img
+                        src="assets/Icons/File_TXT_aExwB3ULuk_icns-35c206b21a_256x256x32.png" class="PastaIcone" alt="Txt">
+                </div>
+
+                <span>
+                    README.txt
+                </span>
+            </div>
+
+            <div
+                class="desktop-icon"
+                id="helpDesktopIcon"
+                ondblclick="openHelp()"
+            >
+                <div class="icon-folder">
+
+                    <img
+                        src="assets/Icons/File_TXT_aExwB3ULuk_icns-35c206b21a_256x256x32.png"
+                        class="PastaIcone"
+                        alt="Txt"
+                    >
+
+                </div>
+
+                <span>
+                    TUTORIAL.txt
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- DOCK -->
+
+        <nav class="dock">
+
+            <div
+                class="dock-item"
+                id="finderDockItem"
+                onclick="openFinder()"
+            >
+                <div class="dock-icon finder">
+                    <img
+                        src="assets/Icons/finder.png"
+                        class="PastaIconeDock"
+                        alt="Finder"
+                    >
+                </div>
+
+                <span class="dock-indicator"></span>
+
+                <span class="tooltip">
+                    Finder
+                </span>
+            </div>
+
+
+            <div class="dock-item" 
+            id="safariDockItem"
+            onclick="openSafari()">
+                <div class="dock-icon safari">
+                    <img src="assets/Icons/Safari__MacOS_Tahoe__utug9Rt8g6_icns-39b31b95b4_256x256x32.png" class="PastaIconeDock" alt="Safari">
+                </div>
+
+                <span class="dock-indicator"></span>
+
+                <span class="tooltip">
+                    Browser
+                </span>
+            </div>
+
+
+            <div
+                class="dock-item"
+                id="terminalDockItem"
+                onclick="openTerminal()"
+            >
+
+                <div class="dock-icon terminal">
+
+                    <img
+                        src="assets/Icons/Terminal_z2TisMgNJ4_icns-8584e3881e_128x128x32.png" class="PastaIconeDock" alt="Terminal">
+                </div>
+
+                <span class="dock-indicator"></span>
+
+                <span class="tooltip">
+                    Terminal
+                </span>
+
+            </div>
+
+
+            <div
+                class="dock-item"
+                id="settingsDockItem"
+                onclick="openSettings()"
+            >
+                <div class="dock-icon settings">
+                    <img
+                        src="assets/Icons/Settings_mTHdx8YStT_icns-4b6c51221b_256x256x32.png" class="PastaIconeDock" alt="Settings">
+                </div>
+
+                <span class="dock-indicator"></span>
+
+                <span class="tooltip">
+                    Ajustes
+                </span>
+            </div>
+
+            <!-- PAINT -->
+
+            <div
+                class="dock-item"
+                id="paintDockItem"
+                onclick="openPaint()"
+            >
+
+                <div class="dock-icon paint">
+
+                    <img
+                        src="assets/Icons/Paint_Pro__Liquid_Glass__C2w4kS8GlX_icns-d521f8c1f0_256x256x32.png"
+                        class="PastaIconeDock"
+                        alt="Paint"
+                    >
+
+                </div>
+
+                <span class="dock-indicator"></span>
+
+                <span class="tooltip">
+                    Paint
+                </span>
+
+            </div>
+
+            <!-- =========================
+                CALCULATOR DOCK ITEM
+            ========================= -->
+
+            <div
+                class="dock-item"
+                id="calculatorDockItem"
+                onclick="openCalculator()"
+            >
+
+                <div class="dock-icon calculator">
+
+                    <img
+                        src="assets/Icons/Calculator__MacOS_Tahoe__nsriQA1igI_icns-c665e460a5_256x256x32.png"
+                        class="PastaIconeDock"
+                        alt="Calculadora"
+                    >
+
+                </div>
+
+                <span class="dock-indicator"></span>
+
+                <span class="tooltip">
+                    Calculadora
+                </span>
+
+            </div>
+
+            <div
+                class="dock-item"
+                id="readmeDockItem"
+                data-app-window="readmeWindow"
+                onclick="openReadme()"
+            >
+
+                <div class="dock-icon">
+
+                    <img
+                        src="assets/Icons/File_TXT_aExwB3ULuk_icns-35c206b21a_256x256x32.png"
+                        class="PastaIconeDock"
+                        alt="TextEdit"
+                    >
+
+                </div>
+
+                <span class="tooltip">
+                    TextEdit
+                </span>
+
+                <span class="dock-indicator"></span>
+
+            </div>
+
+            <div
+                class="dock-item"
+                id="imageViewerDockItem"
+                data-app-window="imageViewerWindow"
+                onclick="openImageViewer()"
+            >
+
+                <div class="dock-icon">
+
+                    <img
+                        src="assets/Icons/Photos_macOS_Golden_Gate_mxVHKSuSHM-a1027855b1_256x256x32.png"
+                        class="PastaIconeDock"
+                        alt="Visualizador de Imagens"
+                    >
+
+                </div>
+
+                <span class="tooltip">
+                    Visualizador de Imagens
+                </span>
+
+                <span class="dock-indicator"></span>
+
+            </div>
+
+
+            <div class="dock-separator"></div>
+
+
+            <div
+                class="dock-item"
+                id="trashDockItem"
+                onclick="openTrash()"
+            >
+
+                <div class="dock-icon trash">
+
+                    <img
+                        src="assets/Icons/Bin_Full_yrypldfXBR_icns-3aa31b35a7_256x256x32.png"
+                        class="PastaIconeDock"
+                        alt="Lixeira"
+                    >
+
+                </div>
+
+                <span class="dock-indicator"></span>
+
+                <span class="tooltip">
+                    Lixeira
+                </span>
+
+            </div>
+
+        </nav>
+
+        <!-- SAFARI WINDOW -->
+
+<div class="window safari-window" id="safariWindow">
+
+    <div class="window-header" id="safariHeader">
+
+        <div class="window-buttons">
+
+            <button
+                class="window-button close"
+                onclick="closeSafari()"
+            ></button>
+
+            <button
+                class="window-button minimize"
+                onclick="minimizeSafari()"
+            ></button>
+
+            <button
+                class="window-button maximize"
+                onclick="toggleSafariMaximize()"
+            ></button>
+
+        </div>
+
+        <div class="window-title">
+            Navegador
+        </div>
+
+    </div>
+
+
+    <div class="window-content">
+
+        <h1 class="welcomebrowser">Bem-vindo ao navegador!</h1>
+
+        <input type="text" class="browserinput" placeholder="Oque esta pensando hoje?">
+    </div>
+
+    <!-- RESIZE HANDLE -->
+
+    <div class="resize-handle"></div>
+
+</div>
+
+<!-- =========================
+     SETTINGS WINDOW
+========================= -->
+
+<div
+    class="window settings-window"
+    id="settingsWindow"
+>
+
+    <!-- HEADER -->
+
+    <div
+        class="window-header"
+        id="settingsHeader"
+    >
+
+        <div class="window-buttons">
+
+            <button
+                class="window-button close"
+                onclick="closeSettings()"
+            ></button>
+
+            <button
+                class="window-button minimize"
+                onclick="minimizeSettings()"
+            ></button>
+
+            <button
+                class="window-button maximize"
+                onclick="toggleSettingsMaximize()"
+            ></button>
+
+        </div>
+
+
+        <div class="window-title">
+            Configurações
+        </div>
+
+    </div>
+
+
+    <!-- CONTENT -->
+
+    <div class="settings-content">
+
+
+        <!-- SIDEBAR -->
+
+        <aside class="settings-sidebar">
+
+            <div class="settings-sidebar-title">
+                Configurações
+            </div>
+
+
+            <div class="settings-sidebar-account">
+                <img src="assets/Icons/profile.png" class="profilepic" alt="profileicon">
+                <div class="profileinfo">
+                <strong>Enzo</strong>
+                <p class="settingsaccountp">Bicalho</p>
+                </div>
+            </div>
+
+
+            <button
+                class="settings-item active"
+                onclick="selectSettings('general', this)"
+            >
+                <span class="settings-icon">
+                    <img src="assets/Icons/Settings_mTHdx8YStT_icns-4b6c51221b_256x256x32.png" class="settingsappicon" alt="SettingsIcon">
+                </span>
+
+                <span>
+                    Geral
+                </span>
+            </button>
+
+
+            <button
+                class="settings-item"
+                onclick="selectSettings('appearance', this)"
+            >
+                <span class="settings-icon">
+                    <img src="assets/Icons/aparencia.png" class="settingsappicon" alt="AppearenceIcon">
+                </span>
+
+                <span>
+                    Aparência
+                </span>
+            </button>
+
+
+            <button
+                class="settings-item"
+                onclick="selectSettings('display', this)"
+            >
+                <span class="settings-icon">
+                    <img src="assets/Icons/display.png" class="settingsappicon" alt="DisplayIcon">
+                </span>
+
+                <span>
+                    Tela
+                </span>
+            </button>
+
+
+            <button
+                class="settings-item"
+                onclick="selectSettings('sound', this)"
+            >
+                <span class="settings-icon">
+                    <img src="assets/Icons/Dock.png" class="settingsappicon" alt="DockIcon">
+                </span>
+
+                <span>
+                    Mesa e Finder
+                </span>
+            </button>
+
+
+            <button
+                class="settings-item"
+                onclick="selectSettings('keyboard', this)"
+            >
+                <span class="settings-icon">
+                    ⌨️
+                </span>
+
+                <span>
+                    Teclado
+                </span>
+            </button>
+
+
+            <button
+                class="settings-item"
+                onclick="selectSettings('mouse', this)"
+            >
+                <span class="settings-icon">
+                    🖱️
+                </span>
+
+                <span>
+                    Mouse
+                </span>
+            </button>
+
+
+            <button
+                class="settings-item"
+                onclick="selectSettings('privacy', this)"
+            >
+                <span class="settings-icon">
+                    🔒
+                </span>
+
+                <span>
+                    Privacidade
+                </span>
+            </button>
+
+        </aside>
+
+
+        <!-- MAIN -->
+
+        <section class="settings-main">
+
+            <div
+                id="settingsPage"
+                class="settings-page"
+            >
+
+                <h1>
+                    Geral
+                </h1>
+
+                <p class="settings-description">
+                    Configure as preferências gerais do BicasOS.
+                </p>
+
+
+                <div class="settings-card">
+
+                    <div>
+
+                        <strong>
+                            Nome do sistema
+                        </strong>
+
+                        <span>
+                            BicasOS
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="settings-card">
+
+                    <div>
+
+                        <strong>
+                            Versão
+                        </strong>
+
+                        <span>
+                            BicasOS 1.0
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <!-- RESIZE -->
+
+    <div class="resize-handle"></div>
+
+</div>
+
+<!-- =========================
+     TERMINAL WINDOW
+========================= -->
+
+<div
+    class="window terminal-window"
+    id="terminalWindow"
+>
+
+    <div
+        class="window-header"
+        id="terminalHeader"
+    >
+
+        <div class="window-buttons">
+
+            <button
+                class="window-button close"
+                onclick="closeTerminal()"
+            ></button>
+
+            <button
+                class="window-button minimize"
+                onclick="minimizeTerminal()"
+            ></button>
+
+            <button
+                class="window-button maximize"
+                onclick="toggleTerminalMaximize()"
+            ></button>
+
+        </div>
+
+        <div class="window-title">
+            Terminal
+        </div>
+
+    </div>
+
+
+    <div class="terminal-content">
+
+        <div class="terminal-output">
+
+            <div>
+                Bem-vindo ao BicasOS Terminal. Digite 'help' para mais informações.
+            </div>
+
+            <br>
+
+        </div>
+
+        <div class="terminal-input-line">
+
+            <span>
+                bicas@bicasos ~ %
+            </span>
+
+            <input
+                type="text"
+                id="terminalInput"
+                autocomplete="off"
+                spellcheck="false"
+            >
+
+        </div>
+
+    </div>
+
+
+    <div class="resize-handle"></div>
+
+</div>
+
+<!-- =========================
+     README WINDOW
+========================= -->
+
+<div
+    class="window readme-window"
+    id="readmeWindow"
+>
+
+    <!-- HEADER -->
+
+    <div
+        class="window-header"
+        id="readmeHeader"
+    >
+
+        <div class="window-buttons">
+
+            <button
+                class="window-button close"
+                onclick="closeReadme()"
+            ></button>
+
+            <button
+                class="window-button minimize"
+                onclick="minimizeReadme()"
+            ></button>
+
+            <button
+                class="window-button maximize"
+                onclick="toggleReadmeMaximize()"
+            ></button>
+
+        </div>
+
+
+        <div class="window-title"
+        id="readmeTitle">
+            README.txt
+        </div>
+
+    </div>
+
+
+    <!-- CONTENT -->
+
+    <div class="readme-content">
+
+        <textarea
+            id="readmeText"
+            spellcheck="false"
+        >
+==================================================
+                 README.txt
+                 BICASOS
+==================================================
+
+Olá! 👋
+
+--------------------------------------------------
+SOBRE MIM
+--------------------------------------------------
+
+Nome: Enzo Bicalho
+Idade: 16 anos
+Localização: Belo Horizonte, MG - Brasil
+
+Sou programador e designer gráfico.
+Gosto de criar projetos, experimentar novas ideias
+e transformar conceitos em coisas reais.
+
+Também sou muito interessado em tecnologia,
+computadores, desenvolvimento de software e carros.
+
+--------------------------------------------------
+SKILLS
+--------------------------------------------------
+
+> Desenvolvimento Web
+> HTML
+> CSS
+> JavaScript
+> Next.js
+> Node.js
+> Express
+> Supabase
+> Photoshop
+
+> Design
+> Design gráfico
+> UI / UX
+> Edição de imagens
+> Criação de interfaces
+
+--------------------------------------------------
+PROJETOS
+--------------------------------------------------
+
+Portifolio
+Site feito para conhecido tanto sobre mim quanto
+sobre minhas habilidades profissionais.
+
+-- Em breve, mais -- 
+
+--------------------------------------------------
+INTERESSES
+--------------------------------------------------
+
+> Programação
+> Design
+> Tecnologia
+> Computadores
+> Interfaces modernas e interativas
+
+--------------------------------------------------
+
+© 2026 BicasOS
+Todos os direitos reservados.
+
+==================================================</textarea>
+
+    </div>
+
+
+    <!-- RESIZE -->
+
+    <div class="resize-handle"></div>
+
+</div>
+
+<!-- =========================
+     FINDER WINDOW
+========================= -->
+
+<div
+    class="window finder-window"
+    id="finderWindow"
+>
+
+    <div
+        class="window-header"
+        id="finderHeader"
+    >
+
+        <div class="window-buttons">
+
+            <button
+                class="window-button close"
+                onclick="closeFinder()"
+            ></button>
+
+            <button
+                class="window-button minimize"
+                onclick="minimizeFinder()"
+            ></button>
+
+            <button
+                class="window-button maximize"
+                onclick="toggleFinderMaximize()"
+            ></button>
+
+        </div>
+
+        <div class="window-title">
+            Finder
+        </div>
+
+    </div>
+
+
+    <!-- TOOLBAR -->
+
+    <div class="finder-toolbar">
+
+        <button
+            class="finder-back-button"
+            id="finderBackButton"
+            onclick="finderGoBack()"
+        >
+            ←
+        </button>
+
+        <div
+            class="finder-path"
+            id="finderPath"
+        >
+            Finder
+        </div>
+
+    </div>
+
+
+    <!-- CONTEÚDO -->
+
+    <div class="finder-content">
+
+        <div
+            class="finder-item"
+            ondblclick="openFinderFolder('Projetos')"
+        >
+
+            <img
+                src="assets/Icons/pasta.png"
+                alt="Projetos"
+            >
+
+            <span>
+                Projetos
+            </span>
+
+        </div>
+
+
+        <div
+            class="finder-item"
+            ondblclick="openFinderFolder('Sobre Mim')"
+        >
+
+            <img
+                src="assets/Icons/pasta.png"
+                alt="Sobre Mim"
+            >
+
+            <span>
+                Sobre Mim
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="resize-handle"></div>
+
+</div>
+
+<!-- =========================
+     IMAGE VIEWER
+========================= -->
+
+<div
+    class="window image-viewer-window"
+    id="imageViewerWindow"
+>
+
+    <div
+        class="window-header"
+        id="imageViewerHeader"
+    >
+
+        <div class="window-buttons">
+
+            <button
+                class="window-button close"
+                onclick="closeImageViewer()"
+            ></button>
+
+            <button
+                class="window-button minimize"
+                onclick="minimizeImageViewer()"
+            ></button>
+
+            <button
+                class="window-button maximize"
+                onclick="toggleImageViewerMaximize()"
+            ></button>
+
+        </div>
+
+        <div
+            class="window-title"
+            id="imageViewerTitle"
+        >
+            Visualizador
+        </div>
+
+    </div>
+
+
+    <div class="image-viewer-content">
+
+        <img
+            id="imageViewerImage"
+            src=""
+            alt=""
+        >
+
+    </div>
+
+
+    <div class="resize-handle"></div>
+
+</div>
+
+<!-- =========================
+     TRASH WINDOW
+========================= -->
+
+<div
+    class="window trash-window"
+    id="trashWindow"
+>
+
+    <div
+        class="window-header"
+        id="trashHeader"
+    >
+
+        <div class="window-buttons">
+
+            <button
+                class="window-button close"
+                onclick="closeTrash()"
+            ></button>
+
+            <button
+                class="window-button minimize"
+                onclick="minimizeTrash()"
+            ></button>
+
+            <button
+                class="window-button maximize"
+                onclick="toggleTrashMaximize()"
+            ></button>
+
+        </div>
+
+        <div class="window-title">
+            Lixeira
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         TRASH TOOLBAR
+    ========================= -->
+
+    <div class="trash-toolbar">
+
+        <div class="trash-title">
+            Lixeira
+        </div>
+
+        <div class="trash-count">
+            5 itens
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         TRASH CONTENT
+    ========================= -->
+
+    <div class="trash-content">
+
+
+        <!-- PENSAMENTOS -->
+
+        <div
+            class="trash-item"
+            ondblclick="openTrashText(
+                'aleatorio.txt'
+            )"
+        >
+
+            <img
+                src="assets/Icons/File_TXT_aExwB3ULuk_icns-35c206b21a_256x256x32.png"
+                alt="TXT"
+            >
+
+            <span>
+                aleatorio.txt
+            </span>
+
+        </div>
+
+
+        <!-- README ANTIGO -->
+
+        <div
+            class="trash-item"
+            ondblclick="openTrashText(
+                'minhapartedotrabalhodeingles.txt'
+            )"
+        >
+
+            <img
+                src="assets/Icons/File_TXT_aExwB3ULuk_icns-35c206b21a_256x256x32.png"
+                alt="TXT"
+            >
+
+            <span>
+                minhapartedotrabalhodeingles.txt
+            </span>
+
+        </div>
+
+
+        <!-- FOTO -->
+
+        <div
+            class="trash-item"
+            ondblclick="openTrashImage()"
+        >
+
+            <img
+                src="assets/fotoaleatoria.jpg"
+                alt="Foto"
+            >
+
+            <span>
+                foto.jpg
+            </span>
+
+        </div>
+
+
+        <!-- PROJETO -->
+
+        <div
+            class="trash-item"
+            ondblclick="openTrashProject()"
+        >
+
+            <img
+                src="assets/fotoaleatoria2.jpg"
+                alt="Foto"
+            >
+
+            <span>
+                foto2.jpg
+            </span>
+
+        </div>
+
+
+        <!-- EASTER EGG -->
+
+        <div
+            class="trash-item"
+            ondblclick="openTrashMystery()"
+        >
+
+            <img
+                src="assets/Icons/File_TXT_aExwB3ULuk_icns-35c206b21a_256x256x32.png"
+                alt="TXT"
+            >
+
+            <span>
+                ofgjareni.txt
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="resize-handle"></div>
+
+</div>
+
+<!-- =========================
+     ABOUT BICASOS WINDOW
+========================= -->
+
+<div
+    class="window about-bicasos-window"
+    id="aboutBicasOSWindow"
+>
+
+    <div
+        class="window-header"
+        id="aboutBicasOSHeader"
+    >
+
+        <div class="window-buttons">
+
+            <button
+                class="window-button close"
+                onclick="closeAboutBicasOS()"
+            ></button>
+
+            <button
+                class="window-button minimize"
+                onclick="minimizeAboutBicasOS()"
+            ></button>
+
+            <button
+                class="window-button maximize"
+                onclick="toggleAboutBicasOSMaximize()"
+            ></button>
+
+        </div>
+
+
+        <div class="window-title">
+            Sobre Este BicasOS
+        </div>
+
+    </div>
+
+
+    <div class="about-bicasos-content">
+
+        <img
+            src="assets/Icons/profile.png"
+            class="about-bicasos-icon"
+            alt="BicasOS"
+        >
+
+
+        <h1>
+            BicasOS
+        </h1>
+
+
+        <p class="about-bicasos-version">
+            Versão 1.0
+        </p>
+
+
+        <div class="about-bicasos-info">
+
+            <p>
+                Um sistema operacional feito por Bicas.
+            </p>
+
+            <p>
+                Desenvolvido com HTML, CSS e JavaScript.
+            </p>
+
+            <p>
+                © 2026 BicasOS
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="resize-handle"></div>
+
+</div>
+
+<!-- =========================
+     PAINT WINDOW
+========================= -->
+
+<div
+    class="window paint-window"
+    id="paintWindow"
+>
+
+    <!-- =========================
+         PAINT HEADER
+    ========================= -->
+
+    <div
+        class="window-header"
+        id="paintHeader"
+    >
+
+        <div class="window-buttons">
+
+            <button
+                class="window-button close"
+                onclick="closePaint()"
+            ></button>
+
+            <button
+                class="window-button minimize"
+                onclick="minimizePaint()"
+            ></button>
+
+            <button
+                class="window-button maximize"
+                onclick="togglePaintMaximize()"
+            ></button>
+
+        </div>
+
+        <div class="window-title">
+            Paint
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         PAINT TOOLBAR
+    ========================= -->
+
+    <div class="paint-toolbar">
+
+        <!-- PENCIL -->
+
+        <button
+            class="paint-tool active"
+            id="paintPencilButton"
+            onclick="selectPaintTool('pencil')"
+            title="Lápis"
+        >
+            ✏️
+        </button>
+
+
+        <!-- ERASER -->
+
+        <button
+            class="paint-tool"
+            id="paintEraserButton"
+            onclick="selectPaintTool('eraser')"
+            title="Borracha"
+        >
+            🧽
+        </button>
+
+
+        <!-- SEPARATOR -->
+
+        <div class="paint-toolbar-separator"></div>
+
+
+        <!-- COLOR -->
+
+        <label
+            class="paint-color-label"
+            title="Escolher cor"
+        >
+
+            <span>
+                🎨
+            </span>
+
+            <input
+                type="color"
+                id="paintColor"
+                value="#000000"
+            >
+
+        </label>
+
+
+        <!-- BRUSH SIZE -->
+
+        <div class="paint-size-control">
+
+            <span>
+                Tamanho
+            </span>
+
+            <input
+                type="range"
+                id="paintBrushSize"
+                min="1"
+                max="50"
+                value="5"
+            >
+
+            <span id="paintBrushSizeValue">
+                5
+            </span>
+
+        </div>
+
+
+        <!-- SEPARATOR -->
+
+        <div class="paint-toolbar-separator"></div>
+
+
+        <!-- UNDO -->
+
+        <button
+            class="paint-tool"
+            id="paintUndoButton"
+            onclick="undoPaint()"
+            title="Desfazer"
+        >
+            ↩️
+        </button>
+
+
+        <!-- REDO -->
+
+        <button
+            class="paint-tool"
+            id="paintRedoButton"
+            onclick="redoPaint()"
+            title="Refazer"
+        >
+            ↪️
+        </button>
+
+
+        <!-- CLEAR -->
+
+        <button
+            class="paint-tool"
+            onclick="clearPaint()"
+            title="Limpar desenho"
+        >
+            🗑️
+        </button>
+
+
+        <!-- SAVE -->
+
+        <button
+            class="paint-save-button"
+            onclick="savePaint()"
+        >
+            💾 Salvar
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         PAINT CANVAS AREA
+    ========================= -->
+
+    <div class="paint-content">
+
+        <canvas
+            id="paintCanvas"
+        ></canvas>
+
+    </div>
+
+
+    <!-- =========================
+         RESIZE HANDLE
+    ========================= -->
+
+    <div class="resize-handle"></div>
+
+</div>
+
+<!-- =========================
+     CALCULATOR WINDOW
+========================= -->
+
+<div
+    class="window calculator-window"
+    id="calculatorWindow"
+>
+
+    <!-- =========================
+         CALCULATOR HEADER
+    ========================= -->
+
+    <div
+        class="window-header"
+        id="calculatorHeader"
+    >
+
+        <div class="window-buttons">
+
+            <button
+                class="window-button close"
+                onclick="closeCalculator()"
+            ></button>
+
+            <button
+                class="window-button minimize"
+                onclick="minimizeCalculator()"
+            ></button>
+
+            <button
+                class="window-button maximize"
+                onclick="toggleCalculatorMaximize()"
+            ></button>
+
+        </div>
+
+        <div class="window-title">
+            Calculadora
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         CALCULATOR CONTENT
+    ========================= -->
+
+    <div class="calculator-content">
+
+        <!-- DISPLAY -->
+
+        <div
+            class="calculator-display"
+            id="calculatorDisplay"
+        >
+            0
+        </div>
+
+
+        <!-- BUTTONS -->
+
+        <div class="calculator-buttons">
+
+            <!-- ROW 1 -->
+
+            <button
+                class="calculator-button function"
+                onclick="calculatorClear()"
+            >
+                AC
+            </button>
+
+            <button
+                class="calculator-button function"
+                onclick="calculatorToggleSign()"
+            >
+                +/−
+            </button>
+
+            <button
+                class="calculator-button function"
+                onclick="calculatorPercent()"
+            >
+                %
+            </button>
+
+            <button
+                class="calculator-button operator"
+                onclick="calculatorOperator('/')"
+            >
+                ÷
+            </button>
+
+
+            <!-- ROW 2 -->
+
+            <button
+                class="calculator-button"
+                onclick="calculatorNumber('7')"
+            >
+                7
+            </button>
+
+            <button
+                class="calculator-button"
+                onclick="calculatorNumber('8')"
+            >
+                8
+            </button>
+
+            <button
+                class="calculator-button"
+                onclick="calculatorNumber('9')"
+            >
+                9
+            </button>
+
+            <button
+                class="calculator-button operator"
+                onclick="calculatorOperator('*')"
+            >
+                ×
+            </button>
+
+
+            <!-- ROW 3 -->
+
+            <button
+                class="calculator-button"
+                onclick="calculatorNumber('4')"
+            >
+                4
+            </button>
+
+            <button
+                class="calculator-button"
+                onclick="calculatorNumber('5')"
+            >
+                5
+            </button>
+
+            <button
+                class="calculator-button"
+                onclick="calculatorNumber('6')"
+            >
+                6
+            </button>
+
+            <button
+                class="calculator-button operator"
+                onclick="calculatorOperator('-')"
+            >
+                −
+            </button>
+
+
+            <!-- ROW 4 -->
+
+            <button
+                class="calculator-button"
+                onclick="calculatorNumber('1')"
+            >
+                1
+            </button>
+
+            <button
+                class="calculator-button"
+                onclick="calculatorNumber('2')"
+            >
+                2
+            </button>
+
+            <button
+                class="calculator-button"
+                onclick="calculatorNumber('3')"
+            >
+                3
+            </button>
+
+            <button
+                class="calculator-button operator"
+                onclick="calculatorOperator('+')"
+            >
+                +
+            </button>
+
+
+            <!-- ROW 5 -->
+
+            <button
+                class="calculator-button zero"
+                onclick="calculatorNumber('0')"
+            >
+                0
+            </button>
+
+            <button
+                class="calculator-button"
+                onclick="calculatorDecimal()"
+            >
+                ,
+            </button>
+
+            <button
+                class="calculator-button equals"
+                onclick="calculatorEquals()"
+            >
+                =
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         RESIZE HANDLE
+    ========================= -->
+
+    <div class="resize-handle"></div>
+
+</div>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>

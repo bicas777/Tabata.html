@@ -1,0 +1,6118 @@
+@font-face {
+    font-family: "SF Pro Display";
+    src: url("assets/sf-pro-display/SFPRODISPLAYREGULAR.OTF") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "SF Pro Display";
+    src: url("assets/sf-pro-display/SFPRODISPLAYMEDIUM.OTF") format("opentype");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "SF Pro Display";
+    src: url("assets/sf-pro-display/SFPRODISPLAYBOLD.OTF") format("opentype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "JetBrainsMono";
+    src: url("assets/JetBrains/JetBrainsMonoNerdFontMono-Regular.ttf") format("truetype");
+    font-style: normal;
+}
+
+
+@media (max-width: 800px) {
+
+    .window {
+
+        width: 90vw;
+
+        height: 70vh;
+
+        min-width: 0;
+
+        min-height: 0;
+
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .window {
+
+        width: 95vw;
+
+        height: 80vh;
+
+        border-radius: 10px;
+
+    }
+
+
+    .window-header {
+
+        height: 38px;
+
+    }
+
+
+    .window-content {
+
+        padding: 20px;
+
+    }
+
+}
+
+:root {
+
+    /* Cursor padrão */
+    --cursor-default:
+        url("assets/cursor/default.png") 10 10,
+        default;
+
+
+    /* Cursor de botão / link */
+    --cursor-pointer:
+        url("assets/cursor/handpointing.png") 10 10,
+        pointer;
+
+
+    /* Cursor de texto */
+    --cursor-text:
+        url("assets/cursor/textcursor.png") 10 10,
+        text;
+
+
+    /* Cursor de arrastar */
+    --cursor-grab:
+        url("assets/cursor/handopen.png") 10 10,
+        grab;
+
+
+    /* Cursor enquanto arrasta */
+    --cursor-grabbing:
+        url("assets/cursor/handgrabbing.png") 10 10,
+        grabbing;
+
+
+    /* Resize diagonal */
+    --cursor-resize-diagonal:
+        url("assets/cursor/resizenorthwestsoutheast.png") 10 10,
+        nwse-resize;
+
+
+    /* Resize horizontal */
+    --cursor-resize-horizontal:
+        url("./assets/cursors/resize-horizontal.png") 10 10,
+        ew-resize;
+
+
+    /* Resize vertical */
+    --cursor-resize-vertical:
+        url("./assets/cursors/resize-vertical.png") 10 10,
+        ns-resize;
+
+
+    /* Cursor de espera / carregamento */
+    --cursor-wait:
+        url("./assets/cursors/wait.png") 10 10,
+        wait;
+
+
+    /* Cursor de proibido */
+    --cursor-not-allowed:
+        url("./assets/cursors/not-allowed.png") 10 10,
+        not-allowed;
+
+
+    /* Cursor de precisão */
+    --cursor-crosshair:
+        url("assets/cursor/cross.png") 10 10,
+        crosshair;
+
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    cursor: var(--cursor-default);
+}
+
+body {
+    font-family: "SF Pro Display", sans-serif;
+}
+
+
+/* =========================
+   DESKTOP
+========================= */
+
+.desktop {
+    width: 100vw;
+    height: 100vh;
+
+    position: relative;
+    overflow: hidden;
+
+    color: white;
+
+    background-image: url("assets/Fundos/macos-tahoe-26-5120x2880-22675.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+/* =========================
+   MENU BAR
+========================= */
+
+.menu-bar {
+
+    position: fixed;
+
+    color: var(--menubar-text-color, #ffffff);
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 30px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 12px;
+
+    background: rgba(255, 255, 255, 0);
+
+    border-radius: 0 0 16px 16px;
+
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
+    backdrop-filter: blur(6.4px);
+
+    -webkit-backdrop-filter: blur(6.4px);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    font-size: 13px;
+
+    z-index: 10000;
+}
+
+
+.menu-left,
+.menu-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+}
+
+
+.menu-bar button {
+
+    border: none;
+
+    background: none;
+
+    color: var(--menubar-text-color, #ffffff);
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    cursor: var(--cursor-pointer);
+
+    padding: 3px 4px;
+
+    border-radius: 5px;
+
+    transition: background 0.2s;
+}
+
+
+.menu-bar button:hover {
+
+    background: rgba(255, 255, 255, 0.15);
+
+}
+
+
+.apple-button {
+
+    font-size: 17px !important;
+
+    font-weight: bold;
+
+}
+
+
+.menu-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    font-size: 12px;
+
+}
+
+
+.status-icon {
+
+    width: 18px;
+    height: 18px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+    
+    background: currentColor;
+
+    opacity: 0.9;
+
+}
+
+.wifi {
+
+    -webkit-mask-image: url("assets/Icons/wifi-svgrepo-com.svg");
+    mask-image: url("assets/Icons/wifi-svgrepo-com.svg");
+
+}
+
+.battery {
+
+    -webkit-mask-image: url("assets/Icons/battery-full-svgrepo-com.svg");
+    mask-image: url("assets/Icons/battery-full-svgrepo-com.svg");
+
+}
+
+.weather {
+
+    -webkit-mask-image: url("assets/Icons/weather-partly-cloudy-day-svgrepo-com.svg");
+    mask-image: url("assets/Icons/weather-partly-cloudy-day-svgrepo-com.svg");
+
+}
+
+
+/* ÍCONE COLORIDO PELO TEMA */
+
+.status-icon {
+
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
+
+}
+
+
+#clock {
+
+    min-width: 45px;
+
+    text-align: right;
+
+}
+
+
+/* =========================
+   DESKTOP AREA
+========================= */
+
+.desktop-area {
+
+    position: absolute;
+
+    top: 30px;
+    left: 0;
+
+    width: 100%;
+    height: calc(100% - 30px);
+
+    padding: 25px;
+
+}
+
+
+/* =========================
+   DESKTOP ICONS
+========================= */
+
+.desktop-icon {
+
+    width: 75px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 5px;
+
+    margin-bottom: 20px;
+
+    cursor: var(--cursor-pointer);
+
+    user-select: none;
+
+}
+
+
+.desktop-icon:hover {
+
+    background: rgba(255, 255, 255, 0.15);
+
+    border-radius: 7px;
+
+}
+
+
+.desktop-icon span {
+
+    font-size: 12px;
+
+    font-family: 'SF Pro Display';
+
+    font-weight: 400;
+
+    text-align: center;
+
+    text-shadow:
+        0 1px 4px rgba(0, 0, 0, 0.8);
+
+}
+
+
+.icon-folder,
+.icon-file {
+
+    font-size: 42px;
+
+    filter:
+        drop-shadow(
+            0 5px 8px rgba(0, 0, 0, 0.35)
+        );
+
+}
+
+
+ /* =========================
+    DOCK
+ ========================= */
+
+.dock {
+
+    --dock-icon-size: 59px;
+    --dock-scale: 1;
+
+    position: fixed;
+
+    bottom: 12px;
+    left: 50%;
+
+    height:
+        calc(
+            var(--dock-icon-size) + 16px
+        );
+
+    padding:
+        8px 12px;
+
+    display: flex;
+
+    transform:
+        translateX(-50%)
+        scale(var(--dock-scale));
+
+    transform-origin:
+        center bottom;
+        
+    align-items: flex-end;
+
+    gap: 1px;
+
+    border-radius: 20px;
+
+    background:
+        var(--system-window);
+
+    border:
+        1px solid
+        var(--system-border);
+
+    box-shadow:
+        0 4px 30px
+        rgba(0, 0, 0, 0.18);
+
+    backdrop-filter:
+        blur(20px)
+        saturate(180%);
+
+    -webkit-backdrop-filter:
+        blur(20px)
+        saturate(180%);
+
+    color:
+        var(--system-text);
+
+    z-index: 10000;
+
+    transition:
+        transform 0.35s cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        ),
+
+        background 0.25s ease,
+
+        border-color 0.25s ease,
+
+        box-shadow 0.25s ease;
+
+}
+
+
+/* =========================
+   DOCK ITEMS
+========================= */
+
+.dock-item {
+
+    position: relative;
+
+    width: var(--dock-icon-size);
+    height: var(--dock-icon-size);
+
+    flex: 0 0 auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    top: 0;
+
+    transition:
+        width 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        margin 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.25s ease,
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dock-item[data-app-window] {
+    position: relative;
+
+    width: 60px;
+    margin-left: -30px;
+    margin-right: -30px;
+
+    opacity: 0;
+    transform: scale(0.7);
+
+    pointer-events: none;
+
+    transition:
+        width 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        margin 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.25s ease,
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+
+    overflow: visible;
+}
+
+.dock-item[data-app-window].app-open {
+    width: 60px;
+    margin-left: 4px;
+    margin-right: 4px;
+
+    opacity: 1;
+    transform: scale(1);
+
+    pointer-events: auto;
+}
+
+.dock-item[data-app-window].app-closing {
+    width: 0;
+    margin-left: 0;
+    margin-right: 0;
+
+    opacity: 0;
+    transform: scale(0.7);
+
+    pointer-events: none;
+}
+
+/* =========================
+   DOCK ICON
+========================= */
+
+.dock-icon {
+
+    width:
+        var(--dock-icon-size);
+
+    height:
+        var(--dock-icon-size);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    cursor:
+        var(--cursor-pointer);
+
+    transition:
+        transform 0.35s cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        );
+
+    filter:
+        drop-shadow(
+            0 5px 5px
+            rgba(0, 0, 0, 0.35)
+        );
+
+    transform:
+        scale(1.3);
+
+}
+
+.dock-item:hover .dock-icon {
+
+    transform:
+        translateY(-12px)
+        scale(1.5);
+
+}
+
+.dock-item:has(+ .dock-item:hover) .dock-icon,
+.dock-item:hover + .dock-item .dock-icon {
+
+    transform:
+        translateY(-5.5px)
+        scale(1.4);
+
+}
+
+.dock-item:has(+ .dock-item + .dock-item:hover) .dock-icon,
+.dock-item:hover + .dock-item + .dock-item .dock-icon {
+
+    transform:
+        translateY(-2px)
+        scale(1.3);
+
+}
+/* =========================
+   TOOLTIP
+========================= */
+
+.tooltip {
+
+    position: absolute;
+
+    bottom: 67px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%)
+        translateY(5px);
+
+    padding: 5px 9px;
+
+    border-radius: 6px;
+
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6.6px);
+    -webkit-backdrop-filter: blur(6.6px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    font-size: 11px;
+
+    white-space: nowrap;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+
+        opacity 0.2s,
+
+        transform 0.2s;
+
+}
+
+
+.dock-item:hover .tooltip {
+
+    opacity: 1;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+
+}
+
+
+/* =========================
+   SEPARATOR
+========================= */
+
+.dock-separator {
+
+    width: 1px;
+
+    height: 45px;
+
+    background:
+        rgba(255, 255, 255, 0.2);
+
+    margin:
+
+        0 3px
+
+        0 3px;
+
+}
+
+/* =========================
+   WINDOWS
+========================= */
+
+.window {
+    position: absolute;
+
+    top: 120px;
+    left: 50%;
+
+    width: 700px;
+    height: 450px;
+
+    display: none;
+
+    flex-direction: column;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    background: rgba(30, 30, 30, 0.85);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.5),
+        inset 0 1px rgba(255, 255, 255, 0.1);
+
+    backdrop-filter: blur(30px);
+
+    -webkit-backdrop-filter: blur(30px);
+
+    z-index: 5000;
+}
+
+
+/* =========================
+   WINDOW HEADER
+========================= */
+
+.window-header {
+
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    position: relative;
+
+    cursor: var(--cursor-grab);
+
+    user-select: none;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    border-bottom: 1px solid
+        rgba(255, 255, 255, 0.08);
+
+}
+
+
+.window-header:active {
+
+    cursor: var(--cursor-grabbing);
+
+}
+
+
+/* =========================
+   WINDOW BUTTONS
+========================= */
+
+.window-buttons {
+
+    position: absolute;
+
+    left: 14px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    display: flex;
+
+    gap: 8px;
+
+}
+
+
+.window-button {
+
+    width: 12px;
+
+    height: 12px;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 50%;
+
+    cursor: var(--cursor-pointer);
+
+}
+
+
+.window-button.close {
+
+    background: #ff5f57;
+    box-sizing: content-box;
+
+}
+
+
+.window-button.minimize {
+
+    background: #febc2e;
+    box-sizing: content-box;
+
+}
+
+
+.window-button.maximize {
+
+    background: #28c840;
+    box-sizing: content-box;
+
+}
+
+
+/* =========================
+   WINDOW TITLE
+========================= */
+
+.window-title {
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    opacity: 0.8;
+
+}
+
+
+/* =========================
+   WINDOW CONTENT
+========================= */
+
+.window-content {
+
+    flex: 1;
+
+    padding: 40px;
+
+    color: white;
+
+}
+
+
+.window-content h1 {
+
+    font-size: 28px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.window-content p {
+
+    opacity: 0.6;
+
+}
+
+/* =========================
+   WINDOW ANIMATIONS
+========================= */
+
+.window {
+
+    transform-origin: center center;
+
+}
+
+
+/* =========================
+   OPEN
+========================= */
+
+.window.opening {
+
+    animation: windowOpen 0.45s
+        cubic-bezier(
+            0.2,
+            0.8,
+            0.2,
+            1
+        ) forwards;
+
+}
+
+
+@keyframes windowOpen {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translate(
+                var(--dock-x),
+                var(--dock-y)
+            )
+            scale(0.08);
+
+    }
+
+    60% {
+
+        opacity: 1;
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            translate(0, 0)
+            scale(1);
+
+    }
+
+}
+
+
+/* =========================
+   MINIMIZE
+========================= */
+
+.window.minimizing {
+
+    animation: windowMinimize 0.45s
+        cubic-bezier(
+            0.4,
+            0,
+            1,
+            1
+        ) forwards;
+
+}
+
+
+@keyframes windowMinimize {
+
+    0% {
+
+        opacity: 1;
+
+        transform:
+            translate(0, 0)
+            scale(1);
+
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            translate(
+                var(--dock-x),
+                var(--dock-y)
+            )
+            scale(0.08);
+
+    }
+
+}
+
+
+/* =========================
+   CLOSE
+========================= */
+
+.window.closing {
+
+    animation:
+        windowClose 0.25s
+        ease forwards;
+
+}
+
+
+@keyframes windowClose {
+
+    0% {
+
+        opacity: 1;
+
+        transform:
+            scale(1);
+
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            scale(0.92);
+
+    }
+
+}
+
+.window.dragging,
+.window.resizing {
+    transition: none !important;
+}
+
+/* =========================
+   RESIZABLE WINDOW
+========================= */
+
+.window {
+    min-width: 400px;
+    min-height: 250px;
+
+    max-width: 95vw;
+    max-height: 90vh;
+}
+
+
+/* =========================
+   RESIZE HANDLE
+========================= */
+
+.resize-handle {
+
+    position: absolute;
+
+    right: 0;
+    bottom: 0;
+
+    width: 18px;
+    height: 18px;
+
+    cursor: var(--cursor-resize-diagonal);
+
+    z-index: 20;
+
+}
+
+/* =========================
+   MAXIMIZED WINDOW
+========================= */
+
+.window.maximized {
+
+    top:
+        var(--menu-bar-bottom) !important;
+
+    left: 0 !important;
+
+    width: 100% !important;
+
+    height:
+        var(--maximized-window-height) !important;
+
+    max-width: none !important;
+
+    max-height: none !important;
+
+    border-radius: 0;
+
+    transform:
+        translate(0, 0)
+        scale(1) !important;
+
+}
+
+.window {
+
+    transition:
+        top 0.35s cubic-bezier(
+            0.2,
+            0.8,
+            0.2,
+            1
+        ),
+
+        left 0.35s cubic-bezier(
+            0.2,
+            0.8,
+            0.2,
+            1
+        ),
+
+        width 0.35s cubic-bezier(
+            0.2,
+            0.8,
+            0.2,
+            1
+        ),
+
+        height 0.35s cubic-bezier(
+            0.2,
+            0.8,
+            0.2,
+            1
+        ),
+
+        border-radius 0.35s ease;
+
+}
+
+.welcomebrowser {
+    text-align: center;    
+}
+
+.browserinput {
+    cursor: var(--cursor-text);
+    /* Texto */
+    color: var(--system-text);
+    font-size: clamp(12px, 1vw, 16px);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+    text-align: center;
+
+    /* Fundo */
+    background: rgba(255, 255, 255, 0.04);
+
+    /* Borda */
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 18px;
+
+    /* Tamanho responsivo */
+    width: min(50%, 500px);
+    height: clamp(40px, 6vh, 56px);
+
+    /* Espaçamento */
+    padding: 0 20px;
+
+    /* Centralizar horizontalmente */
+    display: block;
+    margin: 0 auto;
+
+    /* Transições */
+    transition:
+        background 0.2s ease,
+        border 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+
+    /* Remove outline padrão */
+    outline: none;
+
+    /* Box sizing */
+    box-sizing: border-box;
+}
+
+/* Placeholder */
+.browserinput::placeholder {
+    color: var(--system-text-secondary);
+    transition: color 0.2s ease;
+}
+
+/* Quando passa o mouse */
+.browserinput:hover {
+    background: rgba(255, 255, 255, 0.07);
+}
+
+/* Quando clica para digitar */
+.browserinput:focus {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow:
+        0 0 0 4px rgba(255, 255, 255, 0.04),
+        0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Placeholder fica mais visível quando focado */
+.browserinput:focus::placeholder {
+    color: rgba(255, 255, 255, 0.25);
+}
+
+.PastaIcone {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    display: block;
+}
+
+.PastaIconeDock {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    display: block;
+}
+
+.settingsappicon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    display: block;
+}
+
+/* ==================================================
+   SETTINGS
+================================================== */
+
+.settings-window {
+
+    width: 750px;
+    height: 500px;
+
+    min-width: 550px;
+    min-height: 350px;
+
+}
+
+
+/* =========================
+   SETTINGS CONTENT
+========================= */
+
+.settings-content {
+
+    flex: 1;
+
+    display: flex;
+
+    min-height: 0;
+
+    overflow: hidden;
+
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.settings-sidebar {
+
+    width: 190px;
+
+    flex-shrink: 0;
+
+    padding: 18px 10px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+
+    background:
+        rgba(255, 255, 255, 0.035);
+
+    border-right:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+    overflow-y: auto;
+
+}
+
+
+/* =========================
+   SIDEBAR TITLE
+========================= */
+
+.settings-sidebar-title {
+
+    padding:
+
+        4px
+
+        10px
+
+        10px;
+
+    font-size: 20px;
+
+    font-weight: 600;
+
+    color: var(--system-text);
+
+}
+
+.settings-sidebar-account {
+
+    display: flex !important;
+    
+    align-items: center;
+
+    padding:
+
+        4px
+
+        10px
+
+        10px;
+
+    font-size: 20px;
+
+    font-weight: 600;
+
+    color: var(--system-text);
+
+    gap: 12px;
+
+}
+
+.settingsaccountp {
+    color: var(--system-text-secondary);
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.profilepic {
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.profileinfo {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+}
+
+
+.profileinfo strong {
+
+    font-size: 20px;
+
+    font-weight: 600;
+
+}
+
+
+.profileinfo span {
+
+    font-size: 10px;
+
+    opacity: 0.6;
+
+}
+
+/* =========================
+   SETTINGS ITEM
+========================= */
+
+.settings-item {
+
+    width: 100%;
+
+    min-height: 36px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding:
+
+        7px
+
+        10px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: var(--system-text-secondary);
+
+    font-family:
+        "SF Pro Display",
+        sans-serif;
+
+    font-size: 13px;
+
+    text-align: left;
+
+    cursor:
+        var(--cursor-pointer);
+
+    transition:
+
+        background 0.15s ease,
+
+        color 0.15s ease;
+
+}
+
+
+.settings-item:hover {
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+    color: var(--system-text);
+
+}
+
+
+.settings-item.active {
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.14
+        );
+
+    color: var(--system-text);
+
+}
+
+
+/* =========================
+   ICON
+========================= */
+
+.settings-icon {
+
+    width: 22px;
+
+    height: 22px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 15px;
+
+    flex-shrink: 0;
+
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.settings-main {
+
+    flex: 1;
+
+    min-width: 0;
+
+    overflow-y: auto;
+
+    padding: 35px 40px;
+
+    color: var(--system-text-secondary);
+
+}
+
+
+/* =========================
+   PAGE
+========================= */
+
+.settings-page {
+
+    width: 100%;
+
+    max-width: 650px;
+
+    margin: 0 auto;
+
+}
+
+
+.settings-page h1 {
+
+    margin-bottom: 5px;
+
+    font-size: 28px;
+
+    font-weight: 600;
+
+}
+
+
+.settings-description {
+
+    margin-bottom: 25px;
+
+    color: var(--system-text-secondary);
+
+    font-size: 14px;
+
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.settings-card {
+
+    width: 100%;
+
+    min-height: 65px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding:
+
+        15px
+
+        18px;
+
+    margin-bottom: 10px;
+
+    border-radius: 12px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.06
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.06
+        );
+
+    transition:
+        background 0.2s ease;
+
+}
+
+
+.settings-card:hover {
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.09
+        );
+
+}
+
+
+.settings-card div {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+}
+
+
+.settings-card strong {
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+}
+
+
+.settings-card span {
+
+    font-size: 12px;
+
+    color: var(--system-text-secondary);
+
+}
+
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+.settings-sidebar::-webkit-scrollbar,
+.settings-main::-webkit-scrollbar {
+
+    width: 7px;
+
+}
+
+
+.settings-sidebar::-webkit-scrollbar-thumb,
+.settings-main::-webkit-scrollbar-thumb {
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.15
+        );
+
+    border-radius: 10px;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .settings-window {
+
+        min-width: 0;
+
+        width: 90vw;
+
+        height: 70vh;
+
+    }
+
+
+    .settings-sidebar {
+
+        width: 150px;
+
+    }
+
+
+    .settings-main {
+
+        padding:
+
+            25px
+
+            20px;
+
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .settings-sidebar {
+
+        width: 60px;
+
+        padding:
+
+            15px
+
+            6px;
+
+    }
+
+
+    .settings-sidebar-title {
+
+        display: none;
+
+    }
+
+
+    .settings-item {
+
+        justify-content: center;
+
+        padding: 8px;
+
+    }
+
+
+    .settings-item span:not(
+        .settings-icon
+    ) {
+
+        display: none;
+
+    }
+
+
+    .settings-main {
+
+        padding:
+
+            20px
+
+            15px;
+
+    }
+
+}
+
+/* ==================================================
+   TERMINAL
+================================================== */
+
+.terminal-window {
+
+    width: 700px;
+    height: 450px;
+
+    min-width: 400px;
+    min-height: 250px;
+
+    background:
+        rgba(20, 20, 20, 0.88);
+
+}
+
+
+/* ==================================================
+   TERMINAL CONTENT
+================================================== */
+
+.terminal-content {
+
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    min-height: 0;
+
+    padding: 18px 20px;
+
+    overflow: hidden;
+
+    color:
+        #ffffff;
+
+    font-family: 'JetBrainsMono';
+
+    font-size: 13px;
+
+}
+
+
+/* ==================================================
+   TERMINAL OUTPUT
+================================================== */
+
+.terminal-output {
+
+    flex: 1;
+
+    overflow-y: auto;
+
+    white-space: pre-wrap;
+
+    word-break: break-word;
+
+    scrollbar-width: thin;
+
+}
+
+
+/* ==================================================
+   TERMINAL INPUT LINE
+================================================== */
+
+.terminal-input-line {
+
+    display: flex;
+
+    align-items: center;
+
+    flex-shrink: 0;
+
+    margin-top: 8px;
+
+    color:
+        #ffffff;
+
+}
+
+
+/* ==================================================
+   TERMINAL PROMPT
+================================================== */
+
+.terminal-input-line span {
+
+    flex-shrink: 0;
+
+    margin-right: 8px;
+
+    color:
+        #30d158;
+
+}
+
+
+/* ==================================================
+   TERMINAL INPUT
+================================================== */
+
+#terminalInput {
+
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 0;
+
+    border: none;
+
+    outline: none;
+
+    background:
+        transparent;
+
+    color:
+        #ffffff;
+
+    font-family:
+        inherit;
+
+    font-size:
+        inherit;
+
+    caret-color:
+        #ffffff;
+
+}
+
+
+/* =========================
+   TERMINAL SCROLLBAR
+========================= */
+
+.terminal-output {
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.28) transparent;
+}
+
+.terminal-output::-webkit-scrollbar {
+    width: 10px;
+}
+
+.terminal-output::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.terminal-output::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.22);
+    border-radius: 999px;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+}
+
+.terminal-output::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.terminal-output::-webkit-scrollbar-thumb:active {
+    background: rgba(255, 255, 255, 0.55);
+}
+
+
+/* ==================================================
+   TERMINAL LIGHT MODE
+================================================== */
+
+body.light-mode
+.terminal-window {
+
+    background:
+        rgba(
+            245,
+            245,
+            245,
+            0.9
+        );
+
+}
+
+
+body.light-mode
+.terminal-content {
+
+    color:
+        #111111;
+
+}
+
+
+body.light-mode
+.terminal-input-line {
+
+    color:
+        #111111;
+
+}
+
+
+body.light-mode
+.terminal-input-line span {
+
+    color:
+        #248a3d;
+
+}
+
+
+body.light-mode
+#terminalInput {
+
+    color:
+        #111111;
+
+    caret-color:
+        #111111;
+
+}
+
+/* ==================================================
+   BICASOS THEMING SYSTEM
+================================================== */
+
+:root {
+
+    /* =========================
+       ACCENT
+    ========================= */
+
+    --accent-color: #0a84ff;
+
+    --accent-color-hover: #409cff;
+
+    --accent-color-soft:
+        rgba(10, 132, 255, 0.18);
+
+
+    /* =========================
+       SYSTEM COLORS
+    ========================= */
+
+    --system-text: #ffffff;
+
+    --system-text-secondary:
+        rgba(255, 255, 255, 0.55);
+
+    --system-window:
+        rgba(30, 30, 30, 0.85);
+
+    --system-window-header:
+        rgba(255, 255, 255, 0.05);
+
+    --system-sidebar:
+        rgba(255, 255, 255, 0.035);
+
+    --system-card:
+        rgba(255, 255, 255, 0.06);
+
+    --system-border:
+        rgba(255, 255, 255, 0.10);
+
+}
+
+
+/* ==================================================
+   LIGHT MODE
+================================================== */
+
+body.light-mode {
+
+    --system-text: #111111;
+
+    --system-text-secondary:
+        rgba(0, 0, 0, 0.55);
+
+    --system-window:
+        rgba(233, 233, 233, 0.88);
+
+    --system-window-header:
+        rgba(0, 0, 0, 0.04);
+
+    --system-sidebar:
+        rgba(0, 0, 0, 0.035);
+
+    --system-card:
+        rgba(0, 0, 0, 0.05);
+
+    --system-border:
+        rgba(0, 0, 0, 0.10);
+
+}
+
+
+/* ==================================================
+   SYSTEM TEXT
+================================================== */
+
+.window,
+.window-content,
+.settings-main {
+
+    color:
+        var(--system-text);
+
+}
+
+
+/* ==================================================
+   WINDOW
+================================================== */
+
+.window {
+
+    background:
+        var(--system-window);
+
+}
+
+
+/* ==================================================
+   WINDOW HEADER
+================================================== */
+
+.window-header {
+
+    background:
+        var(--system-window-header);
+
+}
+
+
+/* ==================================================
+   SETTINGS SIDEBAR
+================================================== */
+
+.settings-sidebar {
+
+    background:
+        var(--system-sidebar);
+
+}
+
+
+/* ==================================================
+   SETTINGS CARDS
+================================================== */
+
+.settings-card {
+
+    background:
+        var(--system-card);
+
+    border-color:
+        var(--system-border);
+
+}
+
+
+/* ==================================================
+   SETTINGS ITEM ACTIVE
+================================================== */
+
+.settings-item.active {
+
+    background:
+        var(--accent-color-soft);
+
+    color:
+        var(--system-text);
+
+}
+
+
+/* ==================================================
+   ACCENT
+================================================== */
+
+.settings-accent {
+
+    background:
+        var(--accent-color);
+
+}
+
+
+.settings-accent:hover {
+
+    background:
+        var(--accent-color-hover);
+
+}
+
+
+/* ==================================================
+   APPEARANCE OPTIONS
+================================================== */
+
+.appearance-section {
+
+    margin-bottom: 30px;
+
+}
+
+
+.appearance-section-title {
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    margin-bottom: 12px;
+
+}
+
+
+.appearance-section-description {
+
+    font-size: 13px;
+
+    color:
+        var(--system-text-secondary);
+
+    margin-bottom: 15px;
+
+}
+
+
+/* ==================================================
+   APPEARANCE GRID
+================================================== */
+
+.appearance-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(
+                120px,
+                1fr
+            )
+        );
+
+    gap: 12px;
+
+}
+
+
+/* ==================================================
+   APPEARANCE OPTION
+================================================== */
+
+.appearance-option {
+
+    position: relative;
+
+    padding: 12px;
+
+    border-radius: 12px;
+
+    border:
+        1px solid
+        var(--system-border);
+
+    background:
+        var(--system-card);
+
+    color:
+        var(--system-text);
+
+    font-family:
+        "SF Pro Display",
+        sans-serif;
+
+    cursor:
+        var(--cursor-pointer);
+
+    transition:
+
+        transform 0.2s ease,
+
+        background 0.2s ease,
+
+        border 0.2s ease,
+
+        box-shadow 0.2s ease;
+
+}
+
+
+.appearance-option:hover {
+
+    transform:
+        translateY(-2px);
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
+
+}
+
+
+/* ==================================================
+   SELECTED
+================================================== */
+
+.appearance-option.selected {
+
+    border:
+        2px solid
+        var(--accent-color);
+
+    box-shadow:
+
+        0 0 0 3px
+        var(--accent-color-soft);
+
+}
+
+
+/* ==================================================
+   PREVIEW
+================================================== */
+
+.appearance-preview {
+
+    width: 100%;
+
+    height: 55px;
+
+    margin-bottom: 10px;
+
+    border-radius: 8px;
+
+    overflow: hidden;
+
+}
+
+
+/* DARK PREVIEW */
+
+.dark-preview {
+
+    background-image: url(assets/Dark_preview.png);
+    background-size: cover;
+    background-position: center -13px;
+    background-repeat: no-repeat;
+}
+
+
+/* LIGHT PREVIEW */
+
+.light-preview {
+
+    background-image: url(assets/Light_preview.png);
+    background-size: cover;
+    background-position: center -13px;
+    background-repeat: no-repeat;
+}
+
+
+/* ==================================================
+   WALLPAPER PREVIEWS
+================================================== */
+
+.wallpaper-preview {
+
+    background-size:
+        cover;
+
+    background-position:
+        center;
+
+}
+
+
+.wallpaper-tahoe {
+
+    background-image:
+        url(
+            "assets/Fundos/macos-tahoe-26-5120x2880-22675.jpg"
+        );
+
+}
+
+
+.wallpaper-tahoedark {
+
+    background-image:
+        url(
+            "assets/Fundos/macos-tahoe-26-5120x2880-22674.jpg"
+        );
+
+}
+
+
+.wallpaper-golden {
+
+    background-image:
+        url(
+            "assets/Fundos/macos-27-golden-4480x3088-26626.png"
+        );
+
+
+}
+
+
+.wallpaper-goldendark {
+
+    background-image:
+        url(
+            "assets/Fundos/macos-27-golden-4480x3088-26625.png"
+        );
+
+}
+
+.wallpaper-bicas {
+
+    background-image: 
+    url(
+        "assets/Projetos/Photoshop/projeto01.png"
+        );
+
+}
+
+
+/* ==================================================
+   OPTION TITLE
+================================================== */
+
+.appearance-option-title {
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    text-align: center;
+
+}
+
+
+/* ==================================================
+   ACCENT COLORS
+================================================== */
+
+.accent-options {
+
+    display: flex;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+}
+
+
+.accent-color {
+
+    width: 34px;
+
+    height: 34px;
+
+    border-radius: 50%;
+
+    border:
+        3px solid
+        transparent;
+
+    cursor:
+        var(--cursor-pointer);
+
+    transition:
+
+        transform 0.2s ease,
+
+        border 0.2s ease;
+
+}
+
+
+.accent-color:hover {
+
+    transform:
+        scale(1.15);
+
+}
+
+
+.accent-color.selected {
+
+    border:
+        3px solid
+        var(--system-text);
+
+    box-shadow:
+        0 0 0 2px
+        var(--accent-color);
+
+}
+
+
+/* COLORS */
+
+.accent-blue {
+
+    background: #0a84ff;
+
+}
+
+
+.accent-purple {
+
+    background: #bf5af2;
+
+}
+
+
+.accent-red {
+
+    background: #ff453a;
+
+}
+
+
+.accent-green {
+
+    background: #30d158;
+
+}
+
+
+.accent-orange {
+
+    background: #ff9f0a;
+
+}
+
+/* ==================================================
+   README WINDOW
+================================================== */
+
+.readme-window {
+
+    width: 650px;
+    height: 500px;
+
+    min-width: 400px;
+    min-height: 300px;
+
+    display: none;
+
+    flex-direction: column;
+
+}
+
+
+/* ==================================================
+   README CONTENT
+================================================== */
+
+.readme-content {
+
+    flex: 1;
+
+    min-height: 0;
+
+    padding: 0;
+
+    overflow: hidden;
+
+        background: rgba(20, 20, 20, 0.88);
+
+}
+
+
+/* ==================================================
+   README TEXT
+================================================== */
+
+#readmeText {
+
+    width: 100%;
+    height: 100%;
+
+    box-sizing: border-box;
+
+    resize: none;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: rgba(
+        255,
+        255,
+        255,
+        0.9
+    );
+
+    padding: 24px;
+
+    font-family: 'SF Pro Display';
+
+    font-size: 13px;
+
+    text-align: center;
+
+    line-height: 1.6;
+
+    white-space: pre;
+
+    overflow: auto;
+
+    caret-color:
+        var(--accent-color);
+
+}
+
+
+/* ==================================================
+   README SCROLLBAR
+================================================== */
+
+#readmeText {
+
+    scrollbar-width:
+        thin;
+
+    scrollbar-color:
+        rgba(
+            255,
+            255,
+            255,
+            0.25
+        )
+        transparent;
+
+}
+
+
+#readmeText::-webkit-scrollbar {
+
+    width: 10px;
+
+}
+
+
+#readmeText::-webkit-scrollbar-track {
+
+    background:
+        transparent;
+
+}
+
+
+#readmeText::-webkit-scrollbar-thumb {
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.22
+        );
+
+    border-radius:
+        999px;
+
+    border:
+        3px solid transparent;
+
+    background-clip:
+        padding-box;
+
+}
+
+
+#readmeText::-webkit-scrollbar-thumb:hover {
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.4
+        );
+
+    border:
+        2px solid transparent;
+
+    background-clip:
+        padding-box;
+
+}
+
+
+/* ==================================================
+   README LIGHT MODE
+================================================== */
+
+body.light-mode
+.readme-content {
+
+    background:
+        rgba(
+            250,
+            250,
+            250,
+            0.96
+        );
+
+}
+
+
+body.light-mode
+#readmeText {
+
+    color:
+        rgba(
+            0,
+            0,
+            0,
+            0.85
+        );
+
+    scrollbar-color:
+        rgba(
+            0,
+            0,
+            0,
+            0.25
+        )
+        transparent;
+
+}
+
+
+body.light-mode
+#readmeText::-webkit-scrollbar-thumb {
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.22
+        );
+
+}
+
+
+body.light-mode
+#readmeText::-webkit-scrollbar-thumb:hover {
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.4
+        );
+
+}
+
+/* =========================
+   FINDER
+========================= */
+
+.finder-window {
+    display: none;
+
+    width: 700px;
+    height: 450px;
+
+    min-width: 500px;
+    min-height: 300px;
+
+    flex-direction: column;
+}
+
+
+/* =========================
+   TOOLBAR
+========================= */
+
+.finder-toolbar {
+
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 0 14px;
+
+    border-bottom: 1px solid
+        rgba(255, 255, 255, 0.08);
+
+    background: rgba(30, 30, 30, 0.55);
+
+    flex-shrink: 0;
+
+}
+
+
+.finder-back-button {
+
+    width: 32px;
+    height: 32px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    color: white;
+
+    font-size: 18px;
+
+    cursor: var(--cursor-pointer);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        background 0.15s,
+        transform 0.15s;
+
+}
+
+
+.finder-back-button:hover {
+
+    background:
+        rgba(255, 255, 255, 0.15);
+
+}
+
+
+.finder-back-button:active {
+
+    transform:
+        scale(0.92);
+
+}
+
+
+.finder-path {
+
+    font-size: 14px;
+
+    color:
+        rgba(255, 255, 255, 0.75);
+
+}
+
+
+/* =========================
+   CONTENT
+========================= */
+
+.finder-content {
+
+    flex: 1;
+
+    padding: 25px;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 28px;
+
+    overflow: auto;
+
+}
+
+
+/* =========================
+   FINDER ITEM
+========================= */
+
+.finder-item {
+
+    width: 90px;
+
+    padding: 10px;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 8px;
+
+    cursor: var(--cursor-pointer);
+
+    user-select: none;
+
+    transition:
+        background 0.15s,
+        transform 0.15s;
+
+}
+
+
+.finder-item:hover {
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+}
+
+
+.finder-item:active {
+
+    transform:
+        scale(0.96);
+
+}
+
+
+.finder-item img {
+
+    width: 64px;
+    height: 64px;
+
+    object-fit: contain;
+
+}
+
+
+.finder-item span {
+
+    color: white;
+
+    font-size: 13px;
+
+    text-align: center;
+
+    white-space: nowrap;
+
+}
+
+
+/* =========================
+   LIGHT MODE
+========================= */
+
+body.light-mode
+.finder-item span {
+
+    color: #111;
+
+}
+
+
+body.light-mode
+.finder-toolbar {
+
+    background:
+        rgba(255, 255, 255, 0.55);
+
+    border-bottom:
+        1px solid
+        rgba(0, 0, 0, 0.08);
+
+}
+
+
+body.light-mode
+.finder-path {
+
+    color:
+        rgba(0, 0, 0, 0.65);
+
+}
+
+
+body.light-mode
+.finder-back-button {
+
+    color: #111;
+
+    background:
+        rgba(0, 0, 0, 0.06);
+
+}
+
+/* ==================================================
+   IMAGE VIEWER
+================================================== */
+
+.image-viewer-window {
+
+    display: none;
+
+    width: 700px;
+    height: 500px;
+
+    min-width: 400px;
+    min-height: 300px;
+
+    flex-direction: column;
+
+}
+
+
+/* ==================================================
+   IMAGE VIEWER CONTENT
+================================================== */
+
+.image-viewer-content {
+
+    flex: 1;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+
+    background:
+        rgba(0, 0, 0, 0.25);
+
+}
+
+
+/* ==================================================
+   IMAGE
+================================================== */
+
+.image-viewer-content img {
+
+    max-width: 100%;
+    max-height: 100%;
+
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+
+    user-select: none;
+
+    pointer-events: none;
+
+    border-radius: 4px;
+
+}
+
+
+/* ==================================================
+   MAXIMIZED
+================================================== */
+
+.image-viewer-window.maximized
+.image-viewer-content {
+
+    padding: 30px;
+
+}
+
+
+/* ==================================================
+   LIGHT MODE
+================================================== */
+
+body.light-mode
+.image-viewer-content {
+
+    background:
+        rgba(245, 245, 245, 0.8);
+
+}
+
+/* ==================================================
+   TRASH WINDOW
+================================================== */
+
+.trash-window {
+
+    width: 700px;
+    height: 450px;
+
+    min-width: 500px;
+    min-height: 300px;
+
+    display: none;
+
+    flex-direction: column;
+
+    overflow: hidden;
+
+}
+
+
+/* ==================================================
+   TRASH TOOLBAR
+================================================== */
+
+.trash-toolbar {
+
+    height: 45px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 18px;
+
+    background: rgba(
+        255,
+        255,
+        255,
+        0.05
+    );
+
+    border-bottom: 1px solid rgba(
+        255,
+        255,
+        255,
+        0.08
+    );
+
+    flex-shrink: 0;
+
+}
+
+
+.trash-title {
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: white;
+
+}
+
+
+.trash-count {
+
+    font-size: 12px;
+
+    color: rgba(
+        255,
+        255,
+        255,
+        0.55
+    );
+
+}
+
+
+/* ==================================================
+   TRASH CONTENT
+================================================== */
+
+.trash-content {
+
+    flex: 1;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(
+                110px,
+                1fr
+            )
+        );
+
+    align-content: start;
+
+    gap: 20px;
+
+    padding: 25px;
+
+    overflow-y: auto;
+
+}
+
+
+/* ==================================================
+   TRASH ITEM
+================================================== */
+
+.trash-item {
+
+    width: 110px;
+
+    min-height: 110px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    border-radius: 10px;
+
+    cursor: var(--cursor-pointer);
+
+    user-select: none;
+
+    transition:
+        background 0.15s ease,
+        transform 0.15s ease;
+
+}
+
+
+.trash-item:hover {
+
+    background: rgba(
+        255,
+        255,
+        255,
+        0.08
+    );
+
+}
+
+
+.trash-item:active {
+
+    transform:
+        scale(
+            0.96
+        );
+
+}
+
+
+/* ==================================================
+   TRASH ITEM IMAGE
+================================================== */
+
+.trash-item img {
+
+    width: 64px;
+
+    height: 64px;
+
+    object-fit: contain;
+
+    user-select: none;
+
+    pointer-events: none;
+
+}
+
+
+/* ==================================================
+   TRASH ITEM NAME
+================================================== */
+
+.trash-item span {
+
+    max-width: 105px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    font-size: 12px;
+
+    color: white;
+
+    text-align: center;
+
+}
+
+
+/* ==================================================
+   TRASH SCROLLBAR
+================================================== */
+
+.trash-content::-webkit-scrollbar {
+
+    width: 8px;
+
+}
+
+
+.trash-content::-webkit-scrollbar-track {
+
+    background: transparent;
+
+}
+
+
+.trash-content::-webkit-scrollbar-thumb {
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.25
+        );
+
+    border-radius: 10px;
+
+}
+
+
+.trash-content::-webkit-scrollbar-thumb:hover {
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.4
+        );
+
+}
+
+/* ==================================================
+   MENU BAR DROPDOWNS
+================================================== */
+
+.menu-item-wrapper {
+
+    position: relative;
+
+}
+
+
+.menu-button {
+
+    border: none;
+
+    background: transparent;
+
+    color: inherit;
+
+    font-family: inherit;
+
+    font-size: inherit;
+
+    padding: 4px 9px;
+
+    border-radius: 6px;
+
+    cursor: var(--cursor-pointer);
+
+}
+
+
+.menu-button:hover {
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.12
+        );
+
+}
+
+
+body.light-mode
+.menu-button:hover {
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.08
+        );
+
+}
+
+
+/* ==================================================
+   DROPDOWN
+================================================== */
+
+.dropdown-menu {
+
+    position: absolute;
+
+    top: calc(
+        100% + 7px
+    );
+
+    left: 0;
+
+    min-width: 210px;
+
+    padding: 6px;
+
+    display: none;
+
+    flex-direction: column;
+
+    gap: 2px;
+
+    z-index: 99999;
+
+    background: rgba(0, 0, 0, 0.46);
+
+    border-radius: 10px;
+
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
+    backdrop-filter: blur(16.9px);
+
+    -webkit-backdrop-filter: blur(16.9px);
+
+    border: 1px solid rgba(0, 0, 0, 0.23);
+
+}
+
+
+/* MENU ABERTO */
+
+.dropdown-menu.active {
+
+    display: flex;
+
+    animation:
+        menuDropdownOpen
+        0.15s
+        ease-out;
+
+}
+
+
+/* ==================================================
+   DROPDOWN BUTTONS
+================================================== */
+
+.dropdown-menu button {
+
+    width: 100%;
+
+    border: none;
+
+    background: transparent;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.92
+        );
+
+    font-family:
+        'SF Pro Display',
+        sans-serif;
+
+    font-size: 13px;
+
+    text-align: left;
+
+    padding:
+        7px
+        10px;
+
+    border-radius: 6px;
+
+    cursor: var(--cursor-pointer);
+
+}
+
+
+.dropdown-menu button:hover {
+
+    background:
+        var(--accent-color);
+
+    color: white;
+
+}
+
+
+/* ==================================================
+   SEPARATOR
+================================================== */
+
+.menu-separator {
+
+    height: 1px;
+
+    margin:
+        5px
+        4px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.12
+        );
+
+}
+
+
+/* ==================================================
+   LIGHT MODE
+================================================== */
+
+body.light-mode
+.dropdown-menu {
+
+    background: rgba(255, 255, 255, 0.46);
+
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
+    backdrop-filter: blur(16.9px);
+
+    -webkit-backdrop-filter: blur(16.9px);
+
+    border: 1px solid rgba(255, 255, 255, 0.23);
+
+}
+
+
+body.light-mode
+.dropdown-menu button {
+
+    color:
+        rgba(
+            0,
+            0,
+            0,
+            0.85
+        );
+
+}
+
+
+body.light-mode
+.menu-separator {
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.12
+        );
+
+}
+
+
+/* ==================================================
+   ANIMATION
+================================================== */
+
+@keyframes menuDropdownOpen {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(
+                -5px
+            )
+            scale(
+                0.98
+            );
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+/* ==================================================
+   ABOUT BICASOS WINDOW
+================================================== */
+
+.about-bicasos-window {
+
+    width: 500px;
+    height: 400px;
+
+    min-width: 400px;
+    min-height: 300px;
+
+    display: none;
+
+    flex-direction: column;
+
+}
+
+
+/* ==================================================
+   ABOUT BICASOS CONTENT
+================================================== */
+
+.about-bicasos-content {
+
+    flex: 1;
+
+    min-height: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 30px;
+
+    background:
+        rgba(
+            20,
+            20,
+            20,
+            0.88
+        );
+
+}
+
+
+/* ==================================================
+   ABOUT BICASOS ICON
+================================================== */
+
+.about-bicasos-icon {
+
+    width: 80px;
+
+    height: 80px;
+
+    object-fit: contain;
+
+    margin-bottom: 15px;
+
+}
+
+
+/* ==================================================
+   ABOUT BICASOS TITLE
+================================================== */
+
+.about-bicasos-content h1 {
+
+    margin: 0;
+
+    font-size: 26px;
+
+    font-weight: 600;
+
+}
+
+
+/* ==================================================
+   ABOUT BICASOS VERSION
+================================================== */
+
+.about-bicasos-version {
+
+    margin:
+        6px
+        0
+        20px;
+
+    opacity: 0.6;
+
+    font-size: 13px;
+
+}
+
+
+/* ==================================================
+   ABOUT BICASOS INFO
+================================================== */
+
+.about-bicasos-info {
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    opacity: 0.8;
+
+}
+
+
+.about-bicasos-info p {
+
+    margin:
+        5px
+        0;
+
+}
+
+
+/* ==================================================
+   ABOUT BICASOS LIGHT MODE
+================================================== */
+
+body.light-mode
+.about-bicasos-content {
+
+    background:
+        rgba(
+            250,
+            250,
+            250,
+            0.96
+        );
+
+    color:
+        rgba(
+            0,
+            0,
+            0,
+            0.85
+        );
+
+}
+
+/* ==================================================
+   PAINT WINDOW
+================================================== */
+
+.paint-window {
+    width: 850px;
+    height: 600px;
+
+    min-width: 500px;
+    min-height: 400px;
+
+    display: none;
+
+    flex-direction: column;
+
+    overflow: hidden;
+}
+
+
+/* ==================================================
+   PAINT TOOLBAR
+================================================== */
+
+.paint-toolbar {
+
+    width: 100%;
+
+    min-height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 8px 12px;
+
+    box-sizing: border-box;
+
+    background: var(--system-window);
+
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+
+    flex-shrink: 0;
+
+}
+
+
+/* ==================================================
+   PAINT TOOL BUTTONS
+================================================== */
+
+.paint-tool {
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: transparent;
+
+    font-size: 18px;
+
+    cursor: var(--cursor-pointer);
+
+    transition:
+        background 0.15s ease,
+        transform 0.15s ease;
+
+}
+
+
+.paint-tool:hover {
+
+    background: rgba(0, 0, 0, 0.08);
+
+}
+
+
+.paint-tool:active {
+
+    transform: scale(0.92);
+
+}
+
+
+.paint-tool.active {
+
+    background: rgba(0, 0, 0, 0.12);
+
+}
+
+
+/* ==================================================
+   TOOLBAR SEPARATOR
+================================================== */
+
+.paint-toolbar-separator {
+
+    width: 1px;
+
+    height: 30px;
+
+    margin: 0 4px;
+
+    background: rgba(0, 0, 0, 0.15);
+
+}
+
+
+/* ==================================================
+   COLOR PICKER
+================================================== */
+
+.paint-color-label {
+
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 0 8px;
+
+    border-radius: 9px;
+
+    cursor: var(--cursor-pointer);
+
+    transition:
+        background 0.15s ease;
+
+}
+
+
+.paint-color-label:hover {
+
+    background: rgba(0, 0, 0, 0.08);
+
+}
+
+
+.paint-color-label input {
+
+    width: 28px;
+    height: 28px;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    cursor: var(--cursor-pointer);
+
+}
+
+
+/* ==================================================
+   BRUSH SIZE
+================================================== */
+
+.paint-size-control {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-left: 4px;
+
+    font-size: 13px;
+
+    white-space: nowrap;
+
+}
+
+
+.paint-size-control input {
+
+    width: 90px;
+
+    cursor: var(--cursor-pointer);
+
+}
+
+
+#paintBrushSizeValue {
+
+    min-width: 20px;
+
+    text-align: center;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+}
+
+
+/* ==================================================
+   SAVE BUTTON
+================================================== */
+
+.paint-save-button {
+
+    height: 38px;
+
+    padding: 0 14px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 6px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: rgba(0, 0, 0, 0.08);
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    cursor: var(--cursor-pointer);
+
+    transition:
+        background 0.15s ease,
+        transform 0.15s ease;
+
+}
+
+
+.paint-save-button:hover {
+
+    background: rgba(0, 0, 0, 0.14);
+
+}
+
+
+.paint-save-button:active {
+
+    transform: scale(0.96);
+
+}
+
+
+/* ==================================================
+   PAINT CONTENT
+================================================== */
+
+.paint-content {
+
+    position: relative;
+
+    flex: 1;
+
+    min-height: 0;
+
+    padding: 18px;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+
+    background: var(--system-window);
+
+}
+
+
+/* ==================================================
+   CANVAS
+================================================== */
+
+#paintCanvas {
+
+    display: block;
+
+    width: 100%;
+
+    height: 100%;
+
+    background: var(--system-window);
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.12);
+
+    cursor: var(--cursor-crosshair);
+
+    touch-action: none;
+
+}
+
+#activeAppName {
+    font-weight: 900;
+}
+
+/* ==================================================
+   CALCULATOR
+================================================== */
+
+.calculator-window {
+
+    width: 360px;
+    height: 520px;
+
+    min-width: 300px;
+    min-height: 400px;
+
+    overflow: hidden;
+
+}
+
+
+/* ==================================================
+   CALCULATOR CONTENT
+================================================== */
+
+.calculator-content {
+
+    display: flex;
+
+    flex-direction: column;
+
+    flex: 1;
+
+    min-height: 0;
+
+    padding: 12px;
+
+    gap: 12px;
+
+    background: var(
+        --window-background,
+        var(--system-window)
+    );
+
+}
+
+
+/* ==================================================
+   CALCULATOR DISPLAY
+================================================== */
+
+.calculator-display {
+
+    width: 100%;
+
+    min-height: 90px;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: flex-end;
+
+    padding: 12px 16px;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    font-size: 42px;
+
+    font-weight: 400;
+
+    letter-spacing: -1px;
+
+    color: var(
+        --system-text,
+    );
+
+    background: transparent;
+
+    user-select: none;
+
+}
+
+
+/* ==================================================
+   CALCULATOR BUTTON GRID
+================================================== */
+
+.calculator-buttons {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    grid-template-rows:
+        repeat(5, 1fr);
+
+    gap: 8px;
+
+    flex: 1;
+
+    min-height: 0;
+
+}
+
+
+/* ==================================================
+   CALCULATOR BUTTON
+================================================== */
+
+.calculator-button {
+
+    border: none;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-family: inherit;
+
+    font-size: 22px;
+
+    font-weight: 500;
+
+    color: var(
+        --system-text,
+    );
+
+    background: rgba(
+        128,
+        128,
+        128,
+        0.16
+    );
+
+    cursor: var(--cursor-pointer);
+
+    user-select: none;
+
+    transition:
+        transform 0.08s ease,
+        filter 0.12s ease,
+        background 0.12s ease;
+
+}
+
+
+/* ==================================================
+   BUTTON HOVER
+================================================== */
+
+.calculator-button:hover {
+
+    filter: brightness(
+        0.94
+    );
+
+}
+
+
+/* ==================================================
+   BUTTON ACTIVE
+================================================== */
+
+.calculator-button:active {
+
+    transform: scale(
+        0.94
+    );
+
+    filter: brightness(
+        0.82
+    );
+
+}
+
+
+/* ==================================================
+   FUNCTION BUTTONS
+================================================== */
+
+.calculator-button.function {
+
+    background: rgba(
+        128,
+        128,
+        128,
+        0.28
+    );
+
+}
+
+
+/* ==================================================
+   OPERATOR BUTTONS
+================================================== */
+
+.calculator-button.operator {
+
+    background: #ff9500;
+
+    color: #ffffff;
+
+    font-size: 26px;
+
+}
+
+
+/* ==================================================
+   OPERATOR HOVER
+================================================== */
+
+.calculator-button.operator:hover {
+
+    filter: brightness(
+        1.08
+    );
+
+}
+
+
+/* ==================================================
+   EQUALS BUTTON
+================================================== */
+
+.calculator-button.equals {
+
+    background: #ff9500;
+
+    color: #ffffff;
+
+    font-size: 26px;
+
+}
+
+
+/* ==================================================
+   ZERO BUTTON
+================================================== */
+
+.calculator-button.zero {
+
+    grid-column:
+        span 2;
+
+    justify-content: flex-start;
+
+    padding-left: 28px;
+
+}
+
+
+/* ==================================================
+   RESIZE HANDLE
+================================================== */
+
+.calculator-window
+.resize-handle {
+
+    z-index: 10;
+
+}
+
+
+/* ==================================================
+   DARK MODE
+================================================== */
+
+body.dark-mode
+.calculator-content {
+
+    background: var(
+        --window-background,
+        rgba(30, 30, 30, 0.94)
+    );
+
+}
+
+
+body.dark-mode
+.calculator-display {
+
+    color: #ffffff;
+
+}
+
+
+body.dark-mode
+.calculator-button {
+
+    color: #ffffff;
+
+    background: rgba(
+        255,
+        255,
+        255,
+        0.14
+    );
+
+}
+
+
+body.dark-mode
+.calculator-button.function {
+
+    background: rgba(
+        255,
+        255,
+        255,
+        0.22
+    );
+
+}
+
+
+/* ==================================================
+   DARK MODE HOVER
+================================================== */
+
+body.dark-mode
+.calculator-button:hover {
+
+    filter: brightness(
+        1.15
+    );
+
+}
+
+
+/* ==================================================
+   RESPONSIVE
+================================================== */
+
+@media (
+    max-width: 600px
+) {
+
+    .calculator-window {
+
+        width: 320px;
+
+        height: 480px;
+
+    }
+
+
+    .calculator-display {
+
+        font-size: 36px;
+
+    }
+
+}
+
+/* =========================
+   DOCK APP INDICATOR
+========================= */
+
+.dock-item {
+    position: relative;
+}
+
+
+/* =========================
+   INDICADOR
+========================= */
+
+.dock-indicator {
+
+    position: absolute;
+
+    bottom: -5px;
+    left: 50%;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: currentColor;
+
+    transform:
+        translateX(-50%)
+        scale(0);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+
+}
+
+
+/* =========================
+   APP ABERTO
+========================= */
+
+.dock-item.app-open .dock-indicator {
+
+    opacity: 1;
+
+    transform:
+        translateX(-50%)
+        scale(1);
+
+}
+
+
+/* =========================
+   APP ATIVO
+========================= */
+
+.dock-item.app-active .dock-indicator {
+
+    width: 6px;
+    height: 6px;
+
+    opacity: 1;
+
+    transform:
+        translateX(-50%)
+        scale(1.15);
+
+}
+
+/* =========================
+   APPS DINÂMICOS DO DOCK
+========================= */
+
+.dock-item[data-app-window] {
+
+    position: relative;
+
+    width: var(--dock-icon-size);
+
+    opacity: 0;
+
+    transform:
+        translateY(10px)
+        scale(0.7);
+
+    pointer-events: none;
+
+    overflow: visible;
+
+    transition:
+
+        width
+        0.35s
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        ),
+
+        margin
+        0.35s
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        ),
+
+        opacity
+        0.3s
+        ease,
+
+        transform
+        0.35s
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        );
+
+}
+
+
+/* =========================
+   APP ABERTO
+========================= */
+
+.dock-item[data-app-window].app-open {
+
+    width: var(--dock-icon-size);
+
+    margin-left:
+        calc(
+            var(--dock-icon-size) * -0.5
+        );
+
+    margin-right:
+        calc(
+            var(--dock-icon-size) * -0.5
+        );
+
+    opacity: 1;
+
+    transform:
+        translateY(0)
+        scale(1);
+
+    pointer-events: auto;
+
+}
+
+
+/* =========================
+   APP FECHANDO
+========================= */
+
+.dock-item[data-app-window].app-closing {
+
+    width: 0;
+
+    margin-left: 0;
+    margin-right: 0;
+
+    opacity: 0;
+
+    transform:
+        translateY(10px)
+        scale(0.7);
+
+    pointer-events: none;
+
+}
+
+/* =========================
+   SPOTLIGHT
+========================= */
+
+.spotlight {
+
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+
+    width: 620px;
+    max-width: calc(100vw - 40px);
+
+    transform:
+        translate(-50%, -50%)
+        scale(0.92);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    z-index: 99999;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.25s cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        ),
+        visibility 0.25s;
+
+}
+
+
+/* =========================
+   SPOTLIGHT ABERTO
+========================= */
+
+.spotlight.open {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    transform:
+        translate(-50%, -50%)
+        scale(1);
+
+}
+
+
+/* =========================
+   BARRA DE PESQUISA
+========================= */
+
+.spotlight-search {
+
+    width: 100%;
+
+    min-height: 64px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 0 18px;
+
+    box-sizing: border-box;
+
+    border-radius: 18px;
+
+    background:
+        var(--system-window);
+
+    border:
+        1px solid
+        var(--system-border);
+
+    box-shadow:
+
+        0 20px 60px
+        rgba(0, 0, 0, 0.25),
+
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.08);
+
+    backdrop-filter:
+        blur(25px)
+        saturate(180%);
+
+    -webkit-backdrop-filter:
+        blur(25px)
+        saturate(180%);
+
+    color:
+        var(--system-text);
+
+}
+
+
+/* =========================
+   ÍCONE DE PESQUISA
+========================= */
+
+.spotlight-search-icon {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 22px;
+
+    color:
+        var(--system-text-secondary);
+
+    opacity: 0.8;
+
+    flex-shrink: 0;
+
+}
+
+
+/* =========================
+   INPUT
+========================= */
+
+#spotlightInput {
+
+    flex: 1;
+
+    min-width: 0;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    font-family: inherit;
+
+    font-size: 21px;
+
+    font-weight: 400;
+
+    color:
+        var(--system-text);
+
+    cursor: var(--cursor-text);
+
+}
+
+
+#spotlightInput::placeholder {
+
+    color:
+        var(--system-text-secondary);
+
+}
+
+
+/* =========================
+   ATALHO
+========================= */
+
+.spotlight-shortcut {
+
+    padding:
+        5px 9px;
+
+    border-radius: 7px;
+
+    background:
+        var(--system-card);
+
+    color:
+        var(--system-text-secondary);
+
+    border:
+        1px solid
+        var(--system-border);
+
+    font-size: 11px;
+
+    white-space: nowrap;
+
+}
+
+
+/* =========================
+   RESULTADOS
+========================= */
+
+.spotlight-results {
+
+    margin-top: 8px;
+
+    padding: 6px;
+
+    max-height: 360px;
+
+    overflow-y: auto;
+
+    border-radius: 16px;
+
+    background:
+        var(--system-window);
+
+    border:
+        1px solid
+        var(--system-border);
+
+    box-shadow:
+
+        0 15px 40px
+        rgba(0, 0, 0, 0.18);
+
+    backdrop-filter:
+        blur(25px)
+        saturate(180%);
+
+    -webkit-backdrop-filter:
+        blur(25px)
+        saturate(180%);
+
+}
+
+
+/* =========================
+   RESULTADO
+========================= */
+
+.spotlight-result {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding:
+        9px 11px;
+
+    border-radius: 11px;
+
+    cursor:
+        var(--cursor-pointer);
+
+    transition:
+
+        background 0.15s ease,
+
+        transform 0.15s ease;
+
+}
+
+
+/* =========================
+   HOVER
+========================= */
+
+.spotlight-result:hover {
+
+    background:
+        var(--system-card);
+
+    transform:
+        translateX(2px);
+
+}
+
+
+/* =========================
+   RESULTADO SELECIONADO
+========================= */
+
+.spotlight-result.selected {
+
+    background:
+        var(--accent-color-soft);
+
+}
+
+
+.spotlight-result.selected:hover {
+
+    background:
+        var(--accent-color-soft);
+
+}
+
+
+/* =========================
+   ÍCONE DO APP
+========================= */
+
+.spotlight-result-icon {
+
+    width: 42px;
+
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+}
+
+
+.spotlight-result-icon img {
+
+    width: 42px;
+
+    height: 42px;
+
+    object-fit: contain;
+
+    filter:
+        drop-shadow(
+            0 3px 4px
+            rgba(0, 0, 0, 0.2)
+        );
+
+}
+
+
+/* =========================
+   INFORMAÇÕES
+========================= */
+
+.spotlight-result-info {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 2px;
+
+}
+
+
+.spotlight-result-title {
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    color:
+        var(--system-text);
+
+}
+
+
+.spotlight-result-type {
+
+    font-size: 11px;
+
+    color:
+        var(--system-text-secondary);
+
+}
+
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+#spotlight {
+
+    scrollbar-width:
+        thin;
+
+    scrollbar-color:
+        rgba(
+            255,
+            255,
+            255,
+            0.25
+        )
+        transparent;
+
+}
+
+
+#spotlight::-webkit-scrollbar {
+
+    width: 10px;
+
+}
+
+
+#spotlight::-webkit-scrollbar-track {
+
+    background:
+        transparent;
+
+}
+
+
+#spotlight::-webkit-scrollbar-thumb {
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.22
+        );
+
+    border-radius:
+        999px;
+
+    border:
+        3px solid transparent;
+
+    background-clip:
+        padding-box;
+
+}
+
+
+#spotlight::-webkit-scrollbar-thumb:hover {
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.4
+        );
+
+    border:
+        2px solid transparent;
+
+    background-clip:
+        padding-box;
+
+}
+
+
+
+/* =========================
+   DARK MODE
+========================= */
+
+body.dark-mode .spotlight-search,
+body.dark-mode .spotlight-results {
+
+    background:
+        var(--system-window);
+
+}
+
+
+/* =========================
+   LIGHT MODE
+========================= */
+
+body.light-mode .spotlight-search,
+body.light-mode .spotlight-results {
+
+    background:
+        var(--system-window);
+
+}
+
+/* ==================================================
+   DESKTOP E DOCK
+================================================== */
+
+
+/* =========================
+   CONTROLE
+========================= */
+
+.desktop-dock-control {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    min-height: 52px;
+
+    padding:
+        10px 14px;
+
+    margin-top: 10px;
+
+    border-radius: 12px;
+
+    background:
+        var(--system-card);
+
+    border:
+        1px solid
+        var(--system-border);
+
+    box-sizing: border-box;
+
+}
+
+
+/* =========================
+   LABEL
+========================= */
+
+.desktop-dock-label {
+
+    color:
+        var(--system-text);
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    white-space: nowrap;
+
+}
+
+
+/* =========================
+   SELECT
+========================= */
+
+.desktop-dock-control select {
+
+    min-width: 130px;
+
+    padding:
+        8px 11px;
+
+    border-radius: 9px;
+
+    border:
+        1px solid
+        var(--system-border);
+
+    outline: none;
+
+    background:
+        var(--system-window);
+
+    color:
+        var(--system-text);
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    cursor:
+        var(--cursor-pointer);
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+
+}
+
+
+.desktop-dock-control select:hover {
+
+    border-color:
+        var(--accent-color);
+
+}
+
+
+.desktop-dock-control select:focus {
+
+    border-color:
+        var(--accent-color);
+
+    box-shadow:
+        0 0 0 3px
+        var(--accent-color-soft);
+
+}
+
+
+/* =========================
+   COLOR PICKER
+========================= */
+
+.desktop-dock-control input[type="color"] {
+
+    width: 42px;
+
+    height: 30px;
+
+    padding: 3px;
+
+    border-radius: 8px;
+
+    border:
+        1px solid
+        var(--system-border);
+
+    background:
+        var(--system-window);
+
+    cursor:
+        var(--cursor-pointer);
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
+
+}
+
+
+.desktop-dock-control input[type="color"]:hover {
+
+    transform:
+        scale(1.05);
+
+    border-color:
+        var(--accent-color);
+
+}
+
+
+/* =========================
+   SLIDER CONTAINER
+========================= */
+
+.desktop-dock-slider {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    min-width: 200px;
+
+}
+
+
+/* =========================
+   RANGE
+========================= */
+
+.desktop-dock-control input[type="range"] {
+
+    flex: 1;
+
+    min-width: 130px;
+
+    height: 5px;
+
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    background:
+        var(--system-border);
+
+    cursor:
+        var(--cursor-pointer);
+
+}
+
+
+/* =========================
+   RANGE THUMB
+========================= */
+
+.desktop-dock-control
+input[type="range"]::-webkit-slider-thumb {
+
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    width: 17px;
+
+    height: 17px;
+
+    border-radius: 50%;
+
+    background:
+        var(--accent-color);
+
+    border:
+        2px solid
+        rgba(255, 255, 255, 0.8);
+
+    box-shadow:
+        0 2px 6px
+        rgba(0, 0, 0, 0.25);
+
+    transition:
+        transform 0.15s ease;
+
+}
+
+
+.desktop-dock-control
+input[type="range"]::-webkit-slider-thumb:hover {
+
+    transform:
+        scale(1.15);
+
+}
+
+
+/* =========================
+   VALOR DO SLIDER
+========================= */
+
+.desktop-dock-slider span {
+
+    min-width: 45px;
+
+    text-align: right;
+
+    color:
+        var(--system-text-secondary);
+
+    font-size: 12px;
+
+    font-variant-numeric:
+        tabular-nums;
+
+}
+
+
+/* =========================
+   MOBILE / JANELA PEQUENA
+========================= */
+
+@media (
+    max-width: 700px
+) {
+
+    .desktop-dock-control {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 10px;
+
+    }
+
+
+    .desktop-dock-control select {
+
+        width: 100%;
+
+    }
+
+
+    .desktop-dock-slider {
+
+        width: 100%;
+
+    }
+
+}
+
+/* ==================================================
+   DOCK POSIÇÕES
+================================================== */
+
+.dock-bottom {
+
+    bottom: 12px;
+    left: 50%;
+
+    transform:
+        translateX(-50%)
+        scale(var(--dock-scale));
+
+    transform-origin:
+        center bottom;
+
+}
+
+
+.dock-left {
+
+    left: 12px;
+    top: 50%;
+    bottom: auto;
+
+    transform:
+        translateY(-50%)
+        scale(var(--dock-scale));
+
+    transform-origin:
+        left center;
+
+    flex-direction: column;
+
+    align-items: center;
+
+}
+
+
+.dock-right {
+
+    right: 12px;
+    left: auto;
+
+    top: 50%;
+    bottom: auto;
+
+    transform:
+        translateY(-50%)
+        scale(var(--dock-scale));
+
+    transform-origin:
+        right center;
+
+    flex-direction: column;
+
+    align-items: center;
+
+}
+
+/* ==================================================
+   DOCK LATERAL
+================================================== */
+
+/* -------------------------
+   DOCK À ESQUERDA
+------------------------- */
+
+.dock-left {
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    top: 50%;
+    bottom: auto;
+
+    left: 12px;
+    right: auto;
+
+    transform:
+        translateY(-50%);
+
+}
+
+
+/* -------------------------
+   DOCK À DIREITA
+------------------------- */
+
+.dock-right {
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    top: 50%;
+    bottom: auto;
+
+    left: auto;
+    right: 12px;
+
+    transform:
+        translateY(-50%);
+
+}
+
+
+/* ==================================================
+   TOOLTIP DOCK LATERAL
+================================================== */
+
+/* ESQUERDA */
+
+.dock-left .tooltip {
+
+    bottom: 50%;
+    left: calc(100% + 10px);
+
+    transform:
+        translateY(50%)
+        translateX(-5px);
+
+}
+
+
+.dock-left .dock-item:hover .tooltip {
+
+    transform:
+        translateY(50%)
+        translateX(0);
+
+}
+
+
+/* DIREITA */
+
+.dock-right .tooltip {
+
+    bottom: 50%;
+    left: auto;
+    right: calc(100% + 10px);
+
+    transform:
+        translateY(50%)
+        translateX(5px);
+
+}
+
+
+.dock-right .dock-item:hover .tooltip {
+
+    transform:
+        translateY(50%)
+        translateX(0);
+
+}
+
+
+/* ==================================================
+   INDICADOR DOCK LATERAL
+================================================== */
+
+/* ESQUERDA */
+
+.dock-left .dock-indicator {
+
+    left: auto;
+    right: -8px;
+
+    bottom: 50%;
+
+    transform:
+        translateY(50%)
+        scale(0);
+
+}
+
+
+.dock-left .dock-item.app-open .dock-indicator {
+
+    transform:
+        translateY(50%)
+        scale(1);
+
+}
+
+
+.dock-left .dock-item.app-active .dock-indicator {
+
+    transform:
+        translateY(50%)
+        scale(1.15);
+
+}
+
+
+/* DIREITA */
+
+.dock-right .dock-indicator {
+
+    left: -8px;
+
+    bottom: 50%;
+
+    transform:
+        translateY(50%)
+        scale(0);
+
+}
+
+
+.dock-right .dock-item.app-open .dock-indicator {
+
+    transform:
+        translateY(50%)
+        scale(1);
+
+}
+
+
+.dock-right .dock-item.app-active .dock-indicator {
+
+    transform:
+        translateY(50%)
+        scale(1.15);
+
+}
+
+/* ==================================================
+   DOCK POSITION FIX
+================================================== */
+
+
+/* ==================================================
+   DOCK INFERIOR
+================================================== */
+
+.dock.dock-bottom {
+
+    flex-direction: row;
+
+    align-items: flex-end;
+
+    justify-content: center;
+
+}
+
+
+/* ==================================================
+   DOCK ESQUERDO
+================================================== */
+
+.dock.dock-left {
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    top: 50%;
+    bottom: auto;
+
+    left: 12px;
+    right: auto;
+
+    transform:
+        translateY(-50%);
+
+}
+
+
+/* ==================================================
+   DOCK DIREITO
+================================================== */
+
+.dock.dock-right {
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    top: 50%;
+    bottom: auto;
+
+    left: auto;
+    right: 12px;
+
+    transform:
+        translateY(-50%);
+
+}
+
+
+/* ==================================================
+   TOOLTIP
+================================================== */
+
+
+/* DOCK INFERIOR */
+
+.dock.dock-bottom
+.tooltip {
+
+    bottom: 67px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%)
+        translateY(5px);
+
+}
+
+
+.dock.dock-bottom
+.dock-item:hover
+.tooltip {
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+
+}
+
+
+/* DOCK ESQUERDO */
+
+.dock.dock-left
+.tooltip {
+
+    top: 50%;
+
+    left: calc(100% + 10px);
+
+    bottom: auto;
+
+    transform:
+        translateY(-50%)
+        translateX(-5px);
+
+}
+
+
+.dock.dock-left
+.dock-item:hover
+.tooltip {
+
+    transform:
+        translateY(-50%)
+        translateX(0);
+
+}
+
+
+/* DOCK DIREITO */
+
+.dock.dock-right
+.tooltip {
+
+    top: 50%;
+
+    right: calc(100% + 10px);
+
+    left: auto;
+
+    bottom: auto;
+
+    transform:
+        translateY(-50%)
+        translateX(5px);
+
+}
+
+
+.dock.dock-right
+.dock-item:hover
+.tooltip {
+
+    transform:
+        translateY(-50%)
+        translateX(0);
+
+}
+
+
+/* ==================================================
+   INDICADOR
+================================================== */
+
+
+/* DOCK INFERIOR */
+
+.dock.dock-bottom
+.dock-indicator {
+
+    left: 50%;
+
+    right: auto;
+
+    bottom: -5px;
+
+    top: auto;
+
+    transform:
+        translateX(-50%)
+        scale(0);
+
+}
+
+
+.dock.dock-bottom
+.dock-item.app-open
+.dock-indicator {
+
+    transform:
+        translateX(-50%)
+        scale(1);
+
+}
+
+
+.dock.dock-bottom
+.dock-item.app-active
+.dock-indicator {
+
+    transform:
+        translateX(-50%)
+        scale(1.15);
+
+}
+
+
+/* DOCK ESQUERDO */
+
+.dock.dock-left
+.dock-indicator {
+
+    left: auto;
+
+    right: -8px;
+
+    top: 50%;
+
+    bottom: auto;
+
+    transform:
+        translateY(-50%)
+        scale(0);
+
+}
+
+
+.dock.dock-left
+.dock-item.app-open
+.dock-indicator {
+
+    transform:
+        translateY(-50%)
+        scale(1);
+
+}
+
+
+.dock.dock-left
+.dock-item.app-active
+.dock-indicator {
+
+    transform:
+        translateY(-50%)
+        scale(1.15);
+
+}
+
+
+/* DOCK DIREITO */
+
+.dock.dock-right
+.dock-indicator {
+
+    left: -8px;
+
+    right: auto;
+
+    top: 50%;
+
+    bottom: auto;
+
+    transform:
+        translateY(-50%)
+        scale(0);
+
+}
+
+
+.dock.dock-right
+.dock-item.app-open
+.dock-indicator {
+
+    transform:
+        translateY(-50%)
+        scale(1);
+
+}
+
+
+.dock.dock-right
+.dock-item.app-active
+.dock-indicator {
+
+    transform:
+        translateY(-50%)
+        scale(1.15);
+
+}
+
+ /* ==================================================
+    DOCK VERTICAL - BACKGROUND
+ ================================================== */
+
+ .dock.dock-left,
+ .dock.dock-right {
+
+     width: 72px;
+
+     height: auto;
+
+     min-height: 0;
+
+     padding:
+         12px 8px;
+
+     flex-direction: column;
+
+     align-items: center;
+
+     justify-content: center;
+
+     gap: 1px;
+
+ }
+
+
+ /* ==================================================
+    SEPARADOR VERTICAL
+ ================================================== */
+
+ .dock.dock-left
+ .dock-separator,
+
+ .dock.dock-right
+ .dock-separator {
+
+     width: 45px;
+
+     height: 1px;
+
+     margin:
+         3px 0;
+
+     flex-shrink: 0;
+
+ }
+
+
+ /* ==================================================
+    CORREÇÃO DOS ITENS DINÂMICOS
+ ================================================== */
+
+ .dock.dock-left
+ .dock-item[data-app-window],
+
+ .dock.dock-right
+ .dock-item[data-app-window] {
+
+     margin-top: -30px;
+
+     margin-bottom: -30px;
+
+     margin-left: 0;
+
+     margin-right: 0;
+
+ }
+
+
+ .dock.dock-left
+ .dock-item[data-app-window].app-open,
+
+ .dock.dock-right
+ .dock-item[data-app-window].app-open {
+
+     margin-top: 4px;
+
+     margin-bottom: 4px;
+
+     margin-left: 0;
+
+     margin-right: 0;
+
+ }
+
+
+ .dock.dock-left
+ .dock-item[data-app-window].app-closing,
+
+ .dock.dock-right
+ .dock-item[data-app-window].app-closing {
+
+     margin-top: 0;
+
+     margin-bottom: 0;
+
+     margin-left: 0;
+
+     margin-right: 0;
+
+ }
+
+ /* ==================================================
+   DOCK INFERIOR
+================================================== */
+
+.dock.dock-bottom
+.dock-item[data-app-window] {
+
+    margin-left: -30px;
+    margin-right: -30px;
+
+    margin-top: 0;
+    margin-bottom: 0;
+
+}
+
+
+.dock.dock-bottom
+.dock-item[data-app-window].app-open {
+
+    margin-left: 4px;
+    margin-right: 4px;
+
+    margin-top: 0;
+    margin-bottom: 0;
+
+}
+
+
+/* ==================================================
+   DOCK LATERAL
+================================================== */
+
+.dock.dock-left
+.dock-item[data-app-window],
+
+.dock.dock-right
+.dock-item[data-app-window] {
+
+    margin-left: 0;
+    margin-right: 0;
+
+    margin-top: -30px;
+    margin-bottom: -30px;
+
+}
+
+
+.dock.dock-left
+.dock-item[data-app-window].app-open,
+
+.dock.dock-right
+.dock-item[data-app-window].app-open {
+
+    margin-left: 0;
+    margin-right: 0;
+
+    margin-top: 4px;
+    margin-bottom: 4px;
+
+}
+
+:root {
+
+    --dock-scale: 1;
+
+}
+
+/* ==================================================
+   DOCK FINAL - POSIÇÃO + SCALE
+   DEIXAR ESTE BLOCO POR ÚLTIMO
+================================================== */
+
+
+/* =========================
+   DOCK INFERIOR
+========================= */
+
+.dock.dock-bottom {
+
+    left: 50%;
+    right: auto;
+
+    top: auto;
+    bottom: 12px;
+
+    transform:
+        translateX(-50%)
+        scale(var(--dock-scale, 1));
+
+    transform-origin:
+        center bottom;
+
+}
+
+
+/* =========================
+   DOCK ESQUERDO
+========================= */
+
+.dock.dock-left {
+
+    left: 12px;
+    right: auto;
+
+    top: 50%;
+    bottom: auto;
+
+    transform:
+        translateY(-50%)
+        scale(var(--dock-scale, 1));
+
+    transform-origin:
+        left center;
+
+}
+
+
+/* =========================
+   DOCK DIREITO
+========================= */
+
+.dock.dock-right {
+
+    left: auto;
+    right: 12px;
+
+    top: 50%;
+    bottom: auto;
+
+    transform:
+        translateY(-50%)
+        scale(var(--dock-scale, 1));
+
+    transform-origin:
+        right center;
+
+}
