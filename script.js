@@ -9,7 +9,6 @@ gsap.ticker.lagSmoothing(0);
 
 const translations = {
   pt: {
-    "intro__word": "OLA!",
     "header.status": "DISPONÍVEL PARA PROJETOS",
     "header.contact": "CONTATO",
     "menu.label": "NAVEGAÇÃO",
@@ -56,7 +55,6 @@ const translations = {
     "contact.title": "Crie<br /><em>comigo.</em>",
   },
   en: {
-    "intro__word": "HI!",
     "header.status": "AVAILABLE FOR PROJECTS",
     "header.contact": "CONTACT",
     "menu.label": "NAVIGATION",
@@ -329,22 +327,11 @@ if (!reduceMotion) {
   gsap.to(".world__copy h2 em", { textShadow: "0 0 1.4rem rgba(117,229,247,.32)", duration: 2.2, ease: "sine.inOut", repeat: -1, yoyo: true });
 }
 
-const intro = document.querySelector(".intro");
 const header = document.querySelector(".site-header");
 const heroItems = document.querySelectorAll(".hero > *:not(.cloud-layer)");
 
-const introTimeline = gsap.timeline({
-  onComplete: () => { intro.style.display = "none"; }
-});
-
-  introTimeline
-  .from(".intro__eyebrow", { opacity: 0, y: 14, duration: 0.55, ease: "power3.out" })
-  .from(".intro__word", { opacity: 0, yPercent: 120, skewY: -4, duration: 1.1, ease: "power4.out" }, "<.1")
-  .to(".intro__cloud--one", { xPercent: 24, yPercent: -38, duration: 1.2, ease: "slow(0.35,0.65,0.75)" }, "<.15")
-  .to(".intro__cloud--two", { xPercent: -10, yPercent: 32, duration: 1.2, ease: "slow(0.35,0.65,0.75)" }, "<")
-  .to(intro, { yPercent: -100, duration: 0.9, ease: "power4.inOut" }, "<.35")
-  .from(header, { opacity: 0, y: -20, duration: 0.7, ease: "power3.out" }, "<.5")
-  .from(heroItems, { opacity: 0, y: 26, stagger: 0.1, duration: 0.85, ease: "power3.out" }, "<.3");
+if (header) gsap.fromTo(header, { opacity: 0, y: -20, xPercent: -50 }, { opacity: 1, y: 0, xPercent: -50, duration: 0.7, ease: "power3.out" });
+gsap.from(heroItems, { opacity: 0, y: 26, stagger: 0.1, duration: 0.85, ease: "power3.out" });
 
 if (!reduceMotion) {
   document.querySelectorAll("[data-speed]").forEach((layer) => {
