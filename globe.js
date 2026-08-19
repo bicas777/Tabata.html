@@ -76,7 +76,7 @@ if (canvas && stage) {
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
   const atmosphereRadius = 2.4;
-  camera.position.set(0, 0.15, 7.35);
+  camera.position.set(0, 0.15, 8.9);
 
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: "high-performance" });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -90,8 +90,8 @@ if (canvas && stage) {
   controls.enablePan = false;
   controls.enableZoom = false;
   controls.zoomSpeed = 0.48;
-  controls.minDistance = 3.9;
-  controls.maxDistance = 10.5;
+  controls.minDistance = 3.2;
+  controls.maxDistance = 12.5;
   canvas.addEventListener("wheel", (event) => {
     if (!event.ctrlKey && !event.metaKey) return;
     event.preventDefault();
@@ -110,13 +110,14 @@ if (canvas && stage) {
 
   const globeGroup = new THREE.Group();
   const targetGlobeRotation = -0.55;
-  globeGroup.rotation.y = targetGlobeRotation - Math.PI * 6;
-  globeGroup.position.x = -3.8;
-  globeGroup.scale.setScalar(1.72);
+  const initialGlobe = { x: -2.4, y: -0.65, scale: 0.8, rotationY: targetGlobeRotation + 0.85 };
+  globeGroup.position.set(initialGlobe.x, initialGlobe.y, 0);
+  globeGroup.rotation.y = initialGlobe.rotationY;
+  globeGroup.scale.setScalar(initialGlobe.scale);
   scene.add(globeGroup);
 
   const themeState = {
-    night: document.body.classList.contains("night-theme"),
+    night: true,
     earthMaterials: [],
     cloudLayers: [],
     atmosphereMaterials: [],
@@ -149,7 +150,7 @@ if (canvas && stage) {
   const getBeloHorizontePosition = (radius) => latLonToPosition(beloHorizonte.latitude, beloHorizonte.longitude, radius).applyAxisAngle(new THREE.Vector3(0, 1, 0), -Math.PI * 0.5);
   const markerPosition = getBeloHorizontePosition(globeRadius * 0.805);
   markerGroup.position.copy(markerPosition);
-  markerGroup.lookAt(markerPosition.clone().multiplyScalar(2));
+  markerGroup.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), markerPosition.clone().normalize());
   const markerCore = new THREE.Mesh(new THREE.SphereGeometry(0.065, 16, 16), new THREE.MeshBasicMaterial({ color: 0x9fffff }));
   markerGroup.add(markerCore);
   const markerRing = new THREE.Mesh(new THREE.RingGeometry(0.12, 0.145, 32), new THREE.MeshBasicMaterial({ color: 0x66efff, side: THREE.DoubleSide, transparent: true, opacity: 0.9 }));
@@ -173,11 +174,11 @@ if (canvas && stage) {
         onLeaveBack: () => { controls.autoRotate = false; },
       },
     })
-      .to(globeGroup.position, { x: 0, ease: "power3.out", duration: 1 }, 0)
-      .to(globeGroup.scale, { x: 1, y: 1, z: 1, ease: "power3.out", duration: 1 }, 0)
-      .to(globeGroup.rotation, { y: targetGlobeRotation, ease: "none", duration: 1 }, 0);
+      .to(globeGroup.position, { x: 0, y: 0, ease: "power3.inOut", duration: 1 }, 0)
+      .to(globeGroup.scale, { x: 1, y: 1, z: 1, ease: "power3.inOut", duration: 1 }, 0)
+      .to(globeGroup.rotation, { y: targetGlobeRotation, ease: "power2.inOut", duration: 1 }, 0);
   } else {
-    globeGroup.position.x = 0;
+    globeGroup.position.set(0, 0, 0);
     globeGroup.scale.setScalar(1);
     globeGroup.rotation.y = targetGlobeRotation;
     controls.autoRotate = true;
@@ -234,8 +235,7 @@ if (canvas && stage) {
     rimLight.color.set(isNight ? 0x2c7dff : 0x9bb1ff);
     starMaterial.opacity = isNight ? 0.9 : 0.18;
   };
-  document.addEventListener("portfolio-theme-change", (event) => applyGlobeTheme(event.detail?.theme));
-  applyGlobeTheme(themeState.night ? "night" : "day");
+  applyGlobeTheme("night");
 
   const loader = new GLTFLoader();
   const earthModelUrl = new URL("./assets/earth.glb", import.meta.url).href;
@@ -250,7 +250,7 @@ if (canvas && stage) {
     globeRadius = Math.max(size.x, size.y, size.z) * scale * 0.5;
     const markerSurfacePosition = getBeloHorizontePosition(globeRadius * 0.805);
     markerGroup.position.copy(markerSurfacePosition);
-    markerGroup.lookAt(markerSurfacePosition.clone().multiplyScalar(2));
+    markerGroup.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), markerSurfacePosition.clone().normalize());
     atmosphere.scale.setScalar(1);
     model.traverse((child) => {
       if (!child.isMesh) return;
@@ -294,7 +294,7 @@ if (canvas && stage) {
       }
     });
     globeGroup.add(model);
-    applyGlobeTheme(themeState.night ? "night" : "day");
+    applyGlobeTheme("night");
   }, undefined, (error) => {
     console.error("Não foi possível carregar o modelo da Terra:", earthModelUrl, error);
     addFallbackEarth(globeGroup, themeState);

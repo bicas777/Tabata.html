@@ -7,32 +7,29 @@
     <title>Enzo Bicalho — Creative Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Syne:wght@400;500;600;700;800&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Syne:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'" />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/JetBrainsMono/JetBrainsMonoNLNerdFontMono-Regular.ttf" />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/JetBrainsMono/JetBrainsMonoNLNerdFontMono-Medium.ttf" />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/JetBrainsMono/JetBrainsMonoNLNerdFontMono-Bold.ttf" />
+    <link rel="preload" as="script" href="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js" />
+    <link rel="preload" as="script" href="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js" />
+    <link rel="dns-prefetch" href="https://unpkg.com" />
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
     <style>
-      @font-face {
-        font-family:'JetBrains';font-style:normal;font-weight:400;src:url('assets/fonts/JetBrainsMono/JetBrainsMonoNLNerdFontMono-Regular.ttf') format('truetype');
-      }
-      @font-face {
-        font-family:'JetBrains';font-style:italic;font-weight:400;src:url('assets/fonts/JetBrainsMono/JetBrainsMonoNLNerdFontMono-Italic.ttf') format('truetype');
-      }
-      @font-face {
-        font-family:'JetBrains';font-style:normal;font-weight:500;src:url('assets/fonts/JetBrainsMono/JetBrainsMonoNLNerdFontMono-Medium.ttf') format('truetype');
-      }
-      @font-face {
-        font-family:'JetBrains';font-style:italic;font-weight:500;src:url('assets/fonts/JetBrainsMono/JetBrainsMonoNLNerdFontMono-MediumItalic.ttf') format('truetype');
-      }
-      @font-face {
-        font-family:'JetBrains';font-style:normal;font-weight:700;src:url('assets/fonts/JetBrainsMono/JetBrainsMonoNLNerdFontMono-Bold.ttf') format('truetype');
-      }
-      @font-face {
-        font-family:'JetBrains';font-style:italic;font-weight:700;src:url('assets/fonts/JetBrainsMono/JetBrainsMonoNLNerdFontMono-BoldItalic.ttf') format('truetype');
-      }
+      @font-face { font-family:'JetBrains';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/JetBrainsMono/JetBrainsMonoNLNerdFontMono-Regular.ttf') format('truetype'); }
+      @font-face { font-family:'JetBrains';font-style:italic;font-weight:400;font-display:swap;src:url('assets/fonts/JetBrainsMono/JetBrainsMonoNLNerdFontMono-Italic.ttf') format('truetype'); }
+      @font-face { font-family:'JetBrains';font-style:normal;font-weight:500;font-display:swap;src:url('assets/fonts/JetBrainsMono/JetBrainsMonoNLNerdFontMono-Medium.ttf') format('truetype'); }
+      @font-face { font-family:'JetBrains';font-style:italic;font-weight:500;font-display:swap;src:url('assets/fonts/JetBrainsMono/JetBrainsMonoNLNerdFontMono-MediumItalic.ttf') format('truetype'); }
+      @font-face { font-family:'JetBrains';font-style:normal;font-weight:700;font-display:swap;src:url('assets/fonts/JetBrainsMono/JetBrainsMonoNLNerdFontMono-Bold.ttf') format('truetype'); }
+      @font-face { font-family:'JetBrains';font-style:italic;font-weight:700;font-display:swap;src:url('assets/fonts/JetBrainsMono/JetBrainsMonoNLNerdFontMono-BoldItalic.ttf') format('truetype'); }
     </style>
-    <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.23/dist/lenis.css" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.23/dist/lenis.css" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="style.css" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://unpkg.com/lenis@1.3.23/dist/lenis.css" /><link rel="stylesheet" href="style.css" /></noscript>
   </head>
   <body>
-    <div class="noise" aria-hidden="true"></div>
+    <div class="dotfield" aria-hidden="true"></div>
     <svg class="filters" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><defs><filter id="hero-title-warp" color-interpolation-filters="sRGB" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="2.5 2.5" numOctaves="3" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G" result="warp"/></filter></defs></svg>
     <div class="cursor-glow" aria-hidden="true"></div>
     <div class="custom-cursor" aria-hidden="true">
@@ -48,8 +45,6 @@
       <div class="intro__sky"></div>
       <p class="intro__eyebrow">PORTFOLIO / 2026</p>
       <p class="intro__word" data-i18n="intro__word">OLA!</p>
-      <img class="intro__cloud intro__cloud--one cloud-image" data-cloud-src="assets/clouds/intro-one.png" alt="" aria-hidden="true" />
-      <img class="intro__cloud intro__cloud--two cloud-image" data-cloud-src="assets/clouds/intro-two.png" alt="" aria-hidden="true" />
     </div>
 
     <header class="site-header">
@@ -73,16 +68,24 @@
       <p class="header-status"><span class="header-status__dot" aria-hidden="true"></span> <span class="header-status__label" data-i18n="header.status">DISPONÍVEL PARA PROJETOS</span></p>
       <div class="header-actions">
         <div class="header-tools" aria-label="Preferências do site">
-          <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Ativar modo noturno" aria-pressed="false" data-cursor-label="TEMA"><span class="theme-toggle__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 11.5373 21.3065 11.4608 21.0672 11.8568C19.9289 13.7406 17.8615 15 15.5 15C11.9101 15 9 12.0899 9 8.5C9 6.13845 10.2594 4.07105 12.1432 2.93276C12.5392 2.69347 12.4627 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="currentColor"/></svg></span></button>
           <button class="language-toggle" id="language-toggle" type="button" aria-label="Mudar idioma para inglês" data-cursor-label="IDIOMA"><span class="language-toggle__active">PT</span><span aria-hidden="true">/</span><span>EN</span></button>
         </div>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="site-menu" data-cursor-label="MENU"><span></span><span></span><span></span></button>
         <a class="header-contact" href="#contato" data-cursor-label="CONTATO"><span data-i18n="header.contact">CONTATO</span> <i>↗</i></a>
       </div>
+      <nav class="site-menu" id="site-menu" aria-label="Navegação principal">
+        <p data-i18n="menu.label">NAVEGAÇÃO</p>
+        <a href="#top" data-menu-link><span>01</span><strong data-i18n="menu.home">INÍCIO</strong><i>↗</i></a>
+        <a href="#sobre" data-menu-link><span>02</span><strong data-i18n="menu.about">SOBRE</strong><i>↗</i></a>
+        <a href="#projetos" data-menu-link><span>03</span><strong data-i18n="menu.projects">PROJETOS</strong><i>↗</i></a>
+        <a href="#world" data-menu-link><span>04</span><strong data-i18n="menu.location">LOCALIZAÇÃO</strong><i>↗</i></a>
+        <a href="#contato" data-menu-link><span>05</span><strong data-i18n="menu.contact">CONTATO</strong><i>↗</i></a>
+      </nav>
     </header>
 
     <main id="top">
       <section class="hero section">
-        <div class="cloud-layer cloud-layer--hero-back" data-speed="0.12"><img class="cloud cloud-image cloud--wide" data-cloud-src="assets/clouds/hero-back.png" alt="" aria-hidden="true" /></div>
+        <div class="topography" aria-hidden="true"></div>
         <div class="hero__topline reveal-line">
           <p data-i18n="hero.role">DESIGNER · DEVELOPER · VIDEO EDITOR</p>
           <button class="location-trigger" type="button" data-location-trigger aria-controls="world" aria-label="Explorar localização em Belo Horizonte" data-cursor-label="EXPLORAR BH"><span>BELO HORIZONTE, BR</span> <span class="live-dot"></span><i>↘</i></button>
@@ -99,7 +102,6 @@
           <p class="hero__manifesto" data-i18n="hero.manifesto">Ideias que encontram<br />forma, ritmo e altitude.</p>
           <a class="round-link" href="#projetos" data-cursor-label="VER TRABALHOS"><span data-i18n="hero.cta">VER<br />TRABALHOS</span><i>↓</i></a>
         </div>
-        <div class="cloud-layer cloud-layer--hero-front" data-speed="0.26"><img class="cloud cloud-image cloud--hero" data-cloud-src="assets/clouds/hero-front.png" alt="" aria-hidden="true" /></div>
       </section>
 
       <section class="marquee" aria-label="Especialidades">
@@ -168,17 +170,53 @@
       </section>
 
       <section class="services section">
-        <div class="section-label"><span>( 03 )</span><span data-i18n="services.label">O QUE EU FAÇO</span></div>
+        <div class="section-label"><span>( 03 )</span><span data-i18n="services.label">SERVIÇOS &amp; HABILIDADES</span></div>
+        <div class="services__intro">
+          <h2 data-i18n="services.title">O que eu <em>entrego.</em></h2>
+          <p data-i18n="services.copy">Do conceito ao deploy — serviços integrados para dar presença e resultado ao seu projeto.</p>
+        </div>
         <div class="service-list">
-          <div class="service"><span>01</span><h3 data-i18n="services.design.title">Design</h3><p data-i18n="services.design.copy">Identidade, direção de arte, interfaces e sistemas visuais.</p><i>↘</i></div>
-          <div class="service"><span>02</span><h3 data-i18n="services.web.title">Web Development</h3><p data-i18n="services.web.copy">Sites expressivos, responsivos e vivos em cada detalhe.</p><i>↘</i></div>
-          <div class="service"><span>03</span><h3 data-i18n="services.video.title">Vídeo &amp; Motion</h3><p data-i18n="services.video.copy">Edição, ritmo e narrativas que seguram o olhar.</p><i>↘</i></div>
+          <article class="service">
+            <span class="service__index">01</span>
+            <div class="service__body">
+              <h3 data-i18n="services.design.title">Design</h3>
+              <p data-i18n="services.design.copy">Identidade, direção de arte, interfaces e sistemas visuais.</p>
+            </div>
+            <div class="service__tags"><span>UI / UX</span><span>Identidade</span><span>Figma</span><span>Photoshop</span></div>
+            <i>↘</i>
+          </article>
+          <article class="service">
+            <span class="service__index">02</span>
+            <div class="service__body">
+              <h3 data-i18n="services.web.title">Web Development</h3>
+              <p data-i18n="services.web.copy">Sites expressivos, responsivos e vivos em cada detalhe.</p>
+            </div>
+            <div class="service__tags"><span>HTML / CSS</span><span>JavaScript</span><span>Next.js</span><span>Node.js</span><span>Supabase</span></div>
+            <i>↘</i>
+          </article>
+          <article class="service">
+            <span class="service__index">03</span>
+            <div class="service__body">
+              <h3 data-i18n="services.video.title">Vídeo &amp; Motion</h3>
+              <p data-i18n="services.video.copy">Edição, ritmo e narrativas que seguram o olhar.</p>
+            </div>
+            <div class="service__tags"><span>Premiere</span><span>After Effects</span><span>Motion</span></div>
+            <i>↘</i>
+          </article>
         </div>
       </section>
 
       <section class="world section" id="world" aria-labelledby="world-title">
         <div class="world__scanline" aria-hidden="true"></div>
         <div class="world__grid" aria-hidden="true"></div>
+        <div class="earth-stage" aria-label="Globo 3D interativo de Belo Horizonte">
+          <canvas id="earth-canvas"></canvas>
+          <div class="earth-stage__reticle" aria-hidden="true"></div>
+          <div class="earth-stage__marker" aria-hidden="true"><span></span><i>BELO HORIZONTE</i></div>
+          <div class="earth-stage__status"><span></span> TRACKING / 001</div>
+          <div class="earth-stage__hint" data-i18n="world.hint">ARRASTE PARA GIRAR <b>↔</b></div>
+          <div class="earth-stage__pointer" aria-hidden="true"><b>↗</b><span>ABOUT ENZO</span></div>
+        </div>
         <div class="section-label"><span>( 04 )</span><span data-i18n="world.label">ORIGEM / LOCALIZAÇÃO</span><span data-i18n="world.live">LIVE SIGNAL</span></div>
         <div class="world__layout">
           <div class="world__copy">
@@ -186,14 +224,6 @@
             <h2 id="world-title" data-i18n="world.title">De onde<br /><em>eu venho.</em></h2>
             <p class="world__description" data-i18n="world.copy">Uma pequena pausa entre o céu e a terra. Gire o globo e encontre a minha base.</p>
             <div class="world__coordinates"><span>LAT</span><strong>19° 55' 00" S</strong><span>LON</span><strong>43° 56' 00" W</strong></div>
-          </div>
-          <div class="earth-stage" aria-label="Globo 3D interativo de Belo Horizonte">
-            <canvas id="earth-canvas"></canvas>
-            <div class="earth-stage__reticle" aria-hidden="true"></div>
-            <div class="earth-stage__marker" aria-hidden="true"><span></span><i>BELO HORIZONTE</i></div>
-            <div class="earth-stage__status"><span></span> TRACKING / 001</div>
-            <div class="earth-stage__hint" data-i18n="world.hint">ARRASTE PARA GIRAR <b>↔</b></div>
-            <div class="earth-stage__pointer" aria-hidden="true"><b>↗</b><span>ABOUT ENZO</span></div>
           </div>
           <aside class="world__info">
             <div class="world__info-head"><span>PROFILE / ENZO</span><span>● ONLINE</span></div>
@@ -206,22 +236,26 @@
       </section>
 
       <section class="contact section" id="contato">
-        <div class="contact__sky" aria-hidden="true"><img class="cloud cloud-image cloud--contact" data-cloud-src="assets/clouds/contact-main.png" alt="" /><img class="cloud cloud-image cloud--contact-small" data-cloud-src="assets/clouds/contact-small.png" alt="" /></div>
+        <div class="molten-metal" aria-hidden="true"></div>
         <div class="section-label"><span>( 05 )</span><span data-i18n="contact.label">CONTATO</span></div>
         <p class="contact__pretitle" data-i18n="contact.pretitle">TEM UMA IDEIA EM FORMAÇÃO?</p>
-        <h2 data-i18n="contact.title">Vamos<br /><em>subir.</em></h2>
+        <h2 class="contact__title" data-i18n="contact.title">Vamos<br /><em>subir.</em></h2>
         <a class="contact__email" href="mailto:enzobicalhocontato@gmail.com" data-cursor-label="ENVIAR E-MAIL">enzobicalhocontato@gmail.com <i>↗</i></a>
         <div class="contact__footer"><p>© 2026 ENZO BICALHO</p><div><a href="https://www.instagram.com/ezbicalho/">INSTAGRAM</a><a href="#top">LINKEDIN</a><a href="#top">BEHANCE</a></div><a href="#top">VOLTAR AO TOPO ↑</a></div>
       </section>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
-    <script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
-    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js" defer></script>
+    <script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js" defer></script>
+    <script src="script.js" defer></script>
     <script type="importmap">
       {"imports":{"three":"https://unpkg.com/three@0.173.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.173.0/examples/jsm/"}}
     </script>
-    <script type="module" src="globe.js"></script>
+    <script type="module" src="globe.js" async></script>
+    <script type="module" src="topography.js" async></script>
+    <script type="module" src="moltenmetal.js" async></script>
+    <script src="dotfield.js" defer></script>
+    <script src="backgrounds.js" defer></script>
   </body>
 </html>

@@ -18,16 +18,16 @@
     </style>
     <link rel="stylesheet" href="style.css" />
     <style>
-      .not-found { min-height:100svh; display:grid; place-items:center; padding:0 3rem; background:linear-gradient(145deg,#eff6ff 0%,#dbeafe 52%,#bfdbfe 100%); }
+      :root { --ink:#e9f7ff; --ice:#020711; --mist:#101e30; --line:rgba(207,239,255,.18); --glass-bg:rgba(8,20,38,.6); --glass-border:rgba(140,210,240,.3); --glass-highlight:rgba(255,255,255,.16); --glass-shadow:rgba(0,0,0,.45); --glass-shadow-strong:rgba(0,0,0,.6); }
+      .not-found { min-height:100svh; display:grid; place-items:center; padding:0 3rem; background:linear-gradient(152deg,#0a1b30 0%,#163b5b 48%,#09182d 100%); }
       .not-found__content { text-align:center; max-width:720px; margin:auto; }
-      .not-found__number { font:800 clamp(12rem,40vw,18rem)/.7 var(--display); letter-spacing:-.14em; background:linear-gradient(145deg,#7dd7ff 0%,#3b82f6 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin:0; }
+      .not-found__number { font:800 clamp(12rem,40vw,18rem)/.7 var(--display); letter-spacing:-.14em; background:linear-gradient(145deg,#9fe8ff 0%,#2f7fb8 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin:0; }
       .not-found__title { font:800 clamp(2rem,5vw,3.5rem)/.9 var(--display); letter-spacing:-.06em; margin:2rem 0 .5rem; color:var(--ink); }
-      .not-found__copy { font:500 1rem/1.6 var(--mono); letter-spacing:.06em; color:var(--deep); margin:0 0 2rem; opacity:.8; }
+      .not-found__copy { font:500 1rem/1.6 var(--mono); letter-spacing:.06em; color:rgba(232,247,255,.72); margin:0 0 2rem; }
       .not-found .round-link { margin:auto; }
     </style>
   </head>
   <body>
-    <div class="noise" aria-hidden="true"></div>
     <div class="not-found">
       <div class="not-found__content">
         <p class="not-found__number">404</p>

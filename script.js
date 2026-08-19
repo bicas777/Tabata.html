@@ -1,7 +1,7 @@
 gsap.registerPlugin(ScrollTrigger);
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const lenis = new Lenis({ duration: 1.15, smoothWheel: true, wheelMultiplier: 0.85, touchMultiplier: 1.25 });
+const lenis = new Lenis({ duration: 0.9, smoothWheel: true, wheelMultiplier: 0.9, touchMultiplier: 1.1 });
 
 lenis.on("scroll", ScrollTrigger.update);
 gsap.ticker.add((time) => lenis.raf(time * 1000));
@@ -12,6 +12,12 @@ const translations = {
     "intro__word": "OLA!",
     "header.status": "DISPONÍVEL PARA PROJETOS",
     "header.contact": "CONTATO",
+    "menu.label": "NAVEGAÇÃO",
+    "menu.home": "INÍCIO",
+    "menu.about": "SOBRE",
+    "menu.projects": "PROJETOS",
+    "menu.location": "LOCALIZAÇÃO",
+    "menu.contact": "CONTATO",
     "hero.role": "DESIGNER · DEVELOPER · VIDEO EDITOR",
     "hero.small": "criando para quem<br />quer ir mais alto",
     "hero.manifesto": "Ideias que encontram<br />forma, ritmo e altitude.",
@@ -23,7 +29,9 @@ const translations = {
     "projects.label": "PROJETOS SELECIONADOS",
     "projects.title": "Meus projetos.",
     "projects.copy": "Uma seleção de identidades, sites e imagens em movimento.",
-    "services.label": "O QUE EU FAÇO",
+    "services.label": "SERVIÇOS &amp; HABILIDADES",
+    "services.title": "O que eu <em>entrego.</em>",
+    "services.copy": "Do conceito ao deploy — serviços integrados para dar presença e resultado ao seu projeto.",
     "services.design.title": "Design",
     "services.design.copy": "Identidade, direção de arte, interfaces e sistemas visuais.",
     "services.web.title": "Web Development",
@@ -51,6 +59,12 @@ const translations = {
     "intro__word": "HI!",
     "header.status": "AVAILABLE FOR PROJECTS",
     "header.contact": "CONTACT",
+    "menu.label": "NAVIGATION",
+    "menu.home": "HOME",
+    "menu.about": "ABOUT",
+    "menu.projects": "PROJECTS",
+    "menu.location": "LOCATION",
+    "menu.contact": "CONTACT",
     "hero.role": "DESIGNER · DEVELOPER · VIDEO EDITOR",
     "hero.small": "creating for those<br />who want to go higher",
     "hero.manifesto": "Ideas that find<br />form, rhythm and altitude.",
@@ -62,7 +76,9 @@ const translations = {
     "projects.label": "SELECTED PROJECTS",
     "projects.title": "Projects.",
     "projects.copy": "A selection of identities, websites and moving images.",
-    "services.label": "WHAT I DO",
+    "services.label": "SERVICES &amp; SKILLS",
+    "services.title": "What I <em>deliver.</em>",
+    "services.copy": "From concept to launch — integrated services that give presence and results to your project.",
     "services.design.title": "Design",
     "services.design.copy": "Identity, art direction, interfaces and visual systems.",
     "services.web.title": "Web Development",
@@ -93,26 +109,8 @@ const safeStorage = {
   set(key, value) { try { localStorage.setItem(key, value); } catch { /* private browsing */ } },
 };
 
-const themeToggle = document.querySelector("#theme-toggle");
-const themeIcons = {
-  sun: '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 12C18 15.3137 15.3137 18 12 18C8.68629 18 6 15.3137 6 12C6 8.68629 8.68629 6 12 6C15.3137 6 18 8.68629 18 12Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1.25C12.4142 1.25 12.75 1.58579 12.75 2V3C12.75 3.41421 12.4142 3.75 12 3.75C11.5858 3.75 11.25 3.41421 11.25 3V2C11.25 1.58579 11.5858 1.25 12 1.25ZM4.39861 4.39861C4.6915 4.10572 5.16638 4.10572 5.45927 4.39861L5.85211 4.79145C6.145 5.08434 6.145 5.55921 5.85211 5.85211C5.55921 6.145 5.08434 6.145 4.79145 5.85211L4.39861 5.45927C4.10572 5.16638 4.10572 4.6915 4.39861 4.39861ZM19.6011 4.39887C19.894 4.69176 19.894 5.16664 19.6011 5.45953L19.2083 5.85237C18.9154 6.14526 18.4405 6.14526 18.1476 5.85237C17.8547 5.55947 17.8547 5.0846 18.1476 4.79171L18.5405 4.39887C18.8334 4.10598 19.3082 4.10598 19.6011 4.39887ZM1.25 12C1.25 11.5858 1.58579 11.25 2 11.25H3C3.41421 11.25 3.75 11.5858 3.75 12C3.75 12.4142 3.41421 12.75 3 12.75H2C1.58579 12.75 1.25 12.4142 1.25 12ZM20.25 12C20.25 11.5858 20.5858 11.25 21 11.25H22C22.4142 11.25 22.75 11.5858 22.75 12C22.75 12.4142 22.4142 12.75 22 12.75H21C20.5858 12.75 20.25 12.4142 20.25 12ZM18.1476 18.1476C18.4405 17.8547 18.9154 17.8547 19.2083 18.1476L19.6011 18.5405C19.894 18.8334 19.894 19.3082 19.6011 19.6011C19.3082 19.894 18.8334 19.894 18.5405 19.6011L18.1476 19.2083C17.8547 18.9154 17.8547 18.4405 18.1476 18.1476ZM5.85211 18.1479C6.145 18.4408 6.145 18.9157 5.85211 19.2086L5.45927 19.6014C5.16638 19.8943 4.6915 19.8943 4.39861 19.6014C4.10572 19.3085 4.10572 18.8336 4.39861 18.5407L4.79145 18.1479C5.08434 17.855 5.55921 17.855 5.85211 18.1479ZM12 20.25C12.4142 20.25 12.75 20.5858 12.75 21V22C12.75 22.4142 12.4142 22.75 12 22.75C11.5858 22.75 11.25 22.4142 11.25 22V21C11.25 20.5858 11.5858 20.25 12 20.25Z" fill="currentColor"/></svg>',
-  moon: '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 11.5373 21.3065 11.4608 21.0672 11.8568C19.9289 13.7406 17.8615 15 15.5 15C11.9101 15 9 12.0899 9 8.5C9 6.13845 10.2594 4.07105 12.1432 2.93276C12.5392 2.69347 12.4627 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="currentColor"/></svg>',
-};
 const languageToggle = document.querySelector("#language-toggle");
 let activeLanguage = safeStorage.get("portfolio-language", "pt");
-
-function applyTheme(theme) {
-  const isNight = theme === "night";
-  document.body.classList.toggle("night-theme", isNight);
-  document.documentElement.dataset.theme = isNight ? "night" : "day";
-  if (themeToggle) {
-    themeToggle.querySelector(".theme-toggle__icon").innerHTML = isNight ? themeIcons.sun : themeIcons.moon;
-    themeToggle.setAttribute("aria-pressed", String(isNight));
-    themeToggle.setAttribute("aria-label", isNight ? "Ativar modo claro" : "Ativar modo noturno");
-  }
-  safeStorage.set("portfolio-theme", isNight ? "night" : "light");
-  document.dispatchEvent(new CustomEvent("portfolio-theme-change", { detail: { theme: isNight ? "night" : "day" } }));
-}
 
 function applyLanguage(language) {
   activeLanguage = language === "en" ? "en" : "pt";
@@ -129,14 +127,88 @@ function applyLanguage(language) {
   document.dispatchEvent(new CustomEvent("portfolio-language-change", { detail: { language: activeLanguage } }));
 }
 
-themeToggle?.addEventListener("click", () => {
-  applyTheme(document.body.classList.contains("night-theme") ? "light" : "night");
-});
 languageToggle?.addEventListener("click", () => {
   applyLanguage(activeLanguage === "pt" ? "en" : "pt");
 });
-applyTheme(safeStorage.get("portfolio-theme", "light"));
 applyLanguage(activeLanguage);
+
+const menuToggle = document.querySelector("#menu-toggle");
+const siteMenu = document.querySelector("#site-menu");
+const closeSiteMenu = () => {
+  menuToggle?.setAttribute("aria-expanded", "false");
+  menuToggle?.setAttribute("aria-label", "Abrir menu de navegação");
+  siteMenu?.parentElement.classList.remove("is-menu-open");
+};
+menuToggle?.addEventListener("click", () => {
+  const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+  menuToggle.setAttribute("aria-expanded", String(!isOpen));
+  menuToggle.setAttribute("aria-label", isOpen ? "Abrir menu de navegação" : "Fechar menu de navegação");
+  siteMenu?.parentElement.classList.toggle("is-menu-open", !isOpen);
+});
+document.querySelectorAll("[data-menu-link]").forEach((link) => link.addEventListener("click", closeSiteMenu));
+
+const contactTitle = document.querySelector(".contact__title");
+let contactTitleAnimation;
+const animateContactTitle = () => {
+  if (!contactTitle || reduceMotion) return;
+  contactTitleAnimation?.scrollTrigger?.kill();
+  contactTitleAnimation?.kill();
+
+  const lines = [];
+  let current = document.createDocumentFragment();
+  const flushLine = () => {
+    if (current.childNodes.length) {
+      lines.push(current);
+      current = document.createDocumentFragment();
+    }
+  };
+  [...contactTitle.childNodes].forEach((node) => {
+    if (node.nodeName === "BR") {
+      flushLine();
+      return;
+    }
+    current.appendChild(node);
+  });
+  flushLine();
+  contactTitle.textContent = "";
+
+  const splitIntoLetters = (container) => {
+    const textNodes = [];
+    const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
+    textNodes.forEach((node) => {
+      if (!node.textContent.trim()) return;
+      const letters = document.createDocumentFragment();
+      [...node.textContent].forEach((character) => {
+        const letter = document.createElement("span");
+        letter.className = "contact__letter";
+        letter.textContent = character === " " ? "\u00a0" : character;
+        letters.appendChild(letter);
+      });
+      node.replaceWith(letters);
+    });
+  };
+
+  lines.forEach((fragment) => {
+    const line = document.createElement("span");
+    line.className = "contact__line";
+    line.appendChild(fragment);
+    contactTitle.appendChild(line);
+    splitIntoLetters(line);
+  });
+
+  contactTitleAnimation = gsap.from(contactTitle.querySelectorAll(".contact__letter"), {
+    yPercent: 130,
+    rotate: 5,
+    opacity: 0,
+    filter: "blur(8px)",
+    stagger: 0.09,
+    ease: "power2.out",
+    scrollTrigger: { trigger: ".contact", start: "top 92%", end: "top 30%", scrub: 1.5 },
+  });
+};
+animateContactTitle();
+document.addEventListener("portfolio-language-change", animateContactTitle);
 
 const glow = document.querySelector(".cursor-glow");
 
@@ -165,6 +237,7 @@ if (customCursor && finePointer.matches) {
   const moveGlowY = glow ? gsap.quickTo(glow, "top", { duration: 0.45, ease: "power3.out" }) : null;
   let activeCursorTarget = null;
   let previousPointer = { x: 0, y: 0 };
+  const cursorDot = customCursor.querySelector(".custom-cursor__dot");
 
   const getCursorLabel = (target) => {
     const key = target.dataset.cursorLabel;
@@ -193,10 +266,14 @@ if (customCursor && finePointer.matches) {
       activeCursorTarget = target;
       customCursorLabel.textContent = getCursorLabel(target);
       customCursor.classList.add("is-hover");
+      gsap.fromTo(cursorDot, { scale: 0.84 }, { scale: 1, duration: 0.48, ease: "elastic.out(1, .45)" });
     });
     target.addEventListener("pointerleave", () => {
       activeCursorTarget = null;
       customCursor.classList.remove("is-hover");
+    });
+    target.addEventListener("pointerdown", () => {
+      gsap.fromTo(cursorDot, { scale: 1 }, { scale: 0.74, duration: 0.12, yoyo: true, repeat: 1, ease: "power2.inOut" });
     });
   });
   document.addEventListener("portfolio-language-change", () => {
@@ -230,7 +307,7 @@ if (customCursor && finePointer.matches) {
 const heroTitleSpans = document.querySelectorAll(".hero__title span");
 
 if (!reduceMotion) {
-  const magneticTargets = document.querySelectorAll(".round-link, .header-contact, .theme-toggle, .language-toggle, .text-link, .world__info-links a");
+  const magneticTargets = document.querySelectorAll(".round-link, .header-contact, .language-toggle, .text-link, .world__info-links a");
   magneticTargets.forEach((target) => {
     const xTo = gsap.quickTo(target, "x", { duration: 0.42, ease: "power3.out" });
     const yTo = gsap.quickTo(target, "y", { duration: 0.42, ease: "power3.out" });
@@ -278,14 +355,61 @@ if (!reduceMotion) {
     gsap.from(title, { y: 75, opacity: 0, duration: 1, ease: "power4.out", scrollTrigger: { trigger: title, start: "top 88%" } });
   });
 
-  gsap.utils.toArray(".project").forEach((project, index) => {
-    gsap.from(project, { y: 100, opacity: 0, rotate: index % 2 ? 2 : -2, duration: 1.1, ease: "power4.out", scrollTrigger: { trigger: project, start: "top 90%" } });
-  });
+  const projectListEl = document.querySelector(".project-list");
+  const projectItems = gsap.utils.toArray(".project");
+  if (projectListEl && projectItems.length > 1) {
+    let projectPositions = [];
+    const measureProjectPositions = () => {
+      projectItems.forEach((p) => gsap.set(p, { clearProps: "x,y,rotation,scale,zIndex" }));
+      const listRect = projectListEl.getBoundingClientRect();
+      projectPositions = projectItems.map((p) => {
+        const r = p.getBoundingClientRect();
+        return { x: r.left - listRect.left, y: r.top - listRect.top };
+      });
+    };
+    const applyProjectStack = () => {
+      measureProjectPositions();
+      const base = projectPositions[0];
+      projectItems.forEach((p, i) => {
+        gsap.set(p, {
+          x: base.x - projectPositions[i].x,
+          y: base.y - projectPositions[i].y + i * 24,
+          rotation: i % 2 ? 3 : -3,
+          scale: 1 - i * 0.012,
+          zIndex: projectItems.length - i,
+        });
+      });
+    };
+    applyProjectStack();
 
-  gsap.from(".service-list", { y: 48, opacity: 0, duration: 1, ease: "power3.out", scrollTrigger: { trigger: ".service-list", start: "top 88%" } });
+    const projectDispersion = gsap.timeline({
+      scrollTrigger: { trigger: projectListEl, start: "top 82%", end: "bottom 45%", scrub: 1.2 },
+    });
+    projectItems.forEach((p, i) => {
+      projectDispersion.to(p, {
+        x: 0,
+        y: 0,
+        rotation: 0,
+        scale: 1,
+        zIndex: i + 1,
+        ease: "power2.out",
+        duration: 1.5 / projectItems.length,
+      }, (i * 0.85) / projectItems.length);
+    });
+
+    let resizeTimer;
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        applyProjectStack();
+        ScrollTrigger.refresh();
+      }, 200);
+    });
+  }
+
+  gsap.from(".services__intro, .service-list", { y: 48, opacity: 0, duration: 1, ease: "power3.out", stagger: 0.12, scrollTrigger: { trigger: ".services__intro", start: "top 88%" } });
   gsap.to(".contact__sky", { yPercent: -12, ease: "none", scrollTrigger: { trigger: ".contact", start: "top bottom", end: "bottom top", scrub: 1 } });
   gsap.from(".world__copy, .world__info", { y: 45, opacity: 0, stagger: 0.16, duration: 1, ease: "power3.out", scrollTrigger: { trigger: ".world", start: "top 76%" } });
-  gsap.from(".earth-stage", { scale: 0.82, opacity: 0, rotateY: -12, duration: 1.5, ease: "power4.out", scrollTrigger: { trigger: ".world", start: "top 82%" } });
   gsap.to(".earth-stage", { yPercent: -5, ease: "none", scrollTrigger: { trigger: ".world", start: "top bottom", end: "bottom top", scrub: 1.4 } });
   gsap.from(".earth-stage__status, .earth-stage__hint, .earth-stage__pointer", { y: 18, opacity: 0, stagger: 0.12, duration: 0.8, ease: "back.out(1.5)", scrollTrigger: { trigger: ".world", start: "top 70%" } });
   gsap.from(".world__info-line, .world__info-links a", { x: 28, opacity: 0, stagger: 0.08, duration: 0.65, ease: "power3.out", scrollTrigger: { trigger: ".world__info", start: "top 78%" } });
@@ -382,9 +506,14 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
   });
 });
 
-const redirectIfMissing = (target) => {
-  const resolved = target.startsWith("/") ? `${window.location.origin}${target}` : target;
-  fetch(resolved, { method: "HEAD" }).catch(() => { window.location.href = "404.html"; });
+const redirectIfMissing = async (target) => {
+  try {
+    const resolved = new URL(target, window.location.href);
+    const response = await fetch(resolved, { method: "GET" });
+    if (!response.ok) window.location.href = new URL("404.html", window.location.href).href;
+  } catch {
+    window.location.href = new URL("404.html", window.location.href).href;
+  }
 };
 document.addEventListener("click", (event) => {
   const anchor = event.target.closest("a[href]");
