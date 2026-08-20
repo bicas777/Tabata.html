@@ -106,8 +106,8 @@ void main() {
 `;
 
 const PALETTES = {
-  light: ['#3a6ea8', '#6fa8dd', '#c8e6fa'],
-  night: ['#0e3a5c', '#2f7fb8', '#a6e9ff']
+  light: ['#4f6d7a', '#4a6fa5', '#c0d6df'],
+  night: ['#166088', '#4a6fa5', '#c0d6df']
 };
 
 function toColor(hex) {

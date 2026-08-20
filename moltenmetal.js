@@ -155,9 +155,9 @@ function hexToRgb(hex) {
       uMouse: { value: new THREE.Vector2(0.5, 0.5) },
       uMouseStrength: { value: 0.3 },
       uEnableMouse: { value: true },
-      uColor1: { value: hexToRgb('#5227FF') },
-      uColor2: { value: hexToRgb('#FF9FFC') },
-      uColor3: { value: hexToRgb('#FFFFFF') }
+      uColor1: { value: hexToRgb('#4a6fa5') },
+      uColor2: { value: hexToRgb('#c0d6df') },
+      uColor3: { value: hexToRgb('#dbe9ee') }
     }
   });
 

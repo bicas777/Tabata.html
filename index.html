@@ -24,12 +24,13 @@
       @font-face { font-family:'JetBrains';font-style:normal;font-weight:700;font-display:swap;src:url('assets/fonts/JetBrainsMono/JetBrainsMonoNLNerdFontMono-Bold.ttf') format('truetype'); }
       @font-face { font-family:'JetBrains';font-style:italic;font-weight:700;font-display:swap;src:url('assets/fonts/JetBrainsMono/JetBrainsMonoNLNerdFontMono-BoldItalic.ttf') format('truetype'); }
     </style>
-    <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.23/dist/lenis.css" media="print" onload="this.media='all'" />
-    <link rel="stylesheet" href="style.css" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="https://unpkg.com/lenis@1.3.23/dist/lenis.css" /><link rel="stylesheet" href="style.css" /></noscript>
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.23/dist/lenis.css" />
+    <link rel="stylesheet" href="style.css?v=20260819-10" />
+    <link rel="stylesheet" href="glasssurface.css?v=20260819-10" />
+    <noscript><link rel="stylesheet" href="https://unpkg.com/lenis@1.3.23/dist/lenis.css" /><link rel="stylesheet" href="style.css?v=20260819-10" /><link rel="stylesheet" href="glasssurface.css?v=20260819-10" /></noscript>
   </head>
   <body>
-    <div class="dotfield" aria-hidden="true"></div>
+    <div class="aurora" aria-hidden="true"></div>
     <svg class="filters" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><defs><filter id="hero-title-warp" color-interpolation-filters="sRGB" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="2.5 2.5" numOctaves="3" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G" result="warp"/></filter></defs></svg>
     <div class="cursor-glow" aria-hidden="true"></div>
     <div class="custom-cursor" aria-hidden="true">
@@ -42,22 +43,7 @@
     </div>
 
     <header class="site-header">
-      <svg class="site-header__filter" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <filter id="site-header-glass-filter" color-interpolation-filters="sRGB" x="0%" y="0%" width="100%" height="100%">
-            <feImage id="site-header-glass-map" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" result="map" />
-            <feDisplacementMap in="SourceGraphic" in2="map" scale="-24" xChannelSelector="R" yChannelSelector="G" result="red-displacement" />
-            <feColorMatrix in="red-displacement" type="matrix" values="1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" result="red" />
-            <feDisplacementMap in="SourceGraphic" in2="map" scale="-24" xChannelSelector="R" yChannelSelector="G" result="green-displacement" />
-            <feColorMatrix in="green-displacement" type="matrix" values="0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0" result="green" />
-            <feDisplacementMap in="SourceGraphic" in2="map" scale="-24" xChannelSelector="R" yChannelSelector="G" result="blue-displacement" />
-            <feColorMatrix in="blue-displacement" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0" result="blue" />
-            <feBlend in="red" in2="green" mode="screen" result="red-green" />
-            <feBlend in="red-green" in2="blue" mode="screen" result="output" />
-            <feGaussianBlur in="output" stdDeviation="0" />
-          </filter>
-        </defs>
-      </svg>
+      
       <a class="brand" href="#top" aria-label="Voltar ao início">E<span>.</span>B</a>
       <p class="header-status"><span class="header-status__dot" aria-hidden="true"></span> <span class="header-status__label" data-i18n="header.status">DISPONÍVEL PARA PROJETOS</span></p>
       <div class="header-actions">
@@ -124,42 +110,51 @@
           <p data-i18n="projects.copy">Uma seleção de identidades, sites e imagens em movimento.</p>
         </div>
         <div class="project-list">
+          <div class="project-intro" aria-hidden="true">
+            <span class="project-intro__ring"></span>
+            <span class="project-intro__spark">✦</span>
+            <span class="project-intro__eyebrow">PROJETOS SELECIONADOS</span>
+            <strong class="project-intro__title">EM<br /><em>ÓRBITA</em></strong>
+            <span class="project-intro__meta">06 PROJETOS — 2024 / 2026</span>
+          </div>
+          <div class="project-grid">
           <article class="project project--a">
             <a href="#contato" class="project__link" aria-label="Ver Projeto 01" data-cursor-label="VER PROJETO">
-              <div class="project__visual"><span class="orb orb--purple"></span><span class="spark">✦</span><span class="project__grain"></span></div>
+              <div class="project__visual"><img class="project__image" src="assets/projects/projeto-01.png" alt="" loading="lazy" /></div>
               <div class="project__meta"><p>01 / IDENTIDADE VISUAL</p><h3>Projeto Um</h3><i>↗</i></div>
             </a>
           </article>
           <article class="project project--b">
             <a href="assets/macos/index.html" class="project__link" aria-label="Ver Projeto 02" data-cursor-label="VER PROJETO">
-              <div class="project__visual"><span class="motion-lines"></span><span class="motion-disc"></span></div>
+              <div class="project__visual"><img class="project__image" src="assets/projects/projeto-02.png" alt="" loading="lazy" /></div>
               <div class="project__meta"><p>02 / WEBSITE CRIATIVO</p><h3>Projeto Dois</h3><i>↗</i></div>
             </a>
           </article>
           <article class="project project--c">
             <a href="#contato" class="project__link" aria-label="Ver Projeto 03" data-cursor-label="VER PROJETO">
-              <div class="project__visual"><span class="motion-lines"></span><span class="motion-disc"></span></div>
+              <div class="project__visual"><img class="project__image" src="assets/projects/projeto-03.png" alt="" loading="lazy" /></div>
               <div class="project__meta"><p>03 / MOTION &amp; VÍDEO</p><h3>Projeto Três</h3><i>↗</i></div>
             </a>
           </article>
           <article class="project project--d">
             <a href="#contato" class="project__link" aria-label="Ver Projeto 04" data-cursor-label="VER PROJETO">
-              <div class="project__visual"><span class="glow-grid"></span><span class="orb orb--blue"></span></div>
+              <div class="project__visual"><img class="project__image" src="assets/projects/projeto-04.png" alt="" loading="lazy" /></div>
               <div class="project__meta"><p>04 / LANDING PAGE</p><h3>Projeto Quatro</h3><i>↗</i></div>
             </a>
           </article>
           <article class="project project--e">
             <a href="#contato" class="project__link" aria-label="Ver Projeto 05" data-cursor-label="VER PROJETO">
-              <div class="project__visual"><span class="lilac-shape"></span><span class="type-visual">FORM</span></div>
+              <div class="project__visual"><img class="project__image" src="assets/projects/projeto-05.png" alt="" loading="lazy" /></div>
               <div class="project__meta"><p>05 / DIREÇÃO DE ARTE</p><h3>Projeto Cinco</h3><i>↗</i></div>
             </a>
           </article>
           <article class="project project--f">
             <a href="#contato" class="project__link" aria-label="Ver Projeto 06" data-cursor-label="VER PROJETO">
-              <div class="project__visual"><span class="rings"></span><span class="center-star">✦</span></div>
+              <div class="project__visual"><img class="project__image" src="assets/projects/projeto-06.png" alt="" loading="lazy" /></div>
               <div class="project__meta"><p>06 / EXPERIMENTO DIGITAL</p><h3>Projeto Seis</h3><i>↗</i></div>
             </a>
           </article>
+          </div>
         </div>
       </section>
 
@@ -197,6 +192,7 @@
             <div class="service__tags"><span>Premiere</span><span>After Effects</span><span>Motion</span></div>
             <i>↘</i>
           </article>
+          </div>
         </div>
       </section>
 
@@ -242,14 +238,16 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js" defer></script>
     <script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js" defer></script>
-    <script src="script.js" defer></script>
+    <script src="script.js?v=20260819-10" defer></script>
     <script type="importmap">
       {"imports":{"three":"https://unpkg.com/three@0.173.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.173.0/examples/jsm/"}}
     </script>
-    <script type="module" src="globe.js" async></script>
-    <script type="module" src="topography.js" async></script>
-    <script type="module" src="moltenmetal.js" async></script>
-    <script src="dotfield.js" defer></script>
-    <script src="backgrounds.js" defer></script>
+    <script type="module" src="globe.js?v=20260819-10" async></script>
+    <script type="module" src="topography.js?v=20260819-10" async></script>
+    <script type="module" src="moltenmetal.js?v=20260819-10" async></script>
+<script src="gradientblinds.js?v=20260819-10" defer></script>
+    <script src="liquidglass.js?v=20260819-10" defer></script>
+    <script src="glasssurface.js?v=20260819-10" defer></script>
+    <script src="bugdetect.js?v=20260819-10" defer></script>
   </body>
 </html>
