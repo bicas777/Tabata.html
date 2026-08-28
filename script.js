@@ -53,6 +53,15 @@ const translations = {
     "contact.label": "CONTATO",
     "contact.pretitle": "TEM ALGO EM MENTE? VAMOS TIRAR DO PAPEL.",
     "contact.title": "Crie<br /><em>comigo.</em>",
+    "contact-card.button": "FALE COMIGO",
+    "contact-card.eyebrow": "ESCOLHA UM CANAL",
+    "contact-card.title": "Como falar comigo.",
+    "contact-card.email.label": "E-MAIL",
+    "contact-card.instagram.label": "INSTAGRAM",
+    "contact-card.linkedin.label": "LINKEDIN",
+    "contact-card.linkedin.handle": "in/enzo-bicalho",
+    "contact-card.whatsapp.label": "WHATSAPP",
+    "contact-card.whatsapp.handle": "+55 31 98380-8351",
   },
   en: {
     "header.status": "AVAILABLE FOR PROJECTS",
@@ -99,6 +108,15 @@ const translations = {
     "contact.label": "CONTACT",
     "contact.pretitle": "GOT SOMETHING IN MIND? LET'S BRING IT TO LIFE",
     "contact.title": "Create<br /><em>with me.</em>",
+    "contact-card.button": "GET IN TOUCH",
+    "contact-card.eyebrow": "PICK A CHANNEL",
+    "contact-card.title": "How to reach me.",
+    "contact-card.email.label": "E-MAIL",
+    "contact-card.instagram.label": "INSTAGRAM",
+    "contact-card.linkedin.label": "LINKEDIN",
+    "contact-card.linkedin.handle": "in/enzo-bicalho",
+    "contact-card.whatsapp.label": "WHATSAPP",
+    "contact-card.whatsapp.handle": "+55 31 98380-8351",
   },
 };
 
@@ -145,13 +163,59 @@ menuToggle?.addEventListener("click", () => {
 });
 document.querySelectorAll("[data-menu-link]").forEach((link) => link.addEventListener("click", closeSiteMenu));
 
+// Card de contato: abre/fecha um modal com os canais de contato.
+const contactCard = document.querySelector("#contact-card");
+const contactCardOverlay = document.querySelector("#contact-card-overlay");
+const openContactCardBtn = document.querySelector("#open-contact-card");
+const closeContactCardBtn = document.querySelector("#close-contact-card");
+let lastFocusedBeforeCard = null;
+
+const openContactCard = () => {
+  if (!contactCard) return;
+  lastFocusedBeforeCard = document.activeElement;
+  contactCard.setAttribute("aria-hidden", "false");
+  contactCardOverlay?.classList.add("is-open");
+  contactCard.classList.add("is-open");
+  document.body.classList.add("contact-card-open");
+  closeSiteMenu();
+  closeContactCardBtn?.focus();
+};
+
+const closeContactCard = () => {
+  if (!contactCard || !contactCard.classList.contains("is-open")) return;
+  contactCard.setAttribute("aria-hidden", "true");
+  contactCardOverlay?.classList.remove("is-open");
+  contactCard.classList.remove("is-open");
+  document.body.classList.remove("contact-card-open");
+  openContactCardBtn?.focus();
+  lastFocusedBeforeCard?.focus?.();
+};
+
+openContactCardBtn?.addEventListener("click", openContactCard);
+closeContactCardBtn?.addEventListener("click", closeContactCard);
+contactCardOverlay?.addEventListener("click", closeContactCard);
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") closeContactCard();
+  if (event.key === "Tab" && contactCard?.classList.contains("is-open")) {
+    const focusable = contactCard.querySelectorAll('a[href], button:not([disabled])');
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
+});
+
 const contactTitle = document.querySelector(".contact__title");
 let contactTitleAnimation;
-const animateContactTitle = () => {
-  if (!contactTitle || reduceMotion) return;
-  contactTitleAnimation?.scrollTrigger?.kill();
-  contactTitleAnimation?.kill();
-
+let contactTitleObserver = null;
+const buildContactTitleLetters = () => {
+  if (!contactTitle) return [];
   const lines = [];
   let current = document.createDocumentFragment();
   const flushLine = () => {
@@ -180,7 +244,7 @@ const animateContactTitle = () => {
       [...node.textContent].forEach((character) => {
         const letter = document.createElement("span");
         letter.className = "contact__letter";
-        letter.textContent = character === " " ? "\u00a0" : character;
+        letter.textContent = character === " " ? " " : character;
         letters.appendChild(letter);
       });
       node.replaceWith(letters);
@@ -195,20 +259,51 @@ const animateContactTitle = () => {
     splitIntoLetters(line);
   });
 
-  contactTitleAnimation = gsap.from(contactTitle.querySelectorAll(".contact__letter"), {
-    yPercent: 130,
-    rotate: 5,
+  return contactTitle.querySelectorAll(".contact__letter");
+};
+
+const animateContactTitle = () => {
+  if (!contactTitle || reduceMotion) return;
+  contactTitleAnimation?.kill();
+  contactTitleAnimation = null;
+  if (contactTitleObserver) {
+    contactTitleObserver.disconnect();
+    contactTitleObserver = null;
+  }
+
+  const letters = buildContactTitleLetters();
+  // Estado inicial BEM mais forte: letras subindo de baixo, com blur alto,
+  // rota\u00e7\u00e3o e leve escala \u2014 reveladas por visibilidade (IntersectionObserver),
+  // igual ao mecanismo anterior que funcionava, s\u00f3 com estilo mais dram\u00e1tico.
+  gsap.set(letters, {
+    yPercent: 160,
     opacity: 0,
-    filter: "blur(8px)",
-    stagger: 0.09,
-    ease: "power2.out",
-    scrollTrigger: { trigger: ".contact", start: "top 92%", end: "top 30%", scrub: 1.5 },
+    rotate: 12,
+    scale: 1.25,
+    filter: "blur(12px)",
   });
+
+  contactTitleObserver = new IntersectionObserver((entries, obs) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        contactTitleAnimation = gsap.to(letters, {
+          yPercent: 0,
+          rotate: 0,
+          scale: 1,
+          opacity: 1,
+          filter: "blur(0px)",
+          stagger: 0.07,
+          duration: 1.1,
+          ease: "power3.out",
+        });
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.25 });
+  contactTitleObserver.observe(contactTitle);
 };
 animateContactTitle();
 document.addEventListener("portfolio-language-change", animateContactTitle);
-
-const glow = document.querySelector(".cursor-glow");
 
 // Project images fade in over the CSS-art fallback once the files exist.
 document.querySelectorAll(".project__image").forEach((image) => {
@@ -238,8 +333,6 @@ if (customCursor && finePointer.matches) {
   const tiltCursor = gsap.quickTo(customCursor, "rotation", { duration: 0.35, ease: "power3.out" });
   const squashCursorX = gsap.quickTo(customCursor, "scaleX", { duration: 0.35, ease: "power3.out" });
   const squashCursorY = gsap.quickTo(customCursor, "scaleY", { duration: 0.35, ease: "power3.out" });
-  const moveGlowX = glow ? gsap.quickTo(glow, "left", { duration: 0.45, ease: "power3.out" }) : null;
-  const moveGlowY = glow ? gsap.quickTo(glow, "top", { duration: 0.45, ease: "power3.out" }) : null;
   let activeCursorTarget = null;
   let previousPointer = { x: 0, y: 0 };
   const cursorDot = customCursor.querySelector(".custom-cursor__dot");
@@ -258,6 +351,9 @@ if (customCursor && finePointer.matches) {
       INSTAGRAM: { pt: "INSTAGRAM", en: "INSTAGRAM" },
       LINKEDIN: { pt: "LINKEDIN", en: "LINKEDIN" },
       "ENVIAR E-MAIL": { pt: "ENVIAR E-MAIL", en: "SEND E-MAIL" },
+      "CONTATO": { pt: "CONTATO", en: "CONTACT" },
+      "FECHAR": { pt: "FECHAR", en: "CLOSE" },
+      WHATSAPP: { pt: "WHATSAPP", en: "WHATSAPP" },
     };
     if (key && labels[key]) return labels[key][activeLanguage];
     if (target.matches(".earth-stage canvas")) return activeLanguage === "en" ? "ROTATE GLOBE" : "GIRAR GLOBO";
@@ -287,24 +383,17 @@ if (customCursor && finePointer.matches) {
 
   window.addEventListener("pointermove", (event) => {
     if (event.pointerType === "touch") return;
-    let cursorX = event.clientX;
-    let cursorY = event.clientY;
-    if (activeCursorTarget) {
-      const bounds = activeCursorTarget.getBoundingClientRect();
-      cursorX += (bounds.left + bounds.width / 2 - cursorX) * 0.12;
-      cursorY += (bounds.top + bounds.height / 2 - cursorY) * 0.12;
-    }
+    const cursorX = event.clientX;
+    const cursorY = event.clientY;
+    customCursor.style.left = cursorX + "px";
+    customCursor.style.top = cursorY + "px";
     const velocityX = cursorX - previousPointer.x;
     const velocityY = cursorY - previousPointer.y;
     const velocity = Math.min(Math.hypot(velocityX, velocityY), 32);
     customCursor.classList.add("is-visible");
-    moveCursorX(cursorX);
-    moveCursorY(cursorY);
     tiltCursor(Math.max(-16, Math.min(16, velocityX * 0.45)));
     squashCursorX(1 + velocity * 0.004);
     squashCursorY(1 - velocity * 0.0025);
-    moveGlowX?.(event.clientX);
-    moveGlowY?.(event.clientY);
     previousPointer = { x: cursorX, y: cursorY };
   });
 }
@@ -338,15 +427,24 @@ const header = document.querySelector(".site-header");
 const heroItems = document.querySelectorAll(".hero > *:not(.cloud-layer)");
 
 if (header) gsap.fromTo(header, { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out", onComplete: () => gsap.set(header, { clearProps: "transform" }) });
-gsap.from(heroItems, { opacity: 0, y: 26, stagger: 0.1, duration: 0.85, ease: "power3.out" });
+
+// Intro rica do hero (timeline encadeada)
+if (!reduceMotion) {
+  const heroTl = gsap.timeline({ defaults: { ease: "power4.out" } });
+  heroTl
+    .from(".hero__topline", { opacity: 0, y: -18, duration: 0.8 })
+    .from(".hero__title span", { yPercent: 110, duration: 1.1, stagger: 0.12, ease: "power4.out" }, "-=0.4")
+    .from(".hero__small", { opacity: 0, y: 20, duration: 0.8 }, "-=0.7")
+    .from(".hero__manifesto", { opacity: 0, y: 20, duration: 0.8 }, "-=0.6")
+    .from(".hero__number", { opacity: 0, x: -16, duration: 0.7 }, "-=0.6")
+    .from(".round-link", { opacity: 0, scale: 0.8, duration: 0.7, ease: "back.out(1.6)" }, "-=0.5");
+} else {
+  gsap.set(heroItems, { opacity: 1 });
+}
 
 if (!reduceMotion) {
   document.querySelectorAll("[data-speed]").forEach((layer) => {
     gsap.to(layer, { yPercent: Number(layer.dataset.speed) * -100, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 1.2 } });
-  });
-
-  gsap.utils.toArray(".about h2, .projects__intro h2").forEach((title) => {
-    gsap.from(title, { y: 75, opacity: 0, duration: 1, ease: "power4.out", scrollTrigger: { trigger: title, start: "top 88%" } });
   });
 
   const projectListEl = document.querySelector(".project-list");
@@ -493,21 +591,54 @@ if (!reduceMotion) {
     });
   }
 
-  gsap.from(".services__intro, .service-list", { y: 48, opacity: 0, duration: 1, ease: "power3.out", stagger: 0.12, scrollTrigger: { trigger: ".services__intro", start: "top 88%" } });
+  // A seção Serviços é revelada por visibilidade (IntersectionObserver) no
+  // bloco dedicado abaixo — onView(...) em volta de .service / .service-list.
+  // Removido o ScrollTrigger antigo que conflitava com esse reveal e não
+  // disparava de forma confiável por causa do pin da seção de Projetos.
   gsap.to(".contact__sky", { yPercent: -12, ease: "none", scrollTrigger: { trigger: ".contact", start: "top bottom", end: "bottom top", scrub: 1 } });
-  gsap.from(".world__copy, .world__info", { y: 45, opacity: 0, stagger: 0.16, duration: 1, ease: "power3.out", scrollTrigger: { trigger: ".world", start: "top 76%" } });
   gsap.to(".earth-stage", { yPercent: -5, ease: "none", scrollTrigger: { trigger: ".world", start: "top bottom", end: "bottom top", scrub: 1.4 } });
-  gsap.from(".earth-stage__status, .earth-stage__hint, .earth-stage__pointer", { y: 18, opacity: 0, stagger: 0.12, duration: 0.8, ease: "back.out(1.5)", scrollTrigger: { trigger: ".world", start: "top 70%" } });
-  gsap.from(".world__info-line, .world__info-links a", { x: 28, opacity: 0, stagger: 0.08, duration: 0.65, ease: "power3.out", scrollTrigger: { trigger: ".world__info", start: "top 78%" } });
+
+  // Reveals de World/Contact baseados em visibilidade (sobrevivem ao pin de Projetos)
+  const worldInfo = document.querySelector(".world__info");
+  if (worldInfo) {
+    const infoLines = worldInfo.querySelectorAll(".world__info-line, .world__info-links a");
+    gsap.set(worldInfo, { y: 45, opacity: 0 });
+    gsap.set(infoLines, { x: 28, opacity: 0 });
+    onView(worldInfo, () => {
+      gsap.to(worldInfo, { y: 0, opacity: 1, duration: 1, ease: "power3.out" });
+      gsap.to(infoLines, { x: 0, opacity: 1, stagger: 0.08, duration: 0.65, ease: "power3.out" });
+    }, { threshold: 0.2 });
+  }
+  const earthStage = document.querySelector(".earth-stage");
+  if (earthStage) {
+    const earthBits = earthStage.querySelectorAll(".earth-stage__status, .earth-stage__hint, .earth-stage__pointer");
+    gsap.set(earthBits, { y: 18, opacity: 0 });
+    onView(earthStage, () => {
+      gsap.to(earthBits, { y: 0, opacity: 1, stagger: 0.12, duration: 0.8, ease: "back.out(1.5)" });
+    }, { threshold: 0.2 });
+  }
+
+  // Lazy-load do globo 3D (three.js + globe.js): só importa quando a seção
+  // #world chega perto da viewport. Evita ~600KB de JS no carregamento inicial.
+  const worldSection = document.querySelector("#world");
+  if (worldSection && "IntersectionObserver" in window) {
+    let globeLoaded = false;
+    const globeObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !globeLoaded) {
+          globeLoaded = true;
+          import("./globe.js?v=20260819-10").catch(() => {});
+          obs.disconnect();
+        }
+      });
+    }, { rootMargin: "600px 0px" });
+    globeObserver.observe(worldSection);
+  } else if (worldSection) {
+    import("./globe.js?v=20260819-10").catch(() => {});
+  }
 }
 
 window.addEventListener("pointermove", (event) => {
-  if (window.innerWidth > 700 && !finePointer.matches) {
-    glow.style.opacity = "1";
-    glow.style.left = `${event.clientX}px`;
-    glow.style.top = `${event.clientY}px`;
-  }
-
   if (window.innerWidth > 700 && window.heroTitleSpans && heroTitleSpans.length) {
     const { left, top, width, height } = heroTitleSpans[0].parentElement.getBoundingClientRect();
     const x = (event.clientX - left) / width - 0.5;
@@ -525,7 +656,6 @@ window.addEventListener("pointermove", (event) => {
         skewY: y * 3 * phase,
         scale: 1 + phase * 0.05,
         rotation: x * y * 4,
-        filter: `blur(${phase * 0.2}px)`,
         force3D: true,
       });
     });
@@ -636,3 +766,420 @@ if (marqueeTrack && !reduceMotion) {
     marqueeTimer = setTimeout(startMarquee, 200);
   });
 }
+
+/* ============================================================
+   Camada de interações ricas — GSAP
+   Tudo respeita reduceMotion; efeitos pointer só em fine pointer.
+   ============================================================ */
+
+// Helper: divide o texto de um elemento em <span> por palavra (preserva <br>/<em>)
+function splitWords(el) {
+  if (!el || el.dataset.split === "done") return el.querySelectorAll(".word");
+  const nodes = [...el.childNodes];
+  el.textContent = "";
+  const words = [];
+  const flush = (text) => {
+    text.split(/(\s+)/).forEach((chunk) => {
+      if (chunk.trim() === "") {
+        el.appendChild(document.createTextNode(chunk));
+        return;
+      }
+      const span = document.createElement("span");
+      span.className = "word";
+      span.textContent = chunk;
+      el.appendChild(span);
+      words.push(span);
+    });
+  };
+  nodes.forEach((node) => {
+    if (node.nodeName === "BR") {
+      el.appendChild(document.createElement("br"));
+    } else if (node.nodeType === Node.TEXT_NODE) {
+      flush(node.textContent);
+    } else {
+      // elemento (ex: <em>) — divide o texto interno mantendo a tag
+      const span = document.createElement("span");
+      span.className = "word";
+      span.style.display = "inline-block";
+      const inner = document.createElement(node.nodeName.toLowerCase());
+      inner.innerHTML = node.innerHTML;
+      span.appendChild(inner);
+      el.appendChild(span);
+      words.push(span);
+    }
+  });
+  el.dataset.split = "done";
+  return words;
+}
+
+// Helper: dispara o callback quando o elemento fica visível (baseado em
+// IntersectionObserver, NÃO em ScrollTrigger) — sobrevive ao pin de seções.
+function onView(el, cb, opts = {}) {
+  if (!el || reduceMotion) {
+    if (el && reduceMotion) cb();
+    return;
+  }
+  if (!("IntersectionObserver" in window)) { cb(); return; }
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        cb();
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: opts.threshold ?? 0.2, rootMargin: opts.rootMargin ?? "0px 0px -10% 0px" });
+  io.observe(el);
+}
+
+// Helper: reveal de texto palavra-por-palavra com blur e rotação do container,
+// ligado ao scroll (scrub). Inspirado no padrão ScrollReveal (React) que o usuário
+// pediu: baseOpacity, baseRotation, blurStrength e os "ends" são reguláveis.
+// Respeita reduceMotion (mostra tudo sem animar) e só ativa em fine pointer/scroll.
+// Retorna um array de ScrollTriggers criados, para limpeza se necessário.
+function scrollReveal(el, opts = {}) {
+  if (!el) return [];
+  const {
+    enableBlur = true,
+    baseOpacity = 0.1,
+    baseRotation = 3,
+    blurStrength = 4,
+    baseScale = 1,
+    rotationEnd = "bottom bottom",
+    wordEnd = "bottom bottom",
+    start = "top bottom",
+    trigger = el,
+    rotateOrigin = "0% 50%",
+  } = opts;
+
+  if (reduceMotion) {
+    const words = splitWords(el);
+    gsap.set(words, { opacity: 1, filter: "blur(0px)" });
+    gsap.set(el, { rotate: 0, scale: 1 });
+    return [];
+  }
+
+  // Garante que o texto já está dividido em palavras (preserva <br>/<em>).
+  const words = splitWords(el);
+  const triggers = [];
+
+  // 1) Rotação + escala do container conforme entra na viewport.
+  const rotTween = gsap.fromTo(el,
+    { transformOrigin: rotateOrigin, rotate: baseRotation, scale: baseScale },
+    {
+      ease: "none", rotate: 0, scale: 1,
+      scrollTrigger: { trigger, start, end: rotationEnd, scrub: true },
+    }
+  );
+  if (rotTween.scrollTrigger) triggers.push(rotTween.scrollTrigger);
+
+  // 2) Cada palavra sobe de opacity (e blur) conforme rola — efeito "revela ao passar".
+  const wordTween = gsap.fromTo(words,
+    { opacity: baseOpacity, willChange: "opacity" },
+    {
+      ease: "none", opacity: 1, stagger: 0.05,
+      scrollTrigger: { trigger, start: "top bottom-=20%", end: wordEnd, scrub: true },
+    }
+  );
+  if (wordTween.scrollTrigger) triggers.push(wordTween.scrollTrigger);
+
+  // 3) Blur regulável (opcional) — só se pedido.
+  if (enableBlur) {
+    const blurTween = gsap.fromTo(words,
+      { filter: `blur(${blurStrength}px)`, willChange: "filter" },
+      {
+        ease: "none", filter: "blur(0px)", stagger: 0.05,
+        scrollTrigger: { trigger, start: "top bottom-=20%", end: wordEnd, scrub: true },
+      }
+    );
+    if (blurTween.scrollTrigger) triggers.push(blurTween.scrollTrigger);
+  }
+
+  return triggers;
+}
+
+// --- Barra de progresso de scroll (topo fixo) ---
+(function () {
+  const bar = document.createElement("div");
+  bar.className = "scroll-progress";
+  document.body.appendChild(bar);
+  if (!reduceMotion) {
+    gsap.to(bar, {
+      scaleX: 1,
+      ease: "none",
+      scrollTrigger: { start: 0, end: "max", scrub: 0.3 },
+    });
+  } else {
+    bar.style.transform = "scaleX(1)";
+  }
+})();
+
+// --- Header: esconde ao descer, mostra ao subir ---
+(function () {
+  const header = document.querySelector(".site-header");
+  if (!header || reduceMotion) return;
+  let lastY = 0;
+  let hidden = false;
+  ScrollTrigger.create({
+    start: 0,
+    end: "max",
+    onUpdate: (self) => {
+      const y = self.scroll();
+      const goingDown = y > lastY;
+      if (y > 120 && goingDown && !hidden) {
+        hidden = true;
+        gsap.to(header, { yPercent: -130, duration: 0.45, ease: "power3.out" });
+      } else if ((!goingDown || y < 120) && hidden) {
+        hidden = false;
+        gsap.to(header, { yPercent: 0, duration: 0.45, ease: "power3.out" });
+      }
+      lastY = y;
+    },
+  });
+})();
+
+// --- Reveal dos labels de seção (o "( 01 )") — por visibilidade ---
+if (!reduceMotion) {
+  gsap.utils.toArray(".section-label").forEach((label) => {
+    gsap.set(label, { opacity: 0, x: -24 });
+    onView(label, () => gsap.to(label, {
+      opacity: 1,
+      x: 0,
+      duration: 0.7,
+      ease: "power3.out",
+    }), { threshold: 0.5 });
+  });
+}
+
+// --- About: parágrafo + link + órbitas entram com stagger (por visibilidade) ---
+if (!reduceMotion) {
+  const aboutContent = document.querySelector(".about__content");
+  if (aboutContent) {
+    gsap.set(aboutContent.children, { opacity: 0, y: 34 });
+    onView(aboutContent, () => gsap.to(aboutContent.children, {
+      opacity: 1,
+      y: 0,
+      stagger: 0.14,
+      duration: 0.9,
+      ease: "power3.out",
+    }), { threshold: 0.2 });
+  }
+  const aboutOrbits = document.querySelector(".about__orbits");
+  if (aboutOrbits) {
+    gsap.set(aboutOrbits, { opacity: 0, scale: 0.7, rotate: -40 });
+    onView(aboutOrbits, () => gsap.to(aboutOrbits, {
+      opacity: 1,
+      scale: 1,
+      rotate: 0,
+      duration: 1.4,
+      ease: "power3.out",
+    }), { threshold: 0.2 });
+  }
+}
+
+// --- Services: reveal rico por palavra + glow de borda no hover + tilt ---
+(function () {
+  const services = document.querySelectorAll(".service");
+  if (!services.length) return;
+
+  if (!reduceMotion) {
+    // Título da seção: reveal palavra-por-palavra com blur/rotação (scrub)
+    const introTitle = document.querySelector(".services__intro h2");
+    if (introTitle) scrollReveal(introTitle, { baseRotation: 4, blurStrength: 4, wordEnd: "bottom 75%" });
+    // Texto de corpo da seção (igual About: sobe com stagger)
+    const introCopy = document.querySelector(".services__intro p");
+    if (introCopy) {
+      gsap.set(introCopy, { opacity: 0, y: 34 });
+      onView(introCopy, () => gsap.to(introCopy, { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" }), { threshold: 0.3 });
+    }
+    // Container da lista (sobe conforme fica visível) — baseado em visibilidade,
+    // não em ScrollTrigger (sobrevive ao pin da seção de Projetos).
+    const serviceList = document.querySelector(".service-list");
+    if (serviceList) {
+      gsap.set(serviceList, { opacity: 0, y: -20 });
+      onView(serviceList, () => gsap.to(serviceList, {
+        opacity: 1, y: 0, duration: 0.6, ease: "power2.out",
+      }), { threshold: 0.2 });
+    }
+    // Cada serviço: efeito criativo "flip de carta" (vira da esquerda em perspectiva)
+    services.forEach((service) => {
+      gsap.set(service, { rotationY: -92, opacity: 0, transformPerspective: 900, transformOrigin: "left center" });
+      onView(service, () => {
+        gsap.to(service,
+          { rotationY: 0, opacity: 1, duration: 1, ease: "power3.out" }
+        );
+        // Título e copy revelam por palavra com sweep (efeito "estica da esquerda")
+        const h3 = service.querySelector(".service__body h3");
+        const copy = service.querySelector(".service__body p");
+        const cols = [h3, copy].filter(Boolean).map(splitWords).flat();
+        gsap.set(cols, { scaleX: 0, opacity: 0, transformOrigin: "left center" });
+        gsap.to(cols, {
+          scaleX: 1, opacity: 1, stagger: 0.02, duration: 0.6, ease: "power2.out",
+        });
+        const tags = service.querySelector(".service__tags")?.children || [];
+        gsap.set(tags, { opacity: 0, scale: 0.6, y: 10 });
+        gsap.to(tags, {
+          opacity: 1, scale: 1, y: 0, stagger: 0.06, duration: 0.5, ease: "back.out(2)",
+        });
+      }, { threshold: 0.25 });
+    });
+  }
+
+  if (finePointer.matches && !reduceMotion) {
+    services.forEach((service) => {
+      const xTo = gsap.quickTo(service, "x", { duration: 0.5, ease: "power3.out" });
+      service.addEventListener("pointermove", (e) => {
+        const b = service.getBoundingClientRect();
+        xTo((e.clientX - (b.left + b.width / 2)) * 0.04);
+      });
+      service.addEventListener("pointerleave", () => gsap.to(service, { x: 0, duration: 0.6, ease: "elastic.out(1, .5)" }));
+    });
+  }
+  if (!reduceMotion) {
+    services.forEach((service) => {
+      service.addEventListener("pointerenter", () => {
+        gsap.to(service, { backgroundColor: "rgba(192,214,223,.08)", duration: 0.3 });
+        const index = service.querySelector(".service__index");
+        if (index) gsap.to(index, { color: "#020202", scale: 1.08, duration: 0.3 });
+      });
+      service.addEventListener("pointerleave", () => {
+        gsap.to(service, { backgroundColor: "rgba(192,214,223,0)", duration: 0.4 });
+        const index = service.querySelector(".service__index");
+        if (index) gsap.to(index, { color: "rgba(192,214,223,.55)", scale: 1, duration: 0.4 });
+      });
+    });
+  }
+})();
+
+// --- Project cards: tilt 3D magnético no hover ---
+(function () {
+  if (reduceMotion || !finePointer.matches) return;
+  const cards = document.querySelectorAll(".project");
+  cards.forEach((card) => {
+    const inner = card;
+    const rotX = gsap.quickTo(inner, "rotationX", { duration: 0.5, ease: "power3.out" });
+    const rotY = gsap.quickTo(inner, "rotationY", { duration: 0.5, ease: "power3.out" });
+    card.addEventListener("pointermove", (e) => {
+      const b = card.getBoundingClientRect();
+      const px = (e.clientX - b.left) / b.width - 0.5;
+      const py = (e.clientY - b.top) / b.height - 0.5;
+      rotY(px * 10);
+      rotX(-py * 10);
+    });
+    card.addEventListener("pointerleave", () => {
+      rotX(0);
+      rotY(0);
+    });
+  });
+})();
+
+// --- Contact: texto com reveal palavra-por-palavra (scrub) + corpo com stagger ---
+if (!reduceMotion) {
+  const pretitle = document.querySelector(".contact__pretitle");
+  if (pretitle) scrollReveal(pretitle, { baseRotation: 0, blurStrength: 3, wordEnd: "bottom 80%" });
+  // Texto de corpo da seção (igual About: sobe com stagger)
+  const contactBody = document.querySelector(".contact__cta");
+  const footer = document.querySelector(".contact__footer");
+  const bodyEls = [contactBody, footer].filter(Boolean);
+  if (bodyEls.length) {
+    gsap.set(bodyEls, { opacity: 0, y: 34 });
+    onView(contactBody, () => gsap.to(bodyEls, {
+      opacity: 1, y: 0, stagger: 0.14, duration: 0.9, ease: "power3.out",
+    }), { threshold: 0.25 });
+  }
+  // O glow contínuo é um efeito de loop (não reveal), então fica fora do onView.
+  gsap.to(".contact__pretitle", {
+    boxShadow: "0 .8rem 2.6rem rgba(2,2,2,.5)",
+    duration: 2.4,
+    ease: "sine.inOut",
+    repeat: -1,
+    yoyo: true,
+  });
+}
+
+// --- Reveals universais: marquee (por visibilidade) ---
+if (!reduceMotion) {
+  const marqueeEl = document.querySelector(".marquee");
+  if (marqueeEl) {
+    gsap.set(marqueeEl, { opacity: 0, y: 30 });
+    onView(marqueeEl, () => gsap.to(marqueeEl, {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: "power3.out",
+    }), { threshold: 0.2 });
+  }
+}
+
+// --- Animações extras (todas baseadas em visibilidade real, não em ScrollTrigger) ---
+if (!reduceMotion) {
+  // Hero glow que segue o mouse
+  const hero = document.querySelector(".hero");
+  if (hero && finePointer.matches) {
+    const glow = document.createElement("div");
+    glow.className = "hero__glow";
+    hero.insertBefore(glow, hero.firstChild);
+    hero.addEventListener("pointermove", (e) => {
+      const b = hero.getBoundingClientRect();
+      glow.style.setProperty("--gx", `${((e.clientX - b.left) / b.width) * 100}%`);
+      glow.style.setProperty("--gy", `${((e.clientY - b.top) / b.height) * 100}%`);
+    });
+  }
+
+  // World: grid + scanline revelam ao entrar na viewport
+  const worldEl = document.querySelector(".world");
+  if (worldEl) {
+    const worldGrid = document.querySelector(".world__grid");
+    const worldScanline = document.querySelector(".world__scanline");
+    if (worldGrid) gsap.set(worldGrid, { opacity: 0, scale: 1.08 });
+    if (worldScanline) gsap.set(worldScanline, { opacity: 0, y: -30 });
+    onView(worldEl, () => {
+      if (worldGrid) gsap.to(worldGrid, { opacity: 1, scale: 1, duration: 1.4, ease: "power2.out" });
+      if (worldScanline) gsap.to(worldScanline, { opacity: 1, y: 0, duration: 1, ease: "power3.out" });
+    }, { threshold: 0.15 });
+  }
+
+  // About: título revela palavra-por-palavra com blur/rotação (scrub)
+  const aboutTitle = document.querySelector(".about h2");
+  if (aboutTitle) scrollReveal(aboutTitle, { baseRotation: 4, blurStrength: 4, wordEnd: "bottom 75%" });
+
+  // Projects: título revela palavra-por-palavra com blur/rotação (scrub)
+  const projectsTitle = document.querySelector(".projects__intro h2");
+  if (projectsTitle) scrollReveal(projectsTitle, { baseRotation: -4, blurStrength: 4, wordEnd: "bottom 75%" });
+
+  // World: título revela palavra-por-palavra com blur/rotação (scrub)
+  const worldTitle = document.querySelector(".world__copy h2");
+  if (worldTitle) scrollReveal(worldTitle, { baseRotation: 3, blurStrength: 4, wordEnd: "bottom 75%" });
+
+  // World: eyebrow revela por palavra (scrub)
+  const worldEyebrow = document.querySelector(".world__eyebrow");
+  if (worldEyebrow) scrollReveal(worldEyebrow, { baseRotation: 0, blurStrength: 2, baseOpacity: 0.2, wordEnd: "bottom 80%" });
+  const worldCoords = document.querySelectorAll(".world__coordinates strong, .world__coordinates span");
+  if (worldCoords.length) {
+    gsap.set(worldCoords, { opacity: 0, x: -16 });
+    onView(document.querySelector(".world__coordinates"), () => gsap.to(worldCoords, { opacity: 1, x: 0, stagger: 0.05, duration: 0.5, ease: "power2.out" }), { threshold: 0.3 });
+  }
+
+  // Services: números (01/02/03) escalam no reveal
+  document.querySelectorAll(".service__index").forEach((idx) => {
+    gsap.set(idx, { scale: 0.4, opacity: 0 });
+    onView(idx, () => gsap.to(idx, { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(2)" }), { threshold: 0.5 });
+  });
+
+  // Contact: footer links revelam com brilho
+  const contactFooter = document.querySelector(".contact__footer");
+  if (contactFooter) {
+    const footerLinks = contactFooter.querySelectorAll("a");
+    gsap.set(footerLinks, { opacity: 0, y: 14 });
+    onView(contactFooter, () => gsap.to(footerLinks, { opacity: 1, y: 0, stagger: 0.07, duration: 0.6, ease: "power3.out" }), { threshold: 0.3 });
+  }
+}
+
+// --- Hero: leve skew no scroll (parallax extra) ---
+if (!reduceMotion) {
+  gsap.to(".hero__title", {
+    skewY: -1,
+    ease: "none",
+    scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 1 },
+  });
+}
+

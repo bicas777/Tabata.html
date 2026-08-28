@@ -155,9 +155,9 @@ function hexToRgb(hex) {
       uMouse: { value: new THREE.Vector2(0.5, 0.5) },
       uMouseStrength: { value: 0.3 },
       uEnableMouse: { value: true },
-      uColor1: { value: hexToRgb('#4a6fa5') },
-      uColor2: { value: hexToRgb('#c0d6df') },
-      uColor3: { value: hexToRgb('#dbe9ee') }
+      uColor1: { value: hexToRgb('#03045E') },
+      uColor2: { value: hexToRgb('#0077B6') },
+      uColor3: { value: hexToRgb('#00B4D8') }
     }
   });
 
@@ -194,6 +194,14 @@ function hexToRgb(hex) {
 
   const clock = new THREE.Clock();
   let raf = 0;
+  // Só renderiza enquanto a seção de contato (onde fica esse canvas) estiver na viewport.
+  let visible = true;
+  const contactSection = document.querySelector(".contact");
+  const watchEl = contactSection || container;
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; }, { threshold: 0.01 });
+    io.observe(watchEl);
+  }
 
   function render() {
     const dt = clock.getDelta();
@@ -206,7 +214,7 @@ function hexToRgb(hex) {
 
   function loop() {
     raf = requestAnimationFrame(loop);
-    if (document.hidden) return;
+    if (document.hidden || !visible) return;
     render();
   }
 

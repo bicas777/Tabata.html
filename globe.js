@@ -152,6 +152,7 @@ if (canvas && stage) {
   markerGroup.position.copy(markerPosition);
   markerGroup.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), markerPosition.clone().normalize());
   const markerCore = new THREE.Mesh(new THREE.SphereGeometry(0.065, 16, 16), new THREE.MeshBasicMaterial({ color: 0x9fffff }));
+  markerCore.position.z = 0.015;
   markerGroup.add(markerCore);
   const markerRing = new THREE.Mesh(new THREE.RingGeometry(0.12, 0.145, 32), new THREE.MeshBasicMaterial({ color: 0x66efff, side: THREE.DoubleSide, transparent: true, opacity: 0.9 }));
   markerRing.position.z = 0.015;
@@ -316,10 +317,12 @@ if (canvas && stage) {
   const visibilityObserver = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; }, { threshold: 0.02 });
   visibilityObserver.observe(world);
 
+  const reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   const clock = new THREE.Clock();
   const animate = () => {
     requestAnimationFrame(animate);
-    if (!visible) return;
+    if (document.hidden || !visible || reduced) return;
     const elapsed = clock.getElapsedTime();
     markerRing.scale.setScalar(1 + Math.sin(elapsed * 3.2) * 0.13);
     markerHalo.scale.setScalar(1 + Math.sin(elapsed * 2.2) * 0.2);
@@ -333,16 +336,13 @@ if (canvas && stage) {
     if (!markerUI) return;
     const bounds = stage.getBoundingClientRect();
     const canvasBounds = canvas.getBoundingClientRect();
-    const markerWorld = markerGroup.getWorldPosition(new THREE.Vector3());
+    const markerWorld = markerCore.getWorldPosition(new THREE.Vector3());
     const projected = markerWorld.clone().project(camera);
     const x = canvasBounds.left - bounds.left + (projected.x * 0.5 + 0.5) * canvasBounds.width;
     const y = canvasBounds.top - bounds.top + (-projected.y * 0.5 + 0.5) * canvasBounds.height;
-    const markerNormal = markerWorld.clone().normalize();
-    const towardCamera = camera.position.clone().sub(markerWorld).normalize();
-    const isFrontFacing = markerNormal.dot(towardCamera) > 0.08 && projected.z < 1;
     markerUI.style.left = `${x}px`;
     markerUI.style.top = `${y}px`;
-    markerUI.classList.toggle("is-hidden", !isFrontFacing);
+    markerUI.classList.remove("is-hidden");
   }
 }
 

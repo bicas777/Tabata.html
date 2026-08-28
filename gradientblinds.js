@@ -25,105 +25,103 @@ void main() {
 `;
 
   var FRAG = `#version 100
-precision mediump float;
+precision highp float;
 
 uniform vec3  iResolution;
 uniform vec2  iMouse;
 uniform float iTime;
-uniform float uAngle;
-uniform float uNoise;
-uniform float uBlindCount;
-uniform float uSpotlightRadius;
-uniform float uSpotlightSoftness;
-uniform float uSpotlightOpacity;
-uniform float uMirror;
-uniform float uDistort;
-uniform float uShineFlip;
-uniform vec3  uColor0;
+uniform float uSpeed;
+uniform float uInnerLines;
+uniform float uOuterLines;
+uniform float uWarpIntensity;
+uniform float uRotation;
+uniform float uEdgeFadeWidth;
+uniform float uColorCycleSpeed;
+uniform float uBrightness;
 uniform vec3  uColor1;
 uniform vec3  uColor2;
 uniform vec3  uColor3;
-uniform vec3  uColor4;
-uniform vec3  uColor5;
-uniform vec3  uColor6;
-uniform vec3  uColor7;
-uniform int   uColorCount;
 
 varying vec2 vUv;
 
-float rand(vec2 co){
-  return fract(sin(dot(co, vec2(12.9898,78.233))) * 43758.5453);
+#define HALF_PI 1.5707963
+
+float hashF(float n) {
+  return fract(sin(n * 127.1) * 43758.5453123);
 }
 
-vec2 rotate2D(vec2 p, float a){
-  float c = cos(a);
-  float s = sin(a);
-  return mat2(c, -s, s, c) * p;
+float smoothNoise(float x) {
+  float i = floor(x);
+  float f = fract(x);
+  float u = f * f * (3.0 - 2.0 * f);
+  return mix(hashF(i), hashF(i + 1.0), u);
 }
 
-vec3 getGradientColor(float t){
-  float tt = clamp(t, 0.0, 1.0);
-  int count = uColorCount;
-  if (count < 2) count = 2;
-  float scaled = tt * float(count - 1);
-  float seg = floor(scaled);
-  float f = fract(scaled);
+float displaceA(float coord, float t) {
+  float result = sin(coord * 2.123) * 0.2;
+  result += sin(coord * 3.234 + t * 4.345) * 0.1;
+  result += sin(coord * 0.589 + t * 0.934) * 0.5;
+  return result;
+}
 
-  if (seg < 1.0) return mix(uColor0, uColor1, f);
-  if (seg < 2.0 && count > 2) return mix(uColor1, uColor2, f);
-  if (seg < 3.0 && count > 3) return mix(uColor2, uColor3, f);
-  if (seg < 4.0 && count > 4) return mix(uColor3, uColor4, f);
-  if (seg < 5.0 && count > 5) return mix(uColor4, uColor5, f);
-  if (seg < 6.0 && count > 6) return mix(uColor5, uColor6, f);
-  if (seg < 7.0 && count > 7) return mix(uColor6, uColor7, f);
-  if (count > 7) return uColor7;
-  if (count > 6) return uColor6;
-  if (count > 5) return uColor5;
-  if (count > 4) return uColor4;
-  if (count > 3) return uColor3;
-  if (count > 2) return uColor2;
-  return uColor1;
+float displaceB(float coord, float t) {
+  float result = sin(coord * 1.345) * 0.3;
+  result += sin(coord * 2.734 + t * 3.345) * 0.2;
+  result += sin(coord * 0.189 + t * 0.934) * 0.3;
+  return result;
+}
+
+vec2 rotate2D(vec2 p, float angle) {
+  float c = cos(angle);
+  float s = sin(angle);
+  return vec2(p.x * c - p.y * s, p.x * s + p.y * c);
 }
 
 void main() {
-  vec2 fragCoord = vUv * iResolution.xy;
-  vec2 uv0 = fragCoord / iResolution.xy;
+  vec2 coords = vUv * 2.0 - 1.0;
+  coords = rotate2D(coords, uRotation);
 
-  float aspect = iResolution.x / iResolution.y;
-  vec2 p = uv0 * 2.0 - 1.0;
-  p.x *= aspect;
-  vec2 pr = rotate2D(p, uAngle);
-  pr.x /= aspect;
-  vec2 uv = pr * 0.5 + 0.5;
+  float halfT = iTime * uSpeed * 0.5;
+  float fullT = iTime * uSpeed;
 
-  vec2 uvMod = uv;
-  if (uDistort > 0.0) {
-    float a = uvMod.y * 6.0;
-    float b = uvMod.x * 6.0;
-    float w = 0.01 * uDistort;
-    uvMod.x += sin(a) * w;
-    uvMod.y += cos(b) * w;
+  float warpAx = coords.x + displaceA(coords.y, halfT) * uWarpIntensity;
+  float warpAy = coords.y - displaceA(coords.x * cos(fullT) * 1.235, halfT) * uWarpIntensity;
+  float warpBx = coords.x + displaceB(coords.y, halfT) * uWarpIntensity;
+  float warpBy = coords.y - displaceB(coords.x * sin(fullT) * 1.235, halfT) * uWarpIntensity;
+
+  vec2 fieldA = vec2(warpAx, warpAy);
+  vec2 fieldB = vec2(warpBx, warpBy);
+  vec2 blended = mix(fieldA, fieldB, 0.5);
+
+  float fadeTop = smoothstep(uEdgeFadeWidth, uEdgeFadeWidth + 0.4, blended.y);
+  float fadeBottom = smoothstep(-uEdgeFadeWidth, -(uEdgeFadeWidth + 0.4), blended.y);
+  float vMask = 1.0 - max(fadeTop, fadeBottom);
+
+  float tileCount = mix(uOuterLines, uInnerLines, vMask);
+  float scaledY = blended.y * tileCount;
+  float nY = smoothNoise(abs(scaledY));
+
+  float ridge = pow(
+    step(abs(nY - blended.x) * 2.0, HALF_PI) * cos(2.0 * (nY - blended.x)),
+    5.0
+  );
+
+  float lines = 0.0;
+  for (float i = 1.0; i < 3.0; i += 1.0) {
+    lines += pow(max(fract(scaledY), fract(-scaledY)), i * 2.0);
   }
-  float t = uvMod.x;
-  if (uMirror > 0.5) {
-    t = 1.0 - abs(1.0 - 2.0 * fract(t));
-  }
-  vec3 base = getGradientColor(t);
 
-  vec2 offset = vec2(iMouse.x / iResolution.x, iMouse.y / iResolution.y);
-  float d = length(uv0 - offset);
-  float r = max(uSpotlightRadius, 1e-4);
-  float dn = d / r;
-  float spot = (1.0 - 2.0 * pow(dn, uSpotlightSoftness)) * uSpotlightOpacity;
-  vec3 cir = vec3(spot);
-  float stripe = fract(uvMod.x * max(uBlindCount, 1.0));
-  if (uShineFlip > 0.5) stripe = 1.0 - stripe;
-  vec3 ran = vec3(stripe);
+  float pattern = vMask * lines;
 
-  vec3 col = cir + base - ran;
-  col += (rand(gl_FragCoord.xy + iTime) - 0.5) * uNoise;
+  float cycleT = fullT * uColorCycleSpeed;
+  float rChannel = (pattern + lines * ridge) * (cos(blended.y + cycleT * 0.234) * 0.5 + 1.0);
+  float gChannel = (pattern + vMask * ridge) * (sin(blended.x + cycleT * 1.745) * 0.5 + 1.0);
+  float bChannel = (pattern + lines * ridge) * (cos(blended.x + cycleT * 0.534) * 0.5 + 1.0);
 
-  gl_FragColor = vec4(col, 1.0);
+  vec3 col = (rChannel * uColor1 + gChannel * uColor2 + bChannel * uColor3) * uBrightness;
+
+  float alpha = clamp(length(col), 0.0, 1.0);
+  gl_FragColor = vec4(col, alpha);
 }
 `;
 
@@ -163,41 +161,43 @@ void main() {
     return [(n >> 16 & 255) / 255, (n >> 8 & 255) / 255, (n & 255) / 255];
   }
 
-  var stops = ['#166088', '#4a6fa5', '#c0d6df'].map(hexToRgb);
-  var colorCount = stops.length;
-  while (stops.length < 8) stops.push(stops[stops.length - 1]);
+  var stops = ['#0003f3', '#06B6D4', '#7C3AED'].map(hexToRgb);
 
   function mk(name, value) {
-    return { loc: gl.getUniformLocation(program, name), value: value, int: false };
+    var t;
+    if (typeof value === 'number') t = 'float';
+    else if (typeof value === 'boolean') t = 'bool';
+    else if (value.length === 3) t = 'vec3';
+    else if (value.length === 2) t = 'vec2';
+    else t = 'unknown';
+    return { loc: gl.getUniformLocation(program, name), value: value, type: t };
   }
 
   var uni = {
     iResolution: mk('iResolution', new Float32Array([1, 1, 1])),
-    iMouse: mk('iMouse', new Float32Array([0, 0])),
     iTime: mk('iTime', 0),
-    uAngle: mk('uAngle', 176),
-    uNoise: mk('uNoise', 0.33),
-    uBlindCount: mk('uBlindCount', 23),
-    uSpotlightRadius: mk('uSpotlightRadius', 0.25),
-    uSpotlightSoftness: mk('uSpotlightSoftness', 1),
-    uSpotlightOpacity: mk('uSpotlightOpacity', 1),
-    uMirror: mk('uMirror', 0),
-    uDistort: mk('uDistort', 33),
-    uShineFlip: mk('uShineFlip', 0)
+    uSpeed: mk('uSpeed', 0.3),
+    uInnerLines: mk('uInnerLines', 40.0),
+    uOuterLines: mk('uOuterLines', 40.0),
+    uWarpIntensity: mk('uWarpIntensity', 2.3),
+    uRotation: mk('uRotation', 25 * Math.PI / 180),
+    uEdgeFadeWidth: mk('uEdgeFadeWidth', 0.0),
+    uColorCycleSpeed: mk('uColorCycleSpeed', 1.2),
+    uBrightness: mk('uBrightness', 0.2),
+    uColor1: mk('uColor1', new Float32Array(stops[0])),
+    uColor2: mk('uColor2', new Float32Array(stops[1])),
+    uColor3: mk('uColor3', new Float32Array(stops[2]))
   };
-  uni.uColorCount = mk('uColorCount', colorCount);
-  uni.uColorCount.int = true;
-  for (var i = 0; i < 8; i++) uni['uColor' + i] = mk('uColor' + i, new Float32Array(stops[i]));
 
   function setUniforms() {
     for (var k in uni) {
       var uu = uni[k];
       if (uu.loc === null) continue;
       var v = uu.value;
-      if (uu.int) gl.uniform1i(uu.loc, v);
-      else if (typeof v === 'number') gl.uniform1f(uu.loc, v);
-      else if (v.length === 3) gl.uniform3fv(uu.loc, v);
-      else if (v.length === 2) gl.uniform2fv(uu.loc, v);
+      if (uu.type === 'float') gl.uniform1f(uu.loc, v);
+      else if (uu.type === 'bool') gl.uniform1i(uu.loc, v ? 1 : 0);
+      else if (uu.type === 'vec3') gl.uniform3fv(uu.loc, v);
+      else if (uu.type === 'vec2') gl.uniform2fv(uu.loc, v);
     }
   }
 
@@ -212,19 +212,8 @@ void main() {
     gl.viewport(0, 0, canvas.width, canvas.height);
     uni.iResolution.value[0] = canvas.width;
     uni.iResolution.value[1] = canvas.height;
-    uni.iResolution.value[2] = 1;
-    var maxByMinWidth = Math.max(1, Math.floor(w / 60));
-    uni.uBlindCount.value = Math.max(1, Math.min(16, maxByMinWidth));
-    uni.iMouse.value[0] = canvas.width / 2;
-    uni.iMouse.value[1] = canvas.height / 2;
+    uni.iResolution.value[2] = canvas.width / canvas.height;
   }
-
-  var mouseTarget = [0, 0];
-  window.addEventListener('mousemove', function (e) {
-    var rect = canvas.getBoundingClientRect();
-    mouseTarget[0] = (e.clientX - rect.left) * dpr;
-    mouseTarget[1] = (rect.height - (e.clientY - rect.top)) * dpr;
-  });
 
   var raf = null;
   var last = 0;
@@ -240,11 +229,6 @@ void main() {
     if (!last) last = t;
     var dt = (t - last) / 1000;
     last = t;
-    var tau = 0.15;
-    var factor = 1 - Math.exp(-dt / tau);
-    if (factor > 1) factor = 1;
-    uni.iMouse.value[0] += (mouseTarget[0] - uni.iMouse.value[0]) * factor;
-    uni.iMouse.value[1] += (mouseTarget[1] - uni.iMouse.value[1]) * factor;
     render();
   }
 

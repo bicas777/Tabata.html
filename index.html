@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Portfólio de design, desenvolvimento web e edição de vídeo." />
-    <title>Enzo Bicalho — Creative Portfolio</title>
+    <title>Enzo Bicalho — Portifolio</title>
+    <link rel="icon" href="/assets/Icone.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Syne:wght@400;500;600;700;800&display=swap" />
@@ -32,7 +33,6 @@
   <body>
     <div class="aurora" aria-hidden="true"></div>
     <svg class="filters" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><defs><filter id="hero-title-warp" color-interpolation-filters="sRGB" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="2.5 2.5" numOctaves="3" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G" result="warp"/></filter></defs></svg>
-    <div class="cursor-glow" aria-hidden="true"></div>
     <div class="custom-cursor" aria-hidden="true">
       <span class="custom-cursor__trail custom-cursor__trail--one"></span>
       <span class="custom-cursor__trail custom-cursor__trail--two"></span>
@@ -230,10 +230,72 @@
         <div class="section-label"><span>( 05 )</span><span data-i18n="contact.label">CONTATO</span></div>
         <p class="contact__pretitle" data-i18n="contact.pretitle">TEM UMA IDEIA EM FORMAÇÃO?</p>
         <h2 class="contact__title" data-i18n="contact.title">Vamos<br /><em>subir.</em></h2>
-        <a class="contact__email" href="mailto:enzobicalhocontato@gmail.com" data-cursor-label="ENVIAR E-MAIL">enzobicalhocontato@gmail.com <i>↗</i></a>
+        <div class="contact__cta">
+          <button class="cssbuttons-io-button" type="button" id="open-contact-card" data-cursor-label="CONTATO" aria-haspopup="dialog" aria-controls="contact-card">
+            <span data-i18n="contact-card.button">FALE COMIGO</span>
+            <div class="icon">
+              <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" fill="currentColor"></path>
+              </svg>
+            </div>
+          </button>
+        </div>
         <div class="contact__footer"><p>© 2026 ENZO BICALHO</p><div><a href="https://www.instagram.com/ezbicalho/">INSTAGRAM</a><a href="#top">LINKEDIN</a><a href="#top">BEHANCE</a></div><a href="#top">VOLTAR AO TOPO ↑</a></div>
       </section>
     </main>
+
+    <div class="contact-card-overlay" id="contact-card-overlay" aria-hidden="true"></div>
+    <div class="contact-card" id="contact-card" role="dialog" aria-modal="true" aria-labelledby="contact-card-title" aria-hidden="true">
+      <div class="contact-card__glow" aria-hidden="true"></div>
+      <button class="contact-card__close" type="button" id="close-contact-card" data-cursor-label="FECHAR" aria-label="Fechar card de contato">
+        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M18.3 5.71 12 12.01l-6.3-6.3-1.4 1.41 6.3 6.3-6.3 6.3 1.41 1.4 6.29-6.29 6.3 6.3 1.4-1.41-6.3-6.3 6.3-6.3z" fill="currentColor"/></svg>
+      </button>
+      <p class="contact-card__eyebrow" data-i18n="contact-card.eyebrow">ESCOLHA UM CANAL</p>
+      <h3 class="contact-card__title" id="contact-card-title" data-i18n="contact-card.title">Como falar comigo.</h3>
+      <div class="contact-card__options">
+        <a class="contact-card__option" href="mailto:enzobicalhocontato@gmail.com" data-cursor-label="E-MAIL">
+          <span class="contact-card__option-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg"><path d="M2 4h20a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm10 7.3 8-5.06V6H4v.24l8 5.06zM3 8.24V18h18V8.24l-8.47 5.36a1 1 0 0 1-1.06 0L3 8.24z" fill="currentColor"/></svg>
+          </span>
+          <span class="contact-card__option-body">
+            <strong data-i18n="contact-card.email.label">E-MAIL</strong>
+            <small>enzobicalhocontato@gmail.com</small>
+          </span>
+          <i aria-hidden="true">↗</i>
+        </a>
+        <a class="contact-card__option" href="https://www.instagram.com/ezbicalho/" target="_blank" rel="noopener" data-cursor-label="INSTAGRAM">
+          <span class="contact-card__option-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 1.8c-3.15 0-3.5.01-4.74.07-1.14.05-1.76.24-2.17.4-.55.21-.94.47-1.35.88-.41.41-.67.8-.88 1.35-.16.41-.35 1.03-.4 2.17C2.4 9.5 2.4 9.85 2.4 12s0 2.5.06 3.74c.05 1.14.24 1.76.4 2.17.21.55.47.94.88 1.35.41.41.8.67 1.35.88.41.16 1.03.35 2.17.4 1.24.06 1.59.07 4.74.07s3.5-.01 4.74-.07c1.14-.05 1.76-.24 2.17-.4.55-.21.94-.47 1.35-.88.41-.41.67-.8.88-1.35.16-.41.35-1.03.4-2.17.06-1.24.07-1.59.07-3.74s-.01-2.5-.07-3.74c-.05-1.14-.24-1.76-.4-2.17a3.6 3.6 0 0 0-.88-1.35 3.6 3.6 0 0 0-1.35-.88c-.41-.16-1.03-.35-2.17-.4C15.5 4.01 15.15 4 12 4zm0 3.06A4.94 4.94 0 1 1 12 17a4.94 4.94 0 0 1 0-9.88zm0 1.8a3.14 3.14 0 1 0 0 6.28 3.14 3.14 0 0 0 0-6.28zm5.14-2.06a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3z" fill="currentColor"/></svg>
+          </span>
+          <span class="contact-card__option-body">
+            <strong data-i18n="contact-card.instagram.label">INSTAGRAM</strong>
+            <small>@ezbicalho</small>
+          </span>
+          <i aria-hidden="true">↗</i>
+        </a>
+        <a class="contact-card__option" href="https://www.linkedin.com/" target="_blank" rel="noopener" data-cursor-label="LINKEDIN">
+          <span class="contact-card__option-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.71h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.3c0-1.26-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V21H9z" fill="currentColor"/></svg>
+          </span>
+          <span class="contact-card__option-body">
+            <strong data-i18n="contact-card.linkedin.label">LINKEDIN</strong>
+            <small data-i18n="contact-card.linkedin.handle">in/enzo-bicalho</small>
+          </span>
+          <i aria-hidden="true">↗</i>
+        </a>
+        <a class="contact-card__option" href="https://wa.me/5531983808351" target="_blank" rel="noopener" data-cursor-label="WHATSAPP">
+          <span class="contact-card__option-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.46 1.32 4.98L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 1.8c2.16 0 4.19.84 5.72 2.37a8.04 8.04 0 0 1 2.37 5.72c0 4.46-3.63 8.09-8.09 8.09a8.04 8.04 0 0 1-4.06-1.11l-.3-.18-3.12.82.83-3.04-.2-.31a8.06 8.06 0 0 1-1.24-4.28c0-4.46 3.63-8.09 8.09-8.09zm-4.9 4.1c-.2 0-.52.07-.79.35-.27.27-.93.91-.93 2.22s.95 2.57 1.08 2.75c.13.18 1.88 2.88 4.56 3.97.64.28 1.13.44 1.52.56.64.2 1.22.17 1.68.1.51-.07 1.6-.65 1.83-1.28.22-.63.22-1.17.16-1.28-.06-.1-.22-.16-.46-.28-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.54.12-.16.24-.61.78-.75.94-.14.16-.28.18-.51.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.47-.39-.4-.54-.41h-.46z" fill="currentColor"/></svg>
+          </span>
+          <span class="contact-card__option-body">
+            <strong data-i18n="contact-card.whatsapp.label">WHATSAPP</strong>
+            <small data-i18n="contact-card.whatsapp.handle">+55 31 98380-8351</small>
+          </span>
+          <i aria-hidden="true">↗</i>
+        </a>
+      </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js" defer></script>
@@ -242,7 +304,6 @@
     <script type="importmap">
       {"imports":{"three":"https://unpkg.com/three@0.173.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.173.0/examples/jsm/"}}
     </script>
-    <script type="module" src="globe.js?v=20260819-10" async></script>
     <script type="module" src="topography.js?v=20260819-10" async></script>
     <script type="module" src="moltenmetal.js?v=20260819-10" async></script>
 <script src="gradientblinds.js?v=20260819-10" defer></script>

@@ -106,8 +106,8 @@ void main() {
 `;
 
 const PALETTES = {
-  light: ['#4f6d7a', '#4a6fa5', '#c0d6df'],
-  night: ['#166088', '#4a6fa5', '#c0d6df']
+  light: ['#03045E', '#023E8A', '#0077B6', '#0096C7', '#00B4D8'],
+  night: ['#03045E', '#023E8A', '#0077B6', '#0096C7', '#00B4D8']
 };
 
 function toColor(hex) {
@@ -238,6 +238,13 @@ function toColor(hex) {
   uRot.set(Math.cos(rot), Math.sin(rot));
 
   let raf = 0;
+  // Só renderiza enquanto o hero (onde fica esse canvas) estiver na viewport.
+  // Evita gastar GPU com um shader pesado fora de tela.
+  let visible = true;
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; }, { threshold: 0.01 });
+    io.observe(container);
+  }
 
   function render() {
     const dt = clock.getDelta();
@@ -253,7 +260,7 @@ function toColor(hex) {
 
   function loop() {
     raf = requestAnimationFrame(loop);
-    if (document.hidden) return;
+    if (document.hidden || !visible) return;
     render();
   }
 
