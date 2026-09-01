@@ -31,17 +31,39 @@ const earthFragmentShader = `
     vec3 viewDirection = normalize(cameraPosition - vWorldPosition);
     vec3 albedo = pow(texture2D(map, vUv).rgb, vec3(2.2));
     float sunlight = dot(normal, normalize(sunDirection));
-    float day = smoothstep(-0.12, 0.4, sunlight);
-    vec3 nightSide = albedo * mix(vec3(0.018, 0.045, 0.085), vec3(0.006, 0.014, 0.034), nightMode);
-    vec3 daySide = albedo * mix(0.9 + day * 0.72, 0.28 + day * 0.32, nightMode);
-    vec3 surface = mix(nightSide, daySide, day);
-    surface += albedo * nightMode * (1.0 - day) * 0.045;
-    float fresnel = pow(1.0 - max(dot(viewDirection, normal), 0.0), 3.4);
-    float rimLight = smoothstep(-0.25, 0.7, sunlight) * fresnel;
-    float specular = pow(max(dot(reflect(-normalize(sunDirection), normal), viewDirection), 0.0), 70.0) * 0.18;
-    vec3 atmosphereColor = mix(vec3(0.08, 0.43, 0.72), vec3(0.02, 0.16, 0.42), nightMode);
-    vec3 atmosphere = atmosphereColor * rimLight * mix(0.64, 1.15, nightMode);
-    vec3 finalColor = surface + atmosphere + vec3(0.95, 0.98, 1.0) * specular * mix(1.25, 0.28, nightMode);
+    float day = smoothstep(-0.05, 0.1, sunlight);
+
+    // Oceanos - cores reais da água do mar
+    vec3 oceanDeep = vec3(0.0, 0.35, 0.65);
+    vec3 oceanShallow = vec3(0.0, 0.6, 0.85);
+
+    // Terras - cores reais
+    vec3 landGreen = vec3(0.24, 0.52, 0.28);
+    vec3 landBrown = vec3(0.55, 0.38, 0.22);
+    vec3 desert = vec3(0.82, 0.72, 0.45);
+    vec3 snowIce = vec3(0.88, 0.92, 0.98);
+
+    // Usa o albedo direto como cor real (foto da NASA)
+    vec3 realColor = albedo;
+
+    // Especificular nos oceanos - brilho solar real
+    float waterSpec = pow(max(dot(reflect(-normalize(sunDirection), normal), viewDirection), 0.0), 200.0) * 1.0 * day;
+
+    // Luzes urbanas - amarelo-alaranjado real (luz de sódio)
+    vec3 cityLights = vec3(1.0, 0.8, 0.4) * nightMode * (1.0 - day) * 0.07;
+
+    vec3 nightSide = vec3(0.0, 0.0, 0.04);
+    vec3 surface = mix(nightSide, realColor, day) + cityLights + vec3(1.0) * waterSpec;
+
+    // Fresnel mais forte nas bordas - atmosfera sutil no centro
+    float fresnel = pow(1.0 - max(dot(viewDirection, normal), 0.0), 4.0);
+    float rimLight = smoothstep(-0.05, 0.7, sunlight) * fresnel;
+
+    // Atmosfera azul real - mais forte apenas nas bordas do globo
+    vec3 atmosphereColor = vec3(0.4, 0.65, 1.0);
+    vec3 atmosphere = atmosphereColor * rimLight * 0.35;
+
+    vec3 finalColor = surface + atmosphere;
     gl_FragColor = vec4(finalColor, 1.0);
   }
 `;
@@ -65,10 +87,22 @@ const atmosphereFragmentShader = `
   void main() {
     vec3 normal = normalize(vWorldNormal);
     vec3 viewDirection = normalize(cameraPosition - vWorldPosition);
-    float fresnel = pow(1.0 - max(dot(viewDirection, normal), 0.0), 3.5);
-    float sun = smoothstep(-0.25, 0.75, dot(normal, normalize(sunDirection)));
-    vec3 color = mix(vec3(0.08, 0.55, 0.95), vec3(0.03, 0.2, 0.62), nightMode) * (0.42 + sun * 0.58);
-    gl_FragColor = vec4(color, fresnel * mix(0.72, 0.92, nightMode));
+
+    // Fresnel mais forte - apenas das bordas do globo
+    float fresnel = pow(1.0 - max(dot(viewDirection, normal), 0.0), 4.5);
+
+    // Luz do sol - afeta a intensidade da dispersão
+    float sun = smoothstep(-0.1, 0.7, dot(normal, normalize(sunDirection)));
+
+    // Azul atmosférico real (Rayleigh scattering)
+    vec3 scatterColor = vec3(0.4, 0.6, 1.0);
+    vec3 color = scatterColor * (0.25 + sun * 0.35);
+
+    // Mais forte nas bordas, mais fraco no centro
+    float intensity = fresnel * mix(0.3, 0.7, nightMode);
+    float alpha = intensity;
+
+    gl_FragColor = vec4(color, alpha);
   }
 `;
 

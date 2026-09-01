@@ -62,6 +62,8 @@ const translations = {
     "contact-card.linkedin.handle": "in/enzo-bicalho",
     "contact-card.whatsapp.label": "WHATSAPP",
     "contact-card.whatsapp.handle": "+55 31 98380-8351",
+    "contact-card.github.label": "GITHUB",
+    "contact-card.github.handle": "@bicas777",
   },
   en: {
     "header.status": "AVAILABLE FOR PROJECTS",
@@ -117,6 +119,8 @@ const translations = {
     "contact-card.linkedin.handle": "in/enzo-bicalho",
     "contact-card.whatsapp.label": "WHATSAPP",
     "contact-card.whatsapp.handle": "+55 31 98380-8351",
+    "contact-card.github.label": "GITHUB",
+    "contact-card.github.handle": "@enzobicalho",
   },
 };
 
@@ -321,97 +325,138 @@ document.querySelectorAll("[data-cloud-src]").forEach((cloud) => {
   image.src = source;
 });
 
-// A small magnetic cursor that expands into a labeled orb on interactive elements.
+// Cursor personalizado — apenas a bolinha que segue o ponteiro.
 const customCursor = document.querySelector(".custom-cursor");
-const customCursorLabel = customCursor?.querySelector(".custom-cursor__label");
 const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
 
 if (customCursor && finePointer.matches) {
   document.body.classList.add("has-custom-cursor");
-  const moveCursorX = gsap.quickTo(customCursor, "x", { duration: 0.18, ease: "power3.out" });
-  const moveCursorY = gsap.quickTo(customCursor, "y", { duration: 0.18, ease: "power3.out" });
-  const tiltCursor = gsap.quickTo(customCursor, "rotation", { duration: 0.35, ease: "power3.out" });
-  const squashCursorX = gsap.quickTo(customCursor, "scaleX", { duration: 0.35, ease: "power3.out" });
-  const squashCursorY = gsap.quickTo(customCursor, "scaleY", { duration: 0.35, ease: "power3.out" });
-  let activeCursorTarget = null;
-  let previousPointer = { x: 0, y: 0 };
-  const cursorDot = customCursor.querySelector(".custom-cursor__dot");
-
-  const getCursorLabel = (target) => {
-    const key = target.dataset.cursorLabel;
-    const labels = {
-      "VER TRABALHOS": { pt: "VER TRABALHOS", en: "VIEW WORK" },
-      CONTATO: { pt: "CONTATO", en: "CONTACT" },
-      TEMA: { pt: "TEMA", en: "THEME" },
-      IDIOMA: { pt: "IDIOMA", en: "LANGUAGE" },
-      "EXPLORAR BH": { pt: "EXPLORAR BH", en: "EXPLORE BH" },
-      CRIAR: { pt: "CRIAR", en: "CREATE" },
-      "VER PROJETO": { pt: "VER PROJETO", en: "VIEW PROJECT" },
-      "E-MAIL": { pt: "E-MAIL", en: "E-MAIL" },
-      INSTAGRAM: { pt: "INSTAGRAM", en: "INSTAGRAM" },
-      LINKEDIN: { pt: "LINKEDIN", en: "LINKEDIN" },
-      "ENVIAR E-MAIL": { pt: "ENVIAR E-MAIL", en: "SEND E-MAIL" },
-      "CONTATO": { pt: "CONTATO", en: "CONTACT" },
-      "FECHAR": { pt: "FECHAR", en: "CLOSE" },
-      WHATSAPP: { pt: "WHATSAPP", en: "WHATSAPP" },
-    };
-    if (key && labels[key]) return labels[key][activeLanguage];
-    if (target.matches(".earth-stage canvas")) return activeLanguage === "en" ? "ROTATE GLOBE" : "GIRAR GLOBO";
-    if (target.matches(".service")) return activeLanguage === "en" ? "EXPLORE" : "EXPLORAR";
-    return target.tagName === "BUTTON" ? (activeLanguage === "en" ? "INTERACT" : "INTERAGIR") : (activeLanguage === "en" ? "OPEN" : "ABRIR");
-  };
-
-  const cursorTargets = document.querySelectorAll("a, button, .service, .earth-stage canvas");
-  cursorTargets.forEach((target) => {
-    target.addEventListener("pointerenter", () => {
-      activeCursorTarget = target;
-      customCursorLabel.textContent = getCursorLabel(target);
-      customCursor.classList.add("is-hover");
-      gsap.fromTo(cursorDot, { scale: 0.84 }, { scale: 1, duration: 0.48, ease: "elastic.out(1, .45)" });
-    });
-    target.addEventListener("pointerleave", () => {
-      activeCursorTarget = null;
-      customCursor.classList.remove("is-hover");
-    });
-    target.addEventListener("pointerdown", () => {
-      gsap.fromTo(cursorDot, { scale: 1 }, { scale: 0.74, duration: 0.12, yoyo: true, repeat: 1, ease: "power2.inOut" });
-    });
-  });
-  document.addEventListener("portfolio-language-change", () => {
-    if (activeCursorTarget) customCursorLabel.textContent = getCursorLabel(activeCursorTarget);
-  });
+  const moveCursorX = gsap.quickTo(customCursor, "x", { duration: 0.12, ease: "power3.out" });
+  const moveCursorY = gsap.quickTo(customCursor, "y", { duration: 0.12, ease: "power3.out" });
 
   window.addEventListener("pointermove", (event) => {
     if (event.pointerType === "touch") return;
-    const cursorX = event.clientX;
-    const cursorY = event.clientY;
-    customCursor.style.left = cursorX + "px";
-    customCursor.style.top = cursorY + "px";
-    const velocityX = cursorX - previousPointer.x;
-    const velocityY = cursorY - previousPointer.y;
-    const velocity = Math.min(Math.hypot(velocityX, velocityY), 32);
     customCursor.classList.add("is-visible");
-    tiltCursor(Math.max(-16, Math.min(16, velocityX * 0.45)));
-    squashCursorX(1 + velocity * 0.004);
-    squashCursorY(1 - velocity * 0.0025);
-    previousPointer = { x: cursorX, y: cursorY };
+    moveCursorX(event.clientX);
+    moveCursorY(event.clientY);
   });
+  window.addEventListener("pointerleave", () => customCursor.classList.remove("is-visible"));
 }
+
+// ClickSpark — faíscas no clique em qualquer ponto da página.
+(function initClickSpark() {
+  const canvas = document.getElementById("click-spark");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+
+  const SPARK_COLOR = "#dbe9ee";
+  const SPARK_SIZE = 10;
+  const SPARK_RADIUS = 15;
+  const SPARK_COUNT = 8;
+  const DURATION = 400;
+  const EASING = "ease-out";
+  const EXTRA_SCALE = 1.0;
+
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const resize = () => {
+    canvas.width = Math.floor(window.innerWidth * dpr);
+    canvas.height = Math.floor(window.innerHeight * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  };
+  resize();
+  window.addEventListener("resize", resize);
+
+  const easeFunc = (t) => {
+    switch (EASING) {
+      case "linear": return t;
+      case "ease-in": return t * t;
+      case "ease-in-out": return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+      default: return t * (2 - t);
+    }
+  };
+
+  let sparks = [];
+  let startTime = null;
+  let rafId;
+
+  const draw = (timestamp) => {
+    if (!startTime) startTime = timestamp;
+    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+    sparks = sparks.filter((spark) => {
+      const elapsed = timestamp - spark.startTime;
+      if (elapsed >= DURATION) return false;
+
+      const progress = elapsed / DURATION;
+      const eased = easeFunc(progress);
+      const distance = eased * SPARK_RADIUS * EXTRA_SCALE;
+      const lineLength = SPARK_SIZE * (1 - eased);
+
+      const x1 = spark.x + distance * Math.cos(spark.angle);
+      const y1 = spark.y + distance * Math.sin(spark.angle);
+      const x2 = spark.x + (distance + lineLength) * Math.cos(spark.angle);
+      const y2 = spark.y + (distance + lineLength) * Math.sin(spark.angle);
+
+      ctx.strokeStyle = SPARK_COLOR;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.stroke();
+
+      return true;
+    });
+
+    rafId = requestAnimationFrame(draw);
+  };
+  rafId = requestAnimationFrame(draw);
+
+  window.addEventListener("pointerdown", (event) => {
+    const x = event.clientX;
+    const y = event.clientY;
+    const now = performance.now();
+    const newSparks = Array.from({ length: SPARK_COUNT }, (_, i) => ({
+      x,
+      y,
+      angle: (2 * Math.PI * i) / SPARK_COUNT,
+      startTime: now,
+    }));
+    sparks.push(...newSparks);
+  });
+})();
 
 const heroTitleSpans = document.querySelectorAll(".hero__title span");
 
 if (!reduceMotion) {
-  const magneticTargets = document.querySelectorAll(".round-link, .header-contact, .language-toggle, .text-link, .world__info-links a");
-  magneticTargets.forEach((target) => {
-    const xTo = gsap.quickTo(target, "x", { duration: 0.42, ease: "power3.out" });
-    const yTo = gsap.quickTo(target, "y", { duration: 0.42, ease: "power3.out" });
+  // Efeito de magnetização (fiel ao componente React): cada botão/link é atraído
+  // pelo ponteiro quando este entra numa zona de `padding` ao redor do elemento.
+  const magnetSelector = ".round-link, .header-contact, .language-toggle, .menu-toggle, .text-link, .world__info-links a, .contact-card__option, .contact-card__close, .cssbuttons-io-button, .location-trigger, .brand, .site-menu a, .project__link, .contact__footer a";
+  const magnetTargets = document.querySelectorAll(magnetSelector);
+  const PADDING = 90;
+  const STRENGTH = 2;
+
+  magnetTargets.forEach((target) => {
+    if (target.closest(".glass-surface")) return; // evita conflito com camada de vidro
+    const xTo = gsap.quickTo(target, "x", { duration: 0.5, ease: "power3.out" });
+    const yTo = gsap.quickTo(target, "y", { duration: 0.5, ease: "power3.out" });
+
     target.addEventListener("pointermove", (event) => {
       const bounds = target.getBoundingClientRect();
-      xTo((event.clientX - (bounds.left + bounds.width / 2)) * 0.12);
-      yTo((event.clientY - (bounds.top + bounds.height / 2)) * 0.12);
+      const centerX = bounds.left + bounds.width / 2;
+      const centerY = bounds.top + bounds.height / 2;
+      const distX = Math.abs(centerX - event.clientX);
+      const distY = Math.abs(centerY - event.clientY);
+      if (distX < bounds.width / 2 + PADDING && distY < bounds.height / 2 + PADDING) {
+        xTo((event.clientX - centerX) / STRENGTH);
+        yTo((event.clientY - centerY) / STRENGTH);
+      } else {
+        xTo(0);
+        yTo(0);
+      }
     });
     target.addEventListener("pointerleave", () => {
-      gsap.to(target, { x: 0, y: 0, duration: 0.7, ease: "elastic.out(1, .45)" });
+      xTo(0);
+      yTo(0);
     });
   });
   gsap.to(".header-status__dot, .live-dot", { scale: 1.22, opacity: 0.62, duration: 1.25, ease: "sine.inOut", repeat: -1, yoyo: true, stagger: 0.2 });
@@ -1182,4 +1227,10 @@ if (!reduceMotion) {
     scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 1 },
   });
 }
+
+// --- Title change quando a aba perde o foco ---
+const originalTitle = document.title;
+const blurTitle = "Vai me contratar? :)";
+window.addEventListener("blur", () => { document.title = blurTitle; });
+window.addEventListener("focus", () => { document.title = originalTitle; });
 
