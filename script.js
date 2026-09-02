@@ -1170,16 +1170,11 @@ if (!reduceMotion) {
     });
   }
 
-  // World: grid + scanline revelam ao entrar na viewport
+  // World: revela ao entrar na viewport
   const worldEl = document.querySelector(".world");
   if (worldEl) {
-    const worldGrid = document.querySelector(".world__grid");
-    const worldScanline = document.querySelector(".world__scanline");
-    if (worldGrid) gsap.set(worldGrid, { opacity: 0, scale: 1.08 });
-    if (worldScanline) gsap.set(worldScanline, { opacity: 0, y: -30 });
     onView(worldEl, () => {
-      if (worldGrid) gsap.to(worldGrid, { opacity: 1, scale: 1, duration: 1.4, ease: "power2.out" });
-      if (worldScanline) gsap.to(worldScanline, { opacity: 1, y: 0, duration: 1, ease: "power3.out" });
+      // nada mais necessário - grid e scanline removidos
     }, { threshold: 0.15 });
   }
 
@@ -1230,7 +1225,7 @@ if (!reduceMotion) {
 
 // --- Title change quando a aba perde o foco ---
 const originalTitle = document.title;
-const blurTitle = "Vai me contratar? :)";
+const blurTitle = "Volta aqui :(";
 window.addEventListener("blur", () => { document.title = blurTitle; });
 window.addEventListener("focus", () => { document.title = originalTitle; });
 

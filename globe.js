@@ -194,6 +194,9 @@ if (canvas && stage) {
   const markerHalo = new THREE.Mesh(new THREE.RingGeometry(0.22, 0.235, 32), new THREE.MeshBasicMaterial({ color: 0x42dfff, side: THREE.DoubleSide, transparent: true, opacity: 0.32 }));
   markerHalo.position.z = 0.02;
   markerGroup.add(markerHalo);
+  const markerGlow = new THREE.Mesh(new THREE.SphereGeometry(0.05, 32, 32), new THREE.MeshBasicMaterial({ color: 0x00ffff, transparent: true, opacity: 0.7 }));
+  markerGlow.position.z = 0.03;
+  markerGroup.add(markerGlow);
   globeGroup.add(markerGroup);
   const markerUI = document.querySelector(".earth-stage__marker");
 
