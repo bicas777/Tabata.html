@@ -8,9 +8,15 @@
     <link rel="icon" href="/assets/Icone.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Syne:wght@400;500;600;700;800&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Syne:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Instrument+Serif:ital,wght@0,400;1,400&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" media="print" onload="this.media='all'" />
     <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/JetBrainsMono/JetBrainsMonoNLNerdFontMono-Regular.ttf" />
     <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/JetBrainsMono/JetBrainsMonoNLNerdFontMono-Medium.ttf" />
     <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/JetBrainsMono/JetBrainsMonoNLNerdFontMono-Bold.ttf" />
@@ -32,6 +38,18 @@
     <noscript><link rel="stylesheet" href="https://unpkg.com/lenis@1.3.23/dist/lenis.css" /><link rel="stylesheet" href="style.css?v=20260819-10" /><link rel="stylesheet" href="glasssurface.css?v=20260819-10" /></noscript>
   </head>
   <body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader" aria-hidden="true">
+      <div class="preloader__bg">
+        <video class="preloader__video" aria-hidden="true" autoplay muted loop playsinline>
+          <source src="assets/preloader-video/FUNDO-PRELOADER.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="preloader__content">
+        <p class="preloader__text" aria-live="polite">carregando<span class="preloader__dots"></span></p>
+      </div>
+    </div>
+
     <div class="aurora" aria-hidden="true"></div>
     <svg class="filters" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><defs><filter id="hero-title-warp" color-interpolation-filters="sRGB" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="2.5 2.5" numOctaves="3" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G" result="warp"/></filter></defs></svg>
     <canvas class="click-spark" id="click-spark" aria-hidden="true"></canvas>
@@ -52,7 +70,6 @@
     <header class="site-header">
       
       <a class="brand" href="#top" aria-label="Voltar ao início">E<span>.</span>B</a>
-      <p class="header-status"><span class="header-status__dot" aria-hidden="true"></span> <span class="header-status__label" data-i18n="header.status">DISPONÍVEL PARA PROJETOS</span></p>
       <div class="header-actions">
         <div class="header-tools" aria-label="Preferências do site">
           <button class="language-toggle" id="language-toggle" type="button" aria-label="Mudar idioma para inglês" data-cursor-label="IDIOMA"><span class="language-toggle__active">PT</span><span aria-hidden="true">/</span><span>EN</span></button>
@@ -72,7 +89,8 @@
 
     <main id="top">
       <section class="hero section">
-        <div class="topography" aria-hidden="true"></div>
+        <img class="hero-bg-video" aria-hidden="true" src="assets/frames/frame_000001.png" alt="">
+        <img class="hero-bg-video hero-bg-video--ai" aria-hidden="true" src="assets/frames_AI/frame_000001.png" alt="" style="opacity: 0;">
         <div class="hero__topline reveal-line">
           <p data-i18n="hero.role">DESIGNER · DEVELOPER · VIDEO EDITOR</p>
           <button class="location-trigger" type="button" data-location-trigger aria-controls="world" aria-label="Explorar localização em Belo Horizonte" data-cursor-label="EXPLORAR BH"><span>BELO HORIZONTE, BR</span> <span class="live-dot"></span><i aria-hidden="true"><svg width="22px" height="22px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Arrow / Arrow_Down_Right_SM"> <path id="Vector" d="M8 8L16 16M16 16V10M16 16H10" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g> </g></svg></i></button>
@@ -88,6 +106,27 @@
         <div class="hero__bottom">
           <p class="hero__manifesto" data-i18n="hero.manifesto">Ideias que encontram<br />forma, ritmo e altitude.</p>
           <a class="round-link" href="#projetos" data-cursor-label="VER TRABALHOS"><span data-i18n="hero.cta">VER<br />TRABALHOS</span><i>↓</i></a>
+        </div>
+
+        <!-- AI Skills - aparecem na segunda metade (frames_AI) - DENTRO do hero, no final -->
+        <div class="hero__ai-skills" aria-hidden="true">
+          <div class="hero__ai-inner">
+            <div class="hero__ai-label" data-i18n="hero.aiLabel">USO IA PARA FACILITAR O TRABALHO</div>
+            <div class="hero__ai-col hero__ai-col--left">
+              <ul class="hero__ai-list">
+                <li><div class="hero__ai-head"><img class="hero__ai-icon" src="assets/Claude.png" alt="" aria-hidden="true"><a class="hero__ai-tool" href="https://claude.ai/new" target="_blank" rel="noopener">Claude<svg class="hero__ai-arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 16L16 8M16 8H10M16 8V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div> <span class="hero__ai-desc" data-i18n="hero.ai.claude">Code & Reasoning</span></li>
+                <li><div class="hero__ai-head"><img class="hero__ai-icon" src="assets/Antigravity.png" alt="" aria-hidden="true"><a class="hero__ai-tool" href="https://antigravity.google/" target="_blank" rel="noopener">Antigravity<svg class="hero__ai-arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 16L16 8M16 8H10M16 8V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div> <span class="hero__ai-desc" data-i18n="hero.ai.antigravity">Creative Exploration</span></li>
+                <li><div class="hero__ai-head"><img class="hero__ai-icon" src="assets/Chatgpt.png" alt="" aria-hidden="true"><a class="hero__ai-tool" href="https://chatgpt.com/" target="_blank" rel="noopener">ChatGPT<svg class="hero__ai-arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 16L16 8M16 8H10M16 8V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div> <span class="hero__ai-desc" data-i18n="hero.ai.cg">Writing & Analysis</span></li>
+              </ul>
+            </div>
+            <div class="hero__ai-col hero__ai-col--right">
+              <ul class="hero__ai-list">
+                <li><div class="hero__ai-head"><img class="hero__ai-icon" src="assets/9router.png" alt="" aria-hidden="true"><a class="hero__ai-tool" href="https://9router.com/" target="_blank" rel="noopener"><svg class="hero__ai-arrow hero__ai-arrow--left" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 16L16 8M16 8H10M16 8V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>9Router</a></div> <span class="hero__ai-desc" data-i18n="hero.ai.router">AI Router</span></li>
+                <li><div class="hero__ai-head"><img class="hero__ai-icon" src="assets/Alethe.png" alt="" aria-hidden="true"><a class="hero__ai-tool" href="https://alethe-agents.kc1t.com/" target="_blank" rel="noopener"><svg class="hero__ai-arrow hero__ai-arrow--left" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 16L16 8M16 8H10M16 8V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Alethe</a></div> <span class="hero__ai-desc" data-i18n="hero.ai.alethe">AI Orchestrator</span></li>
+                <li><div class="hero__ai-head"><img class="hero__ai-icon" src="assets/Opencode.png" alt="" aria-hidden="true"><a class="hero__ai-tool" href="https://opencode.ai/" target="_blank" rel="noopener"><svg class="hero__ai-arrow hero__ai-arrow--left" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 16L16 8M16 8H10M16 8V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Opencode</a></div> <span class="hero__ai-desc" data-i18n="hero.ai.opencode">Code Agent</span></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -162,6 +201,10 @@
             </a>
           </article>
           </div>
+        </div>
+        <!-- Project video sequence (frames_PROJETO) - bottom of section -->
+        <div class="projects__video-sequence" aria-hidden="true">
+          <img class="projects__video-frame" src="assets/frames_PROJETO/frame_000001.png" alt="" />
         </div>
       </section>
 
@@ -319,9 +362,7 @@
     <script type="importmap">
       {"imports":{"three":"https://unpkg.com/three@0.173.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.173.0/examples/jsm/"}}
     </script>
-    <script type="module" src="topography.js?v=20260819-10" async></script>
     <script type="module" src="moltenmetal.js?v=20260819-10" async></script>
-<script src="gradientblinds.js?v=20260819-10" defer></script>
     <script src="liquidglass.js?v=20260819-10" defer></script>
     <script src="glasssurface.js?v=20260819-10" defer></script>
     <script src="bugdetect.js?v=20260819-10" defer></script>
