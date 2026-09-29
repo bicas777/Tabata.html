@@ -930,6 +930,90 @@ if (projectListEl && projectItems.length > 1) {
       }
     }
 
+    // ============================================================
+    // About section video sequence (framesABOUT) - scrub on scroll
+    // ============================================================
+    if (!reduceMotion) {
+      const aboutVideoFrame = document.querySelector(".about__video-frame");
+      const aboutSection = document.querySelector(".about");
+
+      if (aboutVideoFrame && aboutSection) {
+        // Config sequence - 336 frames
+        const SEQ_ABOUT = { frames: 336, prefix: "assets/framesABOUT/frame_", ext: ".png", pad: 6 };
+
+        // Preload frames
+        const frameCacheAbout = new Array(SEQ_ABOUT.frames);
+        let loadedAboutCount = 0;
+
+        function preloadFramesAbout(cache, config) {
+          return new Promise((resolve) => {
+            for (let i = 1; i <= config.frames; i++) {
+              const img = new Image();
+              const num = config.pad ? String(i).padStart(config.pad, "0") : String(i).padStart(3, "0");
+              img.src = `${config.prefix}${num}${config.ext}`;
+              img.decoding = "async";
+              img.onload = img.onerror = () => {
+                loadedAboutCount++;
+                if (loadedAboutCount === SEQ_ABOUT.frames) resolve();
+              };
+              cache[i - 1] = img;
+            }
+          });
+        }
+
+        // Mostra primeiro frame IMEDIATAMENTE ao carregar (antes do scroll)
+        const showFirstFrameAbout = () => {
+          const firstFrame = frameCacheAbout[0];
+          if (firstFrame && firstFrame.complete) {
+            aboutVideoFrame.src = firstFrame.src;
+            aboutVideoFrame.style.opacity = 1;
+            aboutVideoFrame.classList.add("is-loaded");
+          }
+        };
+
+        const updateAboutFrame = (self) => {
+          const progress = self.progress; // 0 a 1
+
+          // Video sequence plays during the about section scroll
+          const VIDEO_START = 0.1;
+
+          if (progress < VIDEO_START) {
+            // Antes do VIDEO_START: mantém o primeiro frame visível
+            return;
+          }
+
+          aboutVideoFrame.style.opacity = 1;
+          // Sem fade-in: adiciona classe sem transição
+          aboutVideoFrame.classList.add("is-loaded");
+
+          // Progress from VIDEO_START to 1.0 maps to frames 0 to last
+          const localProgress = (progress - VIDEO_START) / (1 - VIDEO_START); // 0 a 1
+          const frameIndex = Math.min(SEQ_ABOUT.frames - 1, Math.floor(localProgress * SEQ_ABOUT.frames));
+          const frame = frameCacheAbout[frameIndex];
+          if (frame && frame.complete) {
+            if (aboutVideoFrame.src !== frame.src) {
+              aboutVideoFrame.src = frame.src;
+            }
+          }
+        };
+
+        // ScrollTrigger para a seção about
+        const stAbout = ScrollTrigger.create({
+          trigger: aboutSection,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1.5,
+          onUpdate: updateAboutFrame,
+        });
+
+        // Preload frames
+        preloadFramesAbout(frameCacheAbout, SEQ_ABOUT).then(() => {
+          console.log("[About] Frames_ABOUT loaded");
+          showFirstFrameAbout(); // Mostra primeiro frame imediatamente
+        });
+      }
+    }
+
     const refreshProjectLayout = () => {
       applyProjectStack();
       buildProjectTimeline();
