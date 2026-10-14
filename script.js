@@ -7,13 +7,19 @@ lenis.on("scroll", ScrollTrigger.update);
 gsap.ticker.add((time) => lenis.raf(time * 1000));
 gsap.ticker.lagSmoothing(0);
 
+// Always start at top on page load
+if (history.scrollRestoration) {
+  history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
+
 // Preloader
 (function () {
   const preloader = document.getElementById("preloader");
   if (!preloader) return;
 
   const MIN_DURATION = 1500; // mínimo 1.5s (mesmo se cached)
-  const MAX_DURATION = 4000; // máximo 4s
+  const MAX_DURATION = 10000; // máximo 10s
   const video = preloader.querySelector(".preloader__video");
 
   // Lock scroll immediately
@@ -1623,4 +1629,50 @@ const originalTitle = document.title;
 const blurTitle = "Volta aqui :(";
 window.addEventListener("blur", () => { document.title = blurTitle; });
 window.addEventListener("focus", () => { document.title = originalTitle; });
+
+// --- LogoLoop: infinite horizontal scroll ---
+(function () {
+  if (reduceMotion) return;
+
+  const track = document.getElementById("logoTrack");
+  const list = document.getElementById("logoList");
+  const container = document.getElementById("logoLoop");
+  if (!track || !list || !container) return;
+
+  // Duplicate logos for seamless infinite scroll
+  track.appendChild(list.cloneNode(true));
+
+  let offset = 0;
+  const baseSpeed = 80; // px per second
+  let targetSpeed = 80;
+  let currentSpeed = 80;
+  let lastTime = 0;
+
+  container.addEventListener("mouseenter", () => {
+    targetSpeed = 0;
+  });
+
+  container.addEventListener("mouseleave", () => {
+    targetSpeed = 80;
+  });
+
+  function animate(timestamp) {
+    if (!lastTime) lastTime = timestamp;
+    const delta = (timestamp - lastTime) / 1000;
+    lastTime = timestamp;
+
+    const easing = 0.08;
+    currentSpeed += (targetSpeed - currentSpeed) * easing;
+
+    offset -= currentSpeed * delta;
+    const listWidth = list.offsetWidth;
+    if (Math.abs(offset) >= listWidth) {
+      offset = 0;
+    }
+    track.style.transform = `translate3d(${offset}px, 0, 0)`;
+
+    requestAnimationFrame(animate);
+  }
+  requestAnimationFrame(animate);
+})();
 

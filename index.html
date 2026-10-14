@@ -48,6 +48,20 @@
       <div class="preloader__content">
         <p class="preloader__text" aria-live="polite">carregando<span class="preloader__dots"></span></p>
       </div>
+      <!-- New loader in bottom right -->
+      <div class="preloader__loader" aria-hidden="true">
+        <div class="loader">
+          <div class="square" id="sq1"></div>
+          <div class="square" id="sq2"></div>
+          <div class="square" id="sq3"></div>
+          <div class="square" id="sq4"></div>
+          <div class="square" id="sq5"></div>
+          <div class="square" id="sq6"></div>
+          <div class="square" id="sq7"></div>
+          <div class="square" id="sq8"></div>
+          <div class="square" id="sq9"></div>
+        </div>
+      </div>
     </div>
 
     <div class="aurora" aria-hidden="true"></div>
@@ -93,7 +107,10 @@
         <img class="hero-bg-video hero-bg-video--ai" aria-hidden="true" src="assets/frames_AI/frame_000001.png" alt="" style="opacity: 0;">
         <div class="hero__topline reveal-line">
           <p data-i18n="hero.role">DESIGNER · DEVELOPER · VIDEO EDITOR</p>
-          <button class="location-trigger" type="button" data-location-trigger aria-controls="world" aria-label="Explorar localização em Belo Horizonte" data-cursor-label="EXPLORAR BH"><span>BELO HORIZONTE, BR</span> <span class="live-dot"></span><i aria-hidden="true"><svg width="22px" height="22px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Arrow / Arrow_Down_Right_SM"> <path id="Vector" d="M8 8L16 16M16 16V10M16 16H10" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g> </g></svg></i></button>
+          <div class="hero__topline-buttons">
+            <button class="location-trigger hero-button" type="button" data-location-trigger aria-controls="world" aria-label="Explorar localização em Belo Horizonte" data-cursor-label="EXPLORAR BH"><span>BELO HORIZONTE, BR</span> <span class="live-dot"></span><i aria-hidden="true"><svg width="22px" height="22px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Arrow / Arrow_Down_Right_SM"> <path id="Vector" d="M8 8L16 16M16 16V10M16 16H10" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g> </g></svg></i></button>
+            <a href="#projetos" class="location-trigger hero-button" data-cursor-label="VER TRABALHOS"><span>VER TRABALHOS</span><i aria-hidden="true"><svg width="22px" height="22px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Arrow / Arrow_Down_Right_SM"> <path id="Vector" d="M8 8L16 16M16 16V10M16 16H10" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g> </g></svg></i></a>
+          </div>
         </div>
         <div class="hero__title-wrap">
           <p class="hero__small" data-i18n="hero.small">criando para quem<br />quer ir mais alto</p>
@@ -105,7 +122,6 @@
         </div>
         <div class="hero__bottom">
           <p class="hero__manifesto" data-i18n="hero.manifesto">Ideias que encontram<br />forma, ritmo e altitude.</p>
-          <a class="round-link" href="#projetos" data-cursor-label="VER TRABALHOS"><span data-i18n="hero.cta">VER<br />TRABALHOS</span><i>↓</i></a>
         </div>
 
         <!-- AI Skills - aparecem na segunda metade (frames_AI) - DENTRO do hero, no final -->
@@ -130,14 +146,41 @@
         </div>
       </section>
 
-      <section class="marquee" aria-label="Especialidades">
-        <div class="marquee__track">
-          <p>DESIGN <span>✦</span> WEBSITES <span>✦</span> MOTION <span>✦</span> DESIGN <span>✦</span> WEBSITES <span>✦</span> MOTION <span>✦</span></p>
-          <p aria-hidden="true">DESIGN <span>✦</span> WEBSITES <span>✦</span> MOTION <span>✦</span> DESIGN <span>✦</span> WEBSITES <span>✦</span> MOTION <span>✦</span></p>
+      <section class="logoloop-section" aria-label="Tecnologias e Ferramentas">
+        <div class="logoloop" id="logoLoop" aria-label="Logos de tecnologias">
+          <div class="logoloop__track" id="logoTrack">
+            <ul class="logoloop__list" id="logoList">
+              <li class="logoloop__item" data-name="React"><img src="assets/react.svg" alt="React" /></li>
+              <li class="logoloop__item" data-name="Next.js"><img src="https://cdn.worldvectorlogo.com/logos/next-js.svg" alt="Next.js" /></li>
+              <li class="logoloop__item" data-name="CSS"><img src="assets/css-3.svg" alt="CSS" /></li>
+              <li class="logoloop__item" data-name="Claude"><img src="assets/claude-logo.svg" alt="Claude" /></li>
+              <li class="logoloop__item" data-name="ChatGPT"><img src="https://cdn.worldvectorlogo.com/logos/chatgpt-6.svg" alt="ChatGPT" /></li>
+              <li class="logoloop__item" data-name="HTML"><img src="assets/html.svg" alt="HTML" /></li>
+              <li class="logoloop__item" data-name="Node.js"><img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" alt="Node.js" /></li>
+              <li class="logoloop__item" data-name="Opencode"><img src="assets/opencode.svg" alt="Opencode" /></li>
+              <li class="logoloop__item" data-name="Three.js"><img src="https://cdn.worldvectorlogo.com/logos/threejs-1.svg" alt="Three.js" /></li>
+              <li class="logoloop__item" data-name="Antigravity"><img src="assets/antigravity.svg" alt="Antigravity" /></li>
+              <li class="logoloop__item" data-name="Python"><img src="https://cdn.worldvectorlogo.com/logos/python-5.svg" alt="Python" /></li>
+              <li class="logoloop__item" data-name="Davinci Resolve"><img src="assets/davinci-resolve.svg" alt="Davinci" /></li>
+              <li class="logoloop__item" data-name="Photoshop"><img src="assets/adobe-photoshop-2.svg" alt="Photoshop" /></li>
+              <li class="logoloop__item" data-name="Git"><img src="https://cdn.worldvectorlogo.com/logos/git-icon.svg" alt="Git" /></li>
+              <li class="logoloop__item" data-name="GitHub"><img src="https://cdn.worldvectorlogo.com/logos/github-icon-1.svg" alt="GitHub" /></li>
+              <li class="logoloop__item" data-name="Blender"><img src="assets/blender.svg" alt="Blender" /></li>
+              <li class="logoloop__item" data-name="Vercel"><img src="assets/vercel-icon.svg" alt="Vercel" /></li>
+              <li class="logoloop__item" data-name="9Router"><img src="assets/9router.svg" alt="9Router" /></li>
+              <li class="logoloop__item" data-name="Nvidia NIM"><img src="assets/nvidia.svg" alt="Nvidia" /></li>
+              <li class="logoloop__item" data-name="Cursor"><img src="assets/cursor-icon.svg" alt="Cursor" /></li>
+            </ul>
+          </div>
         </div>
       </section>
 
       <section class="about section" id="sobre">
+        <!-- About video sequence (framesABOUT) - background layer, below everything -->
+        <div class="about__video-sequence" aria-hidden="true">
+          <div class="about__video-gradient"></div>
+          <img class="about__video-frame" src="assets/framesABOUT/frame_000001.png" alt="" />
+        </div>
         <div class="section-label"><span>( 01 )</span><span data-i18n="about.label">SOBRE MIM</span></div>
         <div class="about__grid">
           <h2 class="split-text" data-i18n="about.title">Transformo ideias em experiências que ficam na cabeça.</h2>
@@ -147,10 +190,6 @@
           </div>
         </div>
         <div class="about__orbits" aria-hidden="true"><span>✦</span><span>✦</span><span>✦</span></div>
-        <!-- About video sequence (framesABOUT) - same pattern as projects -->
-        <div class="about__video-sequence" aria-hidden="true">
-          <img class="about__video-frame" src="assets/framesABOUT/frame_000001.png" alt="" />
-        </div>
       </section>
 
       <section class="projects section" id="projetos">
